@@ -217,6 +217,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="UserControl\DatosGenerales.ascx" />
+    <Content Include="UserControl\DetallesEnvio.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -384,6 +385,13 @@
     </Compile>
     <Compile Include="UserControl\DatosGenerales.ascx.designer.cs">
       <DependentUpon>DatosGenerales.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\DetallesEnvio.ascx.cs">
+      <DependentUpon>DetallesEnvio.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\DetallesEnvio.ascx.designer.cs">
+      <DependentUpon>DetallesEnvio.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administracion/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarEnvio.aspx.cs" Inherits="MonteroExpressWF.Administracion.RegistrarEnvio" %>
 <%@ Register Src="~/UserControl/DatosGenerales.ascx" TagName="DatosGenerales" TagPrefix="DG" %>
+<%@ Register Src="~/UserControl/DetallesEnvio.ascx" TagName="DetallesEnvio" TagPrefix="DE" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -10,11 +11,11 @@
             <DG:DatosGenerales ID="usrControlDatosGenerales" runat="server"/>
                     </p>
         </div>
-        <h3>Destinatario</h3>
+        <h3>Detalles Envio</h3>
         <div>
             <p>
 
-                Esto es una prueba 2
+                <DE:DetallesEnvio ID="usrControlDetallesEnvio" runat="server" />
             </p>
 
         </div>
