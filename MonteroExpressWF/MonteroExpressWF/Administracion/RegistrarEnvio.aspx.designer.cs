@@ -22,15 +22,6 @@ namespace MonteroExpressWF.Administracion {
         protected global::MonteroExpressWF.UserControl.DatosGenerales usrControlRemitente;
         
         /// <summary>
-        /// usrControlDetallesEnvio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::MonteroExpressWF.UserControl.DetallesEnvio usrControlDetallesEnvio;
-        
-        /// <summary>
         /// usrControlDestinatario control.
         /// </summary>
         /// <remarks>
@@ -38,5 +29,14 @@ namespace MonteroExpressWF.Administracion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::MonteroExpressWF.UserControl.DatosGenerales usrControlDestinatario;
+        
+        /// <summary>
+        /// usrControlDetallesEnvio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::MonteroExpressWF.UserControl.DetallesEnvio usrControlDetallesEnvio;
     }
 }
