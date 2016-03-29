@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2fd96c3040d34ef78193bb4443fb5c00" Name="Diagram1">
+        <EntityTypeShape EntityType="MonteroExpressModel.Ciudade" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.EntidadDireccione" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.Entidade" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.Envio" Width="1.5" PointX="9.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.EstadosEnvio" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.EstadosPaquete" Width="1.5" PointX="9.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.Oficina" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.Pais" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.PaquetesEnvio" Width="1.5" PointX="12" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.Provincia" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.Role" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.SegurosEnvio" Width="1.5" PointX="7.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.TiposContenido" Width="1.5" PointX="12.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.TiposContenidosPaquetesEnvio" Width="1.5" PointX="15" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.TiposDocumento" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.TiposPaquete" Width="1.5" PointX="9.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonteroExpressModel.Usuario" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Ciudades__IdProv__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__EntidadDi__IdCiu__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__EntidadDi__IdEnt__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Envios__IdDestin__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Envios__IdRemite__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Entidades__IdTip__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Envios__IdEstado__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Envios__IdOficin__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Envios__IdSeguro__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__PaquetesE__IdEnv__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__TiposCont__IdEnv__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__PaquetesE__IdEst__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Provincia__IdPai__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__PaquetesE__IdTip__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__Usuarios__IdRol__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="MonteroExpressModel.FK__TiposCont__IdTip__52593CB8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
