@@ -13,13 +13,13 @@ namespace MonteroExpressWF.Administracion {
     public partial class RegistrarEnvio {
         
         /// <summary>
-        /// usrControlDatosGenerales control.
+        /// usrControlRemitente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::MonteroExpressWF.UserControl.DatosGenerales usrControlDatosGenerales;
+        protected global::MonteroExpressWF.UserControl.DatosGenerales usrControlRemitente;
         
         /// <summary>
         /// usrControlDetallesEnvio control.
@@ -29,5 +29,14 @@ namespace MonteroExpressWF.Administracion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::MonteroExpressWF.UserControl.DetallesEnvio usrControlDetallesEnvio;
+        
+        /// <summary>
+        /// usrControlDestinatario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::MonteroExpressWF.UserControl.DatosGenerales usrControlDestinatario;
     }
 }
