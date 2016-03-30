@@ -12,6 +12,8 @@ namespace MonteroExpressWF.DAL
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MonteroExpressEntities : DbContext
     {
@@ -42,5 +44,15 @@ namespace MonteroExpressWF.DAL
         public virtual DbSet<TiposDocumento> TiposDocumentos { get; set; }
         public virtual DbSet<TiposPaquete> TiposPaquetes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+    
+        public virtual ObjectResult<TiposDocumento> Obtener_TiposDocumentos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TiposDocumento>("Obtener_TiposDocumentos");
+        }
+    
+        public virtual ObjectResult<TiposDocumento> Obtener_TiposDocumentos(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TiposDocumento>("Obtener_TiposDocumentos", mergeOption);
+        }
     }
 }

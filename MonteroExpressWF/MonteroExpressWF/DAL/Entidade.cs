@@ -11,7 +11,7 @@ namespace MonteroExpressWF.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    [Serializable]
     public partial class Entidade
     {
         public Entidade()

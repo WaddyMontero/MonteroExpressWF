@@ -163,6 +163,8 @@
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="WebServices\MonteroExpressWS.asmx" />
     <EntityDeploy Include="DAL\MonteroExpress.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MonteroExpress.Designer.cs</LastGenOutput>
@@ -303,6 +305,7 @@
     <Compile Include="DAL\EstadosPaquete.cs">
       <DependentUpon>MonteroExpress.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ManejadorMonteroExpress.cs" />
     <Compile Include="DAL\MonteroExpress.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -396,6 +399,10 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebServices\MonteroExpressWS.asmx.cs">
+      <DependentUpon>MonteroExpressWS.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
