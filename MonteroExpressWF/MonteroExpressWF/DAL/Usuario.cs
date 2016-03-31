@@ -19,8 +19,8 @@ namespace MonteroExpressWF.DAL
         public byte[] Contrasena { get; set; }
         public Nullable<bool> CambiarContrasena { get; set; }
         public Nullable<int> IdRol { get; set; }
-        public Nullable<bool> Habilitado { get; set; }
-        public Nullable<System.DateTime> FechaIngreso { get; set; }
+        public bool Habilitado { get; set; }
+        public System.DateTime FechaIngreso { get; set; }
     
         public virtual Role Role { get; set; }
     }

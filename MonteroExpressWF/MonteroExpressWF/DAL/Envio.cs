@@ -29,7 +29,7 @@ namespace MonteroExpressWF.DAL
         public Nullable<int> IdSeguroEnvio { get; set; }
         public Nullable<int> IdEstadoEnvio { get; set; }
         public decimal Valor { get; set; }
-        public Nullable<System.DateTime> FechaIngreso { get; set; }
+        public System.DateTime FechaIngreso { get; set; }
     
         public virtual EntidadDireccione EntidadDireccione { get; set; }
         public virtual EntidadDireccione EntidadDireccione1 { get; set; }

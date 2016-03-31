@@ -23,8 +23,8 @@ namespace MonteroExpressWF.DAL
         public Nullable<int> IdPais { get; set; }
         public string Nombre { get; set; }
         public string Abrev { get; set; }
-        public Nullable<System.DateTime> FechaIngreso { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public System.DateTime FechaIngreso { get; set; }
+        public bool Activo { get; set; }
     
         public virtual ICollection<Ciudade> Ciudades { get; set; }
         public virtual Pais Pais { get; set; }

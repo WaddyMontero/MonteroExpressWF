@@ -10,21 +10,28 @@
 namespace MonteroExpressWF.DAL
 {
     using System;
-    using System.Collections.Generic;    
-    [Serializable]
+    using System.Collections.Generic;
+    using System.Xml.Serialization;
+
+[XmlRoot(ElementName="TiposDocumento")]
+    
     public partial class TiposDocumento
     {
         public TiposDocumento()
         {
             this.Entidades = new HashSet<Entidade>();
         }
-    
+    [XmlAttribute(DataType="int",AttributeName = "IdTipoDocumento")]
         public int IdTipoDocumento { get; set; }
+    [XmlAttribute(DataType = "string", AttributeName = "Descripcion")]
         public string Descripcion { get; set; }
+    [XmlAttribute(DataType = "string", AttributeName = "Mascara")]
         public string Mascara { get; set; }
-        public Nullable<System.DateTime> FechaIngreso { get; set; }
-        public Nullable<bool> Activo { get; set; }
-    
+    [XmlAttribute(DataType = "date", AttributeName = "FechaIngreso")]
+        public System.DateTime FechaIngreso { get; set; }
+    [XmlAttribute(DataType = "boolean", AttributeName = "Activo")]
+        public bool Activo { get; set; }
+    [XmlElement(Type = typeof(ICollection<Entidade>), ElementName = "Entidades")]
         public virtual ICollection<Entidade> Entidades { get; set; }
     }
 }

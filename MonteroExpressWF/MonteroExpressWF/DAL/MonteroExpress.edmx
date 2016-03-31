@@ -12,8 +12,8 @@
           <Property Name="IdCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdProvincia" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="EntidadDirecciones">
           <Key>
@@ -25,8 +25,8 @@
           <Property Name="IdCiudad" Type="int" Nullable="false" />
           <Property Name="Telefono1" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Telefono2" Type="varchar" MaxLength="15" />
-          <Property Name="PorDefecto" Type="bit" />
-          <Property Name="FechaIngreso" Type="datetime" />
+          <Property Name="PorDefecto" Type="bit" Nullable="false" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Entidades">
           <Key>
@@ -37,7 +37,7 @@
           <Property Name="IdTipoDocumento" Type="int" />
           <Property Name="NumDocumento" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Envios">
           <Key>
@@ -52,7 +52,7 @@
           <Property Name="IdSeguroEnvio" Type="int" />
           <Property Name="IdEstadoEnvio" Type="int" />
           <Property Name="Valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="EstadosEnvios">
           <Key>
@@ -60,8 +60,8 @@
           </Key>
           <Property Name="IdEstadoEnvio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="EstadosPaquetes">
           <Key>
@@ -69,8 +69,8 @@
           </Key>
           <Property Name="IdEstadoPaquete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Oficinas">
           <Key>
@@ -78,8 +78,8 @@
           </Key>
           <Property Name="IdOficina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
@@ -87,8 +87,8 @@
           </Key>
           <Property Name="IdPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PaquetesEnvios">
           <Key>
@@ -111,8 +111,8 @@
           <Property Name="IdPais" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Abrev" Type="char" MaxLength="3" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -120,8 +120,8 @@
           </Key>
           <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SegurosEnvios">
           <Key>
@@ -129,8 +129,8 @@
           </Key>
           <Property Name="IdSeguroEnvio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TiposContenidos">
           <Key>
@@ -138,8 +138,8 @@
           </Key>
           <Property Name="IdTipoContenido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TiposContenidosPaquetesEnvios">
           <Key>
@@ -156,8 +156,8 @@
           <Property Name="IdTipoDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Mascara" Type="varchar" MaxLength="20" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TiposPaquetes">
           <Key>
@@ -165,8 +165,8 @@
           </Key>
           <Property Name="IdTipoPaquete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="FechaIngreso" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -177,10 +177,10 @@
           <Property Name="Contrasena" Type="varbinary" MaxLength="1" Nullable="false" />
           <Property Name="CambiarContrasena" Type="bit" />
           <Property Name="IdRol" Type="int" />
-          <Property Name="Habilitado" Type="bit" />
-          <Property Name="FechaIngreso" Type="datetime" />
+          <Property Name="Habilitado" Type="bit" Nullable="false" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Ciudades_Provincias">
+        <Association Name="FK__Ciudades__IdProv__22AA2996">
           <End Role="Provincias" Type="Self.Provincias" Multiplicity="0..1" />
           <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,7 +192,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EntidadDirecciones_Ciudades">
+        <Association Name="FK__EntidadDi__IdCiu__30F848ED">
           <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="1" />
           <End Role="EntidadDirecciones" Type="Self.EntidadDirecciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -204,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EntidadDirecciones_Entidades">
+        <Association Name="FK__EntidadDi__IdEnt__300424B4">
           <End Role="Entidades" Type="Self.Entidades" Multiplicity="0..1" />
           <End Role="EntidadDirecciones" Type="Self.EntidadDirecciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -216,7 +216,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Entidades_TiposDocumentos">
+        <Association Name="FK__Entidades__IdTip__2B3F6F97">
           <End Role="TiposDocumentos" Type="Self.TiposDocumentos" Multiplicity="0..1" />
           <End Role="Entidades" Type="Self.Entidades" Multiplicity="*" />
           <ReferentialConstraint>
@@ -228,7 +228,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Envios_EntidadDirecciones_Destinatario">
+        <Association Name="FK__Envios__IdDestin__4316F928">
           <End Role="EntidadDirecciones" Type="Self.EntidadDirecciones" Multiplicity="0..1" />
           <End Role="Envios" Type="Self.Envios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -240,19 +240,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Envios_EntidadDirecciones_Remitente">
-          <End Role="EntidadDirecciones" Type="Self.EntidadDirecciones" Multiplicity="0..1" />
-          <End Role="Envios" Type="Self.Envios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EntidadDirecciones">
-              <PropertyRef Name="IdEntidadDireccion" />
-            </Principal>
-            <Dependent Role="Envios">
-              <PropertyRef Name="IdRemitenteDir" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Envios_EstadoEnvios">
+        <Association Name="FK__Envios__IdEstado__44FF419A">
           <End Role="EstadosEnvios" Type="Self.EstadosEnvios" Multiplicity="0..1" />
           <End Role="Envios" Type="Self.Envios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -264,7 +252,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Envios_Oficinas">
+        <Association Name="FK__Envios__IdOficin__412EB0B6">
           <End Role="Oficinas" Type="Self.Oficinas" Multiplicity="0..1" />
           <End Role="Envios" Type="Self.Envios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -276,7 +264,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Envios_SegurosEnvios">
+        <Association Name="FK__Envios__IdRemite__4222D4EF">
+          <End Role="EntidadDirecciones" Type="Self.EntidadDirecciones" Multiplicity="0..1" />
+          <End Role="Envios" Type="Self.Envios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntidadDirecciones">
+              <PropertyRef Name="IdEntidadDireccion" />
+            </Principal>
+            <Dependent Role="Envios">
+              <PropertyRef Name="IdRemitenteDir" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envios__IdSeguro__440B1D61">
           <End Role="SegurosEnvios" Type="Self.SegurosEnvios" Multiplicity="0..1" />
           <End Role="Envios" Type="Self.Envios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -288,7 +288,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaquetesEnvios_Envios">
+        <Association Name="FK__PaquetesE__IdEnv__59063A47">
           <End Role="Envios" Type="Self.Envios" Multiplicity="0..1" />
           <End Role="PaquetesEnvios" Type="Self.PaquetesEnvios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -300,7 +300,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaquetesEnvios_EstadosPaquetes">
+        <Association Name="FK__PaquetesE__IdEst__5AEE82B9">
           <End Role="EstadosPaquetes" Type="Self.EstadosPaquetes" Multiplicity="0..1" />
           <End Role="PaquetesEnvios" Type="Self.PaquetesEnvios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -312,7 +312,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaquetesEnvios_TiposPaquetes">
+        <Association Name="FK__PaquetesE__IdTip__59FA5E80">
           <End Role="TiposPaquetes" Type="Self.TiposPaquetes" Multiplicity="0..1" />
           <End Role="PaquetesEnvios" Type="Self.PaquetesEnvios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -324,7 +324,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Provincias_Paises">
+        <Association Name="FK__Provincia__IdPai__1DE57479">
           <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
           <End Role="Provincias" Type="Self.Provincias" Multiplicity="*" />
           <ReferentialConstraint>
@@ -336,7 +336,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TiposContenidosPaquetesEnvios_Envios">
+        <Association Name="FK__TiposCont__IdEnv__5165187F">
           <End Role="Envios" Type="Self.Envios" Multiplicity="0..1" />
           <End Role="TiposContenidosPaquetesEnvios" Type="Self.TiposContenidosPaquetesEnvios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -348,7 +348,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TiposContenidosPaquetesEnvios_TiposContenidos">
+        <Association Name="FK__TiposCont__IdTip__52593CB8">
           <End Role="TiposContenidos" Type="Self.TiposContenidos" Multiplicity="0..1" />
           <End Role="TiposContenidosPaquetesEnvios" Type="Self.TiposContenidosPaquetesEnvios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -360,7 +360,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Usuarios_Roles">
+        <Association Name="FK__Usuarios__IdRol__15502E78">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -391,67 +391,67 @@
           <EntitySet Name="TiposDocumentos" EntityType="Self.TiposDocumentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposPaquetes" EntityType="Self.TiposPaquetes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Ciudades_Provincias" Association="Self.FK_Ciudades_Provincias">
+          <AssociationSet Name="FK__Ciudades__IdProv__22AA2996" Association="Self.FK__Ciudades__IdProv__22AA2996">
             <End Role="Provincias" EntitySet="Provincias" />
             <End Role="Ciudades" EntitySet="Ciudades" />
           </AssociationSet>
-          <AssociationSet Name="FK_EntidadDirecciones_Ciudades" Association="Self.FK_EntidadDirecciones_Ciudades">
+          <AssociationSet Name="FK__EntidadDi__IdCiu__30F848ED" Association="Self.FK__EntidadDi__IdCiu__30F848ED">
             <End Role="Ciudades" EntitySet="Ciudades" />
             <End Role="EntidadDirecciones" EntitySet="EntidadDirecciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_EntidadDirecciones_Entidades" Association="Self.FK_EntidadDirecciones_Entidades">
+          <AssociationSet Name="FK__EntidadDi__IdEnt__300424B4" Association="Self.FK__EntidadDi__IdEnt__300424B4">
             <End Role="Entidades" EntitySet="Entidades" />
             <End Role="EntidadDirecciones" EntitySet="EntidadDirecciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_Entidades_TiposDocumentos" Association="Self.FK_Entidades_TiposDocumentos">
+          <AssociationSet Name="FK__Entidades__IdTip__2B3F6F97" Association="Self.FK__Entidades__IdTip__2B3F6F97">
             <End Role="TiposDocumentos" EntitySet="TiposDocumentos" />
             <End Role="Entidades" EntitySet="Entidades" />
           </AssociationSet>
-          <AssociationSet Name="FK_Envios_EntidadDirecciones_Destinatario" Association="Self.FK_Envios_EntidadDirecciones_Destinatario">
+          <AssociationSet Name="FK__Envios__IdDestin__4316F928" Association="Self.FK__Envios__IdDestin__4316F928">
             <End Role="EntidadDirecciones" EntitySet="EntidadDirecciones" />
             <End Role="Envios" EntitySet="Envios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Envios_EntidadDirecciones_Remitente" Association="Self.FK_Envios_EntidadDirecciones_Remitente">
-            <End Role="EntidadDirecciones" EntitySet="EntidadDirecciones" />
-            <End Role="Envios" EntitySet="Envios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Envios_EstadoEnvios" Association="Self.FK_Envios_EstadoEnvios">
+          <AssociationSet Name="FK__Envios__IdEstado__44FF419A" Association="Self.FK__Envios__IdEstado__44FF419A">
             <End Role="EstadosEnvios" EntitySet="EstadosEnvios" />
             <End Role="Envios" EntitySet="Envios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Envios_Oficinas" Association="Self.FK_Envios_Oficinas">
+          <AssociationSet Name="FK__Envios__IdOficin__412EB0B6" Association="Self.FK__Envios__IdOficin__412EB0B6">
             <End Role="Oficinas" EntitySet="Oficinas" />
             <End Role="Envios" EntitySet="Envios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Envios_SegurosEnvios" Association="Self.FK_Envios_SegurosEnvios">
+          <AssociationSet Name="FK__Envios__IdRemite__4222D4EF" Association="Self.FK__Envios__IdRemite__4222D4EF">
+            <End Role="EntidadDirecciones" EntitySet="EntidadDirecciones" />
+            <End Role="Envios" EntitySet="Envios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envios__IdSeguro__440B1D61" Association="Self.FK__Envios__IdSeguro__440B1D61">
             <End Role="SegurosEnvios" EntitySet="SegurosEnvios" />
             <End Role="Envios" EntitySet="Envios" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaquetesEnvios_Envios" Association="Self.FK_PaquetesEnvios_Envios">
+          <AssociationSet Name="FK__PaquetesE__IdEnv__59063A47" Association="Self.FK__PaquetesE__IdEnv__59063A47">
             <End Role="Envios" EntitySet="Envios" />
             <End Role="PaquetesEnvios" EntitySet="PaquetesEnvios" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaquetesEnvios_EstadosPaquetes" Association="Self.FK_PaquetesEnvios_EstadosPaquetes">
+          <AssociationSet Name="FK__PaquetesE__IdEst__5AEE82B9" Association="Self.FK__PaquetesE__IdEst__5AEE82B9">
             <End Role="EstadosPaquetes" EntitySet="EstadosPaquetes" />
             <End Role="PaquetesEnvios" EntitySet="PaquetesEnvios" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaquetesEnvios_TiposPaquetes" Association="Self.FK_PaquetesEnvios_TiposPaquetes">
+          <AssociationSet Name="FK__PaquetesE__IdTip__59FA5E80" Association="Self.FK__PaquetesE__IdTip__59FA5E80">
             <End Role="TiposPaquetes" EntitySet="TiposPaquetes" />
             <End Role="PaquetesEnvios" EntitySet="PaquetesEnvios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Provincias_Paises" Association="Self.FK_Provincias_Paises">
+          <AssociationSet Name="FK__Provincia__IdPai__1DE57479" Association="Self.FK__Provincia__IdPai__1DE57479">
             <End Role="Paises" EntitySet="Paises" />
             <End Role="Provincias" EntitySet="Provincias" />
           </AssociationSet>
-          <AssociationSet Name="FK_TiposContenidosPaquetesEnvios_Envios" Association="Self.FK_TiposContenidosPaquetesEnvios_Envios">
+          <AssociationSet Name="FK__TiposCont__IdEnv__5165187F" Association="Self.FK__TiposCont__IdEnv__5165187F">
             <End Role="Envios" EntitySet="Envios" />
             <End Role="TiposContenidosPaquetesEnvios" EntitySet="TiposContenidosPaquetesEnvios" />
           </AssociationSet>
-          <AssociationSet Name="FK_TiposContenidosPaquetesEnvios_TiposContenidos" Association="Self.FK_TiposContenidosPaquetesEnvios_TiposContenidos">
+          <AssociationSet Name="FK__TiposCont__IdTip__52593CB8" Association="Self.FK__TiposCont__IdTip__52593CB8">
             <End Role="TiposContenidos" EntitySet="TiposContenidos" />
             <End Role="TiposContenidosPaquetesEnvios" EntitySet="TiposContenidosPaquetesEnvios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Usuarios_Roles" Association="Self.FK_Usuarios_Roles">
+          <AssociationSet Name="FK__Usuarios__IdRol__15502E78" Association="Self.FK__Usuarios__IdRol__15502E78">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -551,8 +551,8 @@
           <Property Name="IdCiudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdProvincia" Type="Int32" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Provincia" Relationship="MonteroExpressModel.FK_Ciudades_Provincias" FromRole="Ciudade" ToRole="Provincia" />
           <NavigationProperty Name="EntidadDirecciones" Relationship="MonteroExpressModel.FK_EntidadDirecciones_Ciudades" FromRole="Ciudade" ToRole="EntidadDireccione" />
         </EntityType>
@@ -566,8 +566,8 @@
           <Property Name="IdCiudad" Type="Int32" Nullable="false" />
           <Property Name="Telefono1" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Telefono2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="PorDefecto" Type="Boolean" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="PorDefecto" Type="Boolean" Nullable="false" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
           <NavigationProperty Name="Ciudade" Relationship="MonteroExpressModel.FK_EntidadDirecciones_Ciudades" FromRole="EntidadDireccione" ToRole="Ciudade" />
           <NavigationProperty Name="Entidade" Relationship="MonteroExpressModel.FK_EntidadDirecciones_Entidades" FromRole="EntidadDireccione" ToRole="Entidade" />
           <NavigationProperty Name="Envios" Relationship="MonteroExpressModel.FK_Envios_EntidadDirecciones_Destinatario" FromRole="EntidadDireccione" ToRole="Envio" />
@@ -582,7 +582,7 @@
           <Property Name="IdTipoDocumento" Type="Int32" />
           <Property Name="NumDocumento" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="EntidadDirecciones" Relationship="MonteroExpressModel.FK_EntidadDirecciones_Entidades" FromRole="Entidade" ToRole="EntidadDireccione" />
           <NavigationProperty Name="TiposDocumento" Relationship="MonteroExpressModel.FK_Entidades_TiposDocumentos" FromRole="Entidade" ToRole="TiposDocumento" />
         </EntityType>
@@ -599,7 +599,7 @@
           <Property Name="IdSeguroEnvio" Type="Int32" />
           <Property Name="IdEstadoEnvio" Type="Int32" />
           <Property Name="Valor" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
           <NavigationProperty Name="EntidadDireccione" Relationship="MonteroExpressModel.FK_Envios_EntidadDirecciones_Destinatario" FromRole="Envio" ToRole="EntidadDireccione" />
           <NavigationProperty Name="EntidadDireccione1" Relationship="MonteroExpressModel.FK_Envios_EntidadDirecciones_Remitente" FromRole="Envio" ToRole="EntidadDireccione" />
           <NavigationProperty Name="EstadosEnvio" Relationship="MonteroExpressModel.FK_Envios_EstadoEnvios" FromRole="Envio" ToRole="EstadosEnvio" />
@@ -614,8 +614,8 @@
           </Key>
           <Property Name="IdEstadoEnvio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Envios" Relationship="MonteroExpressModel.FK_Envios_EstadoEnvios" FromRole="EstadosEnvio" ToRole="Envio" />
         </EntityType>
         <EntityType Name="EstadosPaquete">
@@ -624,8 +624,8 @@
           </Key>
           <Property Name="IdEstadoPaquete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="PaquetesEnvios" Relationship="MonteroExpressModel.FK_PaquetesEnvios_EstadosPaquetes" FromRole="EstadosPaquete" ToRole="PaquetesEnvio" />
         </EntityType>
         <EntityType Name="Oficina">
@@ -634,8 +634,8 @@
           </Key>
           <Property Name="IdOficina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Envios" Relationship="MonteroExpressModel.FK_Envios_Oficinas" FromRole="Oficina" ToRole="Envio" />
         </EntityType>
         <EntityType Name="Pais">
@@ -644,8 +644,8 @@
           </Key>
           <Property Name="IdPais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Provincias" Relationship="MonteroExpressModel.FK_Provincias_Paises" FromRole="Pais" ToRole="Provincia" />
         </EntityType>
         <EntityType Name="PaquetesEnvio">
@@ -672,8 +672,8 @@
           <Property Name="IdPais" Type="Int32" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Abrev" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Ciudades" Relationship="MonteroExpressModel.FK_Ciudades_Provincias" FromRole="Provincia" ToRole="Ciudade" />
           <NavigationProperty Name="Pais" Relationship="MonteroExpressModel.FK_Provincias_Paises" FromRole="Provincia" ToRole="Pais" />
         </EntityType>
@@ -683,8 +683,8 @@
           </Key>
           <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Usuarios" Relationship="MonteroExpressModel.FK_Usuarios_Roles" FromRole="Role" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="SegurosEnvio">
@@ -693,8 +693,8 @@
           </Key>
           <Property Name="IdSeguroEnvio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Envios" Relationship="MonteroExpressModel.FK_Envios_SegurosEnvios" FromRole="SegurosEnvio" ToRole="Envio" />
         </EntityType>
         <EntityType Name="TiposContenido">
@@ -703,8 +703,8 @@
           </Key>
           <Property Name="IdTipoContenido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TiposContenidosPaquetesEnvios" Relationship="MonteroExpressModel.FK_TiposContenidosPaquetesEnvios_TiposContenidos" FromRole="TiposContenido" ToRole="TiposContenidosPaquetesEnvio" />
         </EntityType>
         <EntityType Name="TiposContenidosPaquetesEnvio">
@@ -724,8 +724,8 @@
           <Property Name="IdTipoDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Mascara" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Entidades" Relationship="MonteroExpressModel.FK_Entidades_TiposDocumentos" FromRole="TiposDocumento" ToRole="Entidade" />
         </EntityType>
         <EntityType Name="TiposPaquete">
@@ -734,8 +734,8 @@
           </Key>
           <Property Name="IdTipoPaquete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="PaquetesEnvios" Relationship="MonteroExpressModel.FK_PaquetesEnvios_TiposPaquetes" FromRole="TiposPaquete" ToRole="PaquetesEnvio" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -747,8 +747,8 @@
           <Property Name="Contrasena" Type="Binary" Nullable="false" MaxLength="1" FixedLength="false" />
           <Property Name="CambiarContrasena" Type="Boolean" />
           <Property Name="IdRol" Type="Int32" />
-          <Property Name="Habilitado" Type="Boolean" />
-          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="MonteroExpressModel.FK_Usuarios_Roles" FromRole="Usuario" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Ciudades_Provincias">

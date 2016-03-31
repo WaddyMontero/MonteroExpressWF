@@ -22,8 +22,8 @@ namespace MonteroExpressWF.DAL
         public int IdCiudad { get; set; }
         public Nullable<int> IdProvincia { get; set; }
         public string Nombre { get; set; }
-        public Nullable<System.DateTime> FechaIngreso { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public System.DateTime FechaIngreso { get; set; }
+        public bool Activo { get; set; }
     
         public virtual Provincia Provincia { get; set; }
         public virtual ICollection<EntidadDireccione> EntidadDirecciones { get; set; }

@@ -21,8 +21,8 @@ namespace MonteroExpressWF.DAL
     
         public int IdRol { get; set; }
         public string Descripcion { get; set; }
-        public Nullable<System.DateTime> FechaIngreso { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public System.DateTime FechaIngreso { get; set; }
+        public bool Activo { get; set; }
     
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }

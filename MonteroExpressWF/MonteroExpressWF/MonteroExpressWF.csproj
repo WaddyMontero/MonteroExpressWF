@@ -263,6 +263,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\ManejadorEntidades.cs" />
     <Compile Include="BOL\Ciudad.cs" />
     <Compile Include="BOL\Entidad.cs" />
     <Compile Include="BOL\EntidadDireccion.cs" />
@@ -340,6 +341,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Conexion\Persistencia.csproj">
+      <Project>{18e58284-15f9-4ac1-b89d-422619ee416e}</Project>
+      <Name>Persistencia</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
