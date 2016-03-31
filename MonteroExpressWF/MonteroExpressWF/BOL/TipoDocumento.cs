@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace MonteroExpressWF.BOL
-{
+{    
     public class TipoDocumento
     {
         public int IdTipoDocumento { get; set; }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MonteroExpressWF.DAL;
+using MonteroExpressWF.BLL;
 
 namespace MonteroExpressWF.UserControl
 {
@@ -12,10 +12,14 @@ namespace MonteroExpressWF.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ddlTipoDocumento.DataSource = ManejadorMonteroExpress.ObtenerTiposDocumentos();
-            ddlTipoDocumento.DataTextField = "Descripcion";
-            ddlTipoDocumento.DataValueField = "IdTipoDocumento";
-            ddlTipoDocumento.DataBind();
+            if (!IsPostBack)
+            {
+                ddlTipoDocumento.DataSource = ManejadorTipoDocumento.ObtenerTiposDocumentos();
+                ddlTipoDocumento.DataTextField = "Descripcion";
+                ddlTipoDocumento.DataValueField = "IdTipoDocumento";
+                ddlTipoDocumento.DataBind();    
+            }
+            
         }
     }
 }

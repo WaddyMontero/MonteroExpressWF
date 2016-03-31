@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DatosGenerales.ascx.cs" Inherits="MonteroExpressWF.UserControl.DatosGenerales" %>
+<script src="../Scripts/jquery.mask.min.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -10,27 +11,36 @@
             if ($(this).val() == '') {
                 $('#<%= txtDocumento.ClientID %>').attr('disabled', 'disabled');
             } else {
+                
                 $.ajax({
                     type: "POST",
                     url: "../WebServices/MonteroExpressWS.asmx/ObtenerTipoDocumento",
-                    data: { IdTipoDocumento: $('#<%= ddlTipoDocumento.ClientID %>').val() },
-                    //contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ 'IdTipoDocumento': parseInt($('#<%= ddlTipoDocumento.ClientID %>').val()) }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
                     success: function (data) {
                         //$('#txtNumDocumento').removeAttr("disabled");
                         //$('#txtNumDocumento').mask(data.Mascara);
-                        alert(data[0]);
-                    }, error: function () {
-                        alert('ocurrio un error');
+                        $('#<%= txtDocumento.ClientID %>').removeAttr('disabled');
+                        $('#<%= txtDocumento.ClientID %>').mask(data.d.Mascara);
+                    }, error: function (jqXHR, textStatus,errorThrown) {
+                        alert(jqXHR+"\n"+textStatus+"\n"+errorThrown);
                     }
                 })
             }
         });
     });
 
-    function prueba(control)
+    function Buscar(control)
     {
         idStartWith = control.id.split('_')[0] + '_' + control.id.split('_')[1];
-        $('#' + idStartWith + '_' + 'txtDocumento').val('asas');
+        //$('#' + idStartWith + '_' + 'txtDocumento').val('asas');
+        if ($('#' + idStartWith + '_' + 'txtDocumento').val() == '') {
+            ImprimirDialogo('Buscar entidad', 'Debe digitar el # de documento que desea buscar');
+        } else
+        {
+
+        }
     }
 
 </script>
@@ -52,7 +62,7 @@
                     <div class="input-group">
                         <asp:TextBox runat="server" CssClass="form-control" ID="txtDocumento"></asp:TextBox>
                         <span class="input-group-btn">
-                        <asp:Button runat="server" CssClass="btn btn-info" ID="btnBuscar" Text="Buscar" OnClientClick="prueba(this); return false;" />
+                        <asp:Button runat="server" CssClass="btn btn-info" ID="btnBuscar" Text="Buscar" OnClientClick="Buscar(this); return false;" />
                             </span>
                     </div>
                 </div>

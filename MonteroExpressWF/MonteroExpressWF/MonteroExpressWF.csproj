@@ -154,6 +154,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\Utilities.js" />
     <Content Include="WebServices\MonteroExpressWS.asmx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -264,6 +265,10 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\ManejadorEntidades.cs" />
+    <Compile Include="BLL\ManejadorEnvios.cs" />
+    <Compile Include="BLL\ManejadorTipoDocumento.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BOL\Ciudad.cs" />
     <Compile Include="BOL\Entidad.cs" />
     <Compile Include="BOL\EntidadDireccion.cs" />

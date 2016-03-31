@@ -20,11 +20,12 @@
     <script src="../Scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
     <script src="../Scripts/jquery.mask.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/Utilities.js"></script>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
-<body>
+<body id="prueba">
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
