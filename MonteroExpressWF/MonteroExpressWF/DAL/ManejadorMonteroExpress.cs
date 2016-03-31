@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MonteroExpressWF.BOL;
 
 namespace MonteroExpressWF.DAL
 {
     public class ManejadorMonteroExpress
     {
         
-        public static List<TiposDocumento> ObtenerTiposDocumentos() 
+        public static List<TipoDocumento> ObtenerTiposDocumentos() 
         {
-            MonteroExpressEntities conexion = new MonteroExpressEntities();
-            return conexion.Obtener_TiposDocumentos().ToList();
+           
+            //return conexion.Obtener_TiposDocumentos().ToList();
+            return new List<TipoDocumento>();
         }
-        public static TiposDocumento ObtenerTipoDocumento(int IdTipoDocumento)
+        public static TipoDocumento ObtenerTipoDocumento(int IdTipoDocumento)
         {
-            MonteroExpressEntities conexion = new MonteroExpressEntities();
-            return conexion.Obtener_TiposDocumentos().Single(td => td.IdTipoDocumento == IdTipoDocumento);
+            
+            //return conexion.Obtener_TiposDocumentos().Single(td => td.IdTipoDocumento == IdTipoDocumento);
+            return new TipoDocumento();
         }
     }
 }

@@ -151,27 +151,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="DAL\MonteroExpress.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MonteroExpress.edmx</DependentUpon>
-      <LastGenOutput>MonteroExpress.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DAL\MonteroExpress.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MonteroExpress.edmx</DependentUpon>
-      <LastGenOutput>MonteroExpress.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="WebServices\MonteroExpressWS.asmx" />
-    <EntityDeploy Include="DAL\MonteroExpress.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MonteroExpress.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DAL\MonteroExpress.edmx.diagram">
-      <DependentUpon>MonteroExpress.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
@@ -280,6 +263,22 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BOL\Ciudad.cs" />
+    <Compile Include="BOL\Entidad.cs" />
+    <Compile Include="BOL\EntidadDireccion.cs" />
+    <Compile Include="BOL\Envio.cs" />
+    <Compile Include="BOL\EstadoEnvio.cs" />
+    <Compile Include="BOL\EstadoPaquete.cs" />
+    <Compile Include="BOL\Oficina.cs" />
+    <Compile Include="BOL\Pais.cs" />
+    <Compile Include="BOL\PaqueteEnvio.cs" />
+    <Compile Include="BOL\Provincia.cs" />
+    <Compile Include="BOL\Rol.cs" />
+    <Compile Include="BOL\SeguroEnvio.cs" />
+    <Compile Include="BOL\TipoContenido.cs" />
+    <Compile Include="BOL\TipoDocumento.cs" />
+    <Compile Include="BOL\TipoPaquete.cs" />
+    <Compile Include="BOL\Usuario.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -287,73 +286,7 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Ciudade.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\EntidadDireccione.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Entidade.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Envio.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\EstadosEnvio.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\EstadosPaquete.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\ManejadorMonteroExpress.cs" />
-    <Compile Include="DAL\MonteroExpress.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MonteroExpress.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MonteroExpress.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\MonteroExpress.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MonteroExpress.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Oficina.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Pais.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\PaquetesEnvio.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Provincia.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Role.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\SegurosEnvio.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\TiposContenido.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\TiposContenidosPaquetesEnvio.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\TiposDocumento.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\TiposPaquete.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Usuario.cs">
-      <DependentUpon>MonteroExpress.tt</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

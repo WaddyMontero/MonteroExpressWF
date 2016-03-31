@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Services;
 using MonteroExpressWF.DAL;
 using Newtonsoft.Json;
-using System.Xml.Serialization;
+using MonteroExpressWF.BOL;
 
 namespace MonteroExpressWF.WebServices
 {
@@ -22,7 +22,7 @@ namespace MonteroExpressWF.WebServices
 
         [WebMethod]
         
-        public TiposDocumento ObtenerTipoDocumento(string IdTipoDocumento)
+        public TipoDocumento ObtenerTipoDocumento(string IdTipoDocumento)
         {
             //return JsonConvert.SerializeObject(ManejadorMonteroExpress.ObtenerTipoDocumento(int.Parse(IdTipoDocumento)));
             return ManejadorMonteroExpress.ObtenerTipoDocumento(int.Parse(IdTipoDocumento));
