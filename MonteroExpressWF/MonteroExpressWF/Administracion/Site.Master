@@ -21,11 +21,15 @@
     <script src="../Scripts/jquery.mask.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/Utilities.js"></script>
+    <script src="../Scripts/bootbox.min.js"></script>
+    <script src="../Scripts/jtable.2.4.0/jquery.jtable.min.js"></script>
+    <script src="../Scripts/jtable.2.4.0/external/json2.min.js"></script>
+    <script src="../Scripts/jtable.2.4.0/extensions/jquery.jtable.aspnetpagemethods.min.js"></script>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
-<body id="prueba">
+<body >
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>

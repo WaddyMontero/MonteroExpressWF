@@ -23,10 +23,10 @@
                         //$('#txtNumDocumento').mask(data.Mascara);
                         $('#<%= txtDocumento.ClientID %>').removeAttr('disabled');
                         $('#<%= txtDocumento.ClientID %>').mask(data.d.Mascara);
-                    }, error: function (jqXHR, textStatus,errorThrown) {
-                        alert(jqXHR+"\n"+textStatus+"\n"+errorThrown);
+                    }, error: function (jqXHR, textStatus, errorThrown) {
+                        MostrarAlerta("error", textStatus);
                     }
-                })
+                });
             }
         });
     });
@@ -34,12 +34,13 @@
     function Buscar(control)
     {
         idStartWith = control.id.split('_')[0] + '_' + control.id.split('_')[1];
-        //$('#' + idStartWith + '_' + 'txtDocumento').val('asas');
         if ($('#' + idStartWith + '_' + 'txtDocumento').val() == '') {
-            ImprimirDialogo('Buscar entidad', 'Debe digitar el # de documento que desea buscar');
+            //bootbox.alert('Debe digitar el # de documento que desea buscar');
+            MostrarAlerta('warning', 'Debe digitar el # de documento que desea buscar');
+            //ImprimirDialogo('Prueba', 'Debe digitar el # de documento que desea buscar');
         } else
         {
-
+            AjaxCall("../WebServices/MonteroExpressWS.asmx/ObtenerEntidadDirecciones", {"NumDocumento": $('#' + idStartWith + '_' + 'txtDocumento').val() }, function (idStartWith,resultado) { })
         }
     }
 
@@ -68,6 +69,7 @@
                 </div>
             </div>
         </div>
+        
         <div id="divControles" class="hidden">
             <div class="row">
             <div class="col-lg-6 col-xs-12">

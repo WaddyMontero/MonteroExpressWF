@@ -15,6 +15,14 @@ namespace MonteroExpressWF.BOL
         public Nullable<bool> Activo { get; set; }
 
         public Pais Pais { get; set; }
+
+        public Provincia(int IdProvincia, string Nombre, string Abrev, Pais Pais)
+        {
+            IdProvincia = this.IdProvincia;
+            Nombre = this.Nombre;
+            Abrev = this.Abrev;
+            Pais = this.Pais;
+        }
     
     }
 }

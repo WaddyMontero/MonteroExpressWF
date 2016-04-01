@@ -19,11 +19,23 @@ namespace MonteroExpressWF.WebServices
     public class MonteroExpressWS : System.Web.Services.WebService
     {
 
+        #region TiposDocumentos
         [WebMethod]
         public TipoDocumento ObtenerTipoDocumento(int IdTipoDocumento)
         {
             //return JsonConvert.SerializeObject(ManejadorMonteroExpress.ObtenerTipoDocumento(int.Parse(IdTipoDocumento)));
             return ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento);
         }
+        #endregion
+
+        #region DireccionesEntidad
+        [WebMethod]
+        public List<EntidadDireccion> ObtenerEntidadDirecciones(string NumDocumento)
+        {
+            //return JsonConvert.SerializeObject(ManejadorMonteroExpress.ObtenerTipoDocumento(int.Parse(IdTipoDocumento)));
+            return ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento);
+        }
+
+        #endregion
     }
 }
