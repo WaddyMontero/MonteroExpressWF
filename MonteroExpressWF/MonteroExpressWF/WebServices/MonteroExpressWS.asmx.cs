@@ -33,7 +33,8 @@ namespace MonteroExpressWF.WebServices
         public List<EntidadDireccion> ObtenerEntidadDirecciones(string NumDocumento)
         {
             //return JsonConvert.SerializeObject(ManejadorMonteroExpress.ObtenerTipoDocumento(int.Parse(IdTipoDocumento)));
-            return ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento);
+            //return ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento);
+            return new List<EntidadDireccion>();
         }
 
         #endregion
