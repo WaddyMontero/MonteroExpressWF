@@ -4,7 +4,7 @@
     $('#<%= IdEntidad.ClientID %>').val('');
     if (data != undefined) {
         $('#' + idContenedor + 'txtNombre').val(data.d.Nombre);
-        for(data.d.)
+        //for(data.d.)
 
     } else {
         $('#' + idContenedor + 'divControles').removeClass('hidden');
