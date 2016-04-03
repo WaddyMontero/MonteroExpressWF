@@ -3,7 +3,8 @@
     $('#<%= IdEntidad.ClientID %>').val('');
     $('#<%= IdEntidad.ClientID %>').val('');
     if (data != undefined) {
-        $('#' + idContenedor + 'txtDocumento').add('');
+        $('#' + idContenedor + 'txtNombre').val(data.d.Nombre);
+        for(data.d.)
 
     } else {
         $('#' + idContenedor + 'divControles').removeClass('hidden');
