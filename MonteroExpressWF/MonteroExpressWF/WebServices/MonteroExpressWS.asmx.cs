@@ -29,14 +29,17 @@ namespace MonteroExpressWF.WebServices
         #endregion
 
         #region DireccionesEntidad
-        [WebMethod]
-        public List<EntidadDireccion> ObtenerEntidadDirecciones(string NumDocumento)
-        {
-            //return JsonConvert.SerializeObject(ManejadorMonteroExpress.ObtenerTipoDocumento(int.Parse(IdTipoDocumento)));
-            //return ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento);
-            return new List<EntidadDireccion>();
-        }
+        
+        #endregion
 
+        #region Entidad
+
+        [WebMethod]
+        public Entidad BuscarEntidad(string NumDocumento)
+        {
+            //return ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento);
+            return new Entidad();
+        }
         #endregion
     }
 }

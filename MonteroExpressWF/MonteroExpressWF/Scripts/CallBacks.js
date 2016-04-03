@@ -1,31 +1,40 @@
-﻿function BuscarEntidadCallBack(idContenedor,resultado)
+﻿function BuscarEntidadCallBack(idContenedor,data)
 {
-    if (resultado != undefined) {
-       
-        var tabla = "<table class='table table-responsive'>";
-        var tabla = "<thead><tr>";
-        tabla += "<th>Seleccionar</th>";
-        tabla += "<th>Dirección</th>";
-        tabla += "<th>Ciudad</th>";
-        tabla += "<th>Teléfono1</th>";
-        tabla += "<th>Teléfono2</th>";
-        tabla += "</tr></thead>"
-        for (var i = 0; i < resultado.d.length; i++) {
-            tabla += "<tr>"
-            tabla += "<td></td>"
-            tabla += "<td></td>"
-            tabla += "<td></td>"
-            tabla += "<td></td>"
-            tabla += "</tr>"
-
-        }
-        
-        MostrarDialogo("Seleccione dirección","")
-        
+    $('#<%= IdEntidad.ClientID %>').val('');
+    $('#<%= IdEntidad.ClientID %>').val('');
+    if (data != undefined) {
+        $('#' + idContenedor + 'txtDocumento').add('');
 
     } else {
-
+        $('#' + idContenedor + 'divControles').removeClass('hidden');
+        $('#' + idContenedor + 'divDireccion').removeClass('hidden');
     }
+    //if (resultado != undefined) {
+       
+    //    var tabla = "<table class='table table-responsive'>";
+    //    var tabla = "<thead><tr>";
+    //    tabla += "<th>Seleccionar</th>";
+    //    tabla += "<th>Dirección</th>";
+    //    tabla += "<th>Ciudad</th>";
+    //    tabla += "<th>Teléfono1</th>";
+    //    tabla += "<th>Teléfono2</th>";
+    //    tabla += "</tr></thead>"
+    //    for (var i = 0; i < resultado.d.length; i++) {
+    //        tabla += "<tr>"
+    //        tabla += "<td></td>"
+    //        tabla += "<td></td>"
+    //        tabla += "<td></td>"
+    //        tabla += "<td></td>"
+    //        tabla += "</tr>"
+
+    //    }
+        
+    //    MostrarDialogo("Seleccione dirección","")
+        
+
+    //} else {
+
+    //}
 }
 
 

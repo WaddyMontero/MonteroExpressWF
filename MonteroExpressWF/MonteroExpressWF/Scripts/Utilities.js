@@ -54,8 +54,8 @@ function MostrarDialogo(titulo, mensaje) {
     //$('<div id="message" title='+titulo+'> '+mensaje+'</div>');//.alert();
 }
 
-function AjaxCall(url,data,callback)
-{
+function AjaxCall(url, data, CallBackFunction)
+{ 
     $.ajax({
         type: "POST",
         url: url,
@@ -65,9 +65,10 @@ function AjaxCall(url,data,callback)
         success: function (data) {
             //$('#txtNumDocumento').removeAttr("disabled");
             //$('#txtNumDocumento').mask(data.Mascara);
-            callback("prueba");
+            CallBackFunction('idPrueba',data);
         }, error: function (jqXHR, textStatus, errorThrown) {
             ImprimirAlerta("error", textStatus);
+           
         }
     });
 }

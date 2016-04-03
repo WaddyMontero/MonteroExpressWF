@@ -16,15 +16,16 @@
         if ($('#<%= ddlTipoDocumento.ClientID %>').val() == '') {
             $('#<%= txtDocumento.ClientID %>').attr('disabled', 'disabled');
             $('#<%= btnBuscar.ClientID %>').attr('disabled', 'disabled');
-            $('#' + idStartWith + 'divDireccion').addClass('hidden');
-            $('#' + idStartWith + 'divControles').addClass('hidden');
+            //$('#' + idStartWith + 'divDireccion').addClass('hidden');
+            //$('#' + idStartWith + 'divControles').addClass('hidden');
         } 
 
         $('#<%= ddlTipoDocumento.ClientID %>').change(function () {
-            alert('funciona');
+            var idStartWith = $(this).attr("id").split('_')[0] + '_' + $(this).attr("id").split('_')[1] + '_';
             if ($(this).val() == '') {
                 $('#<%= txtDocumento.ClientID %>').attr('disabled', 'disabled');
                 $('#<%= btnBuscar.ClientID %>').attr('disabled', 'disabled');
+                $('#' + idStartWith + 'divControles').addClass('hidden');
                 $('#' + idStartWith + 'divDireccion').addClass('hidden');
      
             } else {
@@ -35,11 +36,14 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
+                        if (data != undefined) {
+                            $('#<%= txtDocumento.ClientID %>').removeAttr('disabled');
+                            $('#<%= btnBuscar.ClientID %>').removeAttr('disabled');
+                            $('#<%= txtDocumento.ClientID %>').mask(data.d.Mascara);
+                        }
                         //$('#txtNumDocumento').removeAttr("disabled");
                         //$('#txtNumDocumento').mask(data.Mascara);
-                        $('#<%= txtDocumento.ClientID %>').removeAttr('disabled');    
-                        $('#<%= btnBuscar.ClientID %>').removeAttr('disabled');    
-                        $('#<%= txtDocumento.ClientID %>').mask(data.d.Mascara);
+                       
                     }, error: function (jqXHR, textStatus, errorThrown) {
                         MostrarAlerta("error", textStatus);
                     }
@@ -48,22 +52,23 @@
         });
     });
 
-    function Buscar(control) {
+    function Buscar(control) {        
         idStartWith = control.id.split('_')[0] + '_' + control.id.split('_')[1]+'_';
         if ($('#' + idStartWith +'txtDocumento').val() == '') {
             //bootbox.alert('Debe digitar el # de documento que desea buscar');
             MostrarAlerta('warning', 'Debe digitar el # de documento que desea buscar');
             $('#' + idStartWith + 'divControles').addClass('hidden');
             //ImprimirDialogo('Prueba', 'Debe digitar el # de documento que desea buscar');
-        } else {
-            $('#' + idStartWith + 'divControles').removeClass('hidden');
-            //AjaxCall("../WebServices/MonteroExpressWS.asmx/ObtenerEntidadDirecciones", { "NumDocumento": $('#' + idStartWith + '_' + 'txtDocumento').val() }, function (idStartWith, resultado) { })
+        } else {            
+            AjaxCall("../WebServices/MonteroExpressWS.asmx/BuscarEntidad", { "NumDocumento": $('#' + idStartWith + 'txtDocumento').val() }, BuscarEntidadCallBack);
         }
+        
     }
 
 </script>
 <div class="panel panel-default">
-
+    <asp:HiddenField runat="server" ID="IdEntidad"/>
+    <asp:HiddenField runat="server" ID="IdEntidadDireccion"/>
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-6 col-xs-12">
@@ -80,7 +85,7 @@
                     <div class="input-group">
                         <asp:TextBox runat="server" CssClass="form-control" ID="txtDocumento"></asp:TextBox>
                         <span class="input-group-btn">
-                            <asp:Button runat="server" CssClass="btn btn-info" ID="btnBuscar" Text="Buscar" OnClientClick="Buscar(this); return false;" />
+                            <input type="button" runat="server" class="btn btn-info" id="btnBuscar" value="Buscar" onclick="javascript: Buscar(this);" />
                         </span>
                     </div>
                 </div>
