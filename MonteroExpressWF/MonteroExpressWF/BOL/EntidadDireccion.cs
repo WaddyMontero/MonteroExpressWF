@@ -15,5 +15,6 @@ namespace MonteroExpressWF.BOL
         public string Telefono2 { get; set; }
         public Nullable<bool> PorDefecto { get; set; }
         public Nullable<System.DateTime> FechaIngreso { get; set; }
+        public bool Activo { get; set; }
     }
 }

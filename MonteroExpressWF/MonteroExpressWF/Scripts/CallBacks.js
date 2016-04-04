@@ -1,42 +1,33 @@
-﻿function BuscarEntidadCallBack(idContenedor,data)
+﻿//Busca una entidad
+function BuscarEntidadCallBack(idContenedor, data)
 {
-    $('#<%= IdEntidad.ClientID %>').val('');
-    $('#<%= IdEntidad.ClientID %>').val('');
-    if (data != undefined) {
+    $('#' + idContenedor + 'IdEntidad').val('');    
+    if (data.d != undefined) {
+        $('#' + idContenedor + 'IdEntidad').val(data.d.IdEntidad);
         $('#' + idContenedor + 'txtNombre').val(data.d.Nombre);
-        //for(data.d.)
+        if (data.d.EntidadDirecciones) {
+            var direcciones = data.d.EntidadDirecciones;
+            restartDropDown(idContenedor + 'ddlDireccion', '', 'Agregar nueva dirección');
+            for (var i = 0; i < direcciones.length; i++)
+            {
+                $('#' + idContenedor + 'ddlDireccion').append($('<option '+((direcciones[i].PorDefecto == true)?"selected=selected":"")+' value="' + direcciones[i].IdEntidadDireccion + '">' + direcciones[i].Direccion + "," + direcciones[i].Ciudad.Nombre + '</option>'));
+            }
+            $('#' + idContenedor + 'divDireccion').addClass('hidden');
+        } else {
+            $('#' + idContenedor + 'divDireccion').removeClass('hidden');
+        }
 
     } else {
+        MostrarAlerta("info","El número de documento consultado no existe.");
         $('#' + idContenedor + 'divControles').removeClass('hidden');
-        $('#' + idContenedor + 'divDireccion').removeClass('hidden');
+        $('#' + idContenedor + 'divDireccion').removeClass('hidden');        
+        restartDropDown(idContenedor + 'ddlDireccion','','Agregar nueva dirección');
     }
-    //if (resultado != undefined) {
-       
-    //    var tabla = "<table class='table table-responsive'>";
-    //    var tabla = "<thead><tr>";
-    //    tabla += "<th>Seleccionar</th>";
-    //    tabla += "<th>Dirección</th>";
-    //    tabla += "<th>Ciudad</th>";
-    //    tabla += "<th>Teléfono1</th>";
-    //    tabla += "<th>Teléfono2</th>";
-    //    tabla += "</tr></thead>"
-    //    for (var i = 0; i < resultado.d.length; i++) {
-    //        tabla += "<tr>"
-    //        tabla += "<td></td>"
-    //        tabla += "<td></td>"
-    //        tabla += "<td></td>"
-    //        tabla += "<td></td>"
-    //        tabla += "</tr>"
-
-    //    }
-        
-    //    MostrarDialogo("Seleccione dirección","")
-        
-
-    //} else {
-
-    //}
+    $('#' + idContenedor + 'divControles').removeClass('hidden');
 }
+
+
+
 
 
 //$('<div></div>').jtable({

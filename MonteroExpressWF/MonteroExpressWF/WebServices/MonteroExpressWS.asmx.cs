@@ -37,8 +37,25 @@ namespace MonteroExpressWF.WebServices
         [WebMethod]
         public Entidad BuscarEntidad(string NumDocumento)
         {
-            //return ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento);
-            return new Entidad();
+            return ManejadorEntidades.BuscarEntidad(NumDocumento);            
+        }
+        #endregion
+
+        #region UbicacionesGeograficas
+        [WebMethod]
+        public object ObtenerProvinciasByPais(int IdPais) 
+        {
+            return ManejadorGeografico.ObtenerProvincias(IdPais).Select(opt => new { Value = opt.IdProvincia, Text = opt.Nombre });
+        }
+        [WebMethod]
+        public object ObtenerCiudadesByProvincia(int IdProvincia) 
+        {
+            return ManejadorGeografico.ObtenerCiudades(IdProvincia).Select(opt => new {Value = opt.IdCiudad,Text=opt.Nombre});
+        }
+        [WebMethod]
+        public static object ListarPaquetes() 
+        {
+            return new { Result = "OK", Records = new List<PaqueteEnvio>(), TotalRecordCount = 0 };
         }
         #endregion
     }

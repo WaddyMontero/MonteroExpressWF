@@ -8,7 +8,7 @@ namespace MonteroExpressWF.BOL
     public class Provincia
     {
         public int IdProvincia { get; set; }
-        public Nullable<int> IdPais { get; set; }
+        //public Nullable<int> IdPais { get; set; }
         public string Nombre { get; set; }
         public string Abrev { get; set; }
         public Nullable<System.DateTime> FechaIngreso { get; set; }
@@ -16,13 +16,13 @@ namespace MonteroExpressWF.BOL
 
         public Pais Pais { get; set; }
 
-        public Provincia(int IdProvincia, string Nombre, string Abrev, Pais Pais)
-        {
-            IdProvincia = this.IdProvincia;
-            Nombre = this.Nombre;
-            Abrev = this.Abrev;
-            Pais = this.Pais;
-        }
+        //public Provincia(int IdProvincia, string Nombre, string Abrev, Pais Pais)
+        //{
+        //    IdProvincia = this.IdProvincia;
+        //    Nombre = this.Nombre;
+        //    Abrev = this.Abrev;
+        //    Pais = this.Pais;
+        //}
     
     }
 }

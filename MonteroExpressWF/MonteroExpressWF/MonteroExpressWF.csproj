@@ -399,9 +399,12 @@
     <Compile Include="BLL\ManejadorEntidadDirecciones.cs" />
     <Compile Include="BLL\ManejadorEntidades.cs" />
     <Compile Include="BLL\ManejadorEnvios.cs" />
+    <Compile Include="BLL\ManejadorGeografico.cs" />
+    <Compile Include="BLL\ManejadorSegurosEnvios.cs" />
     <Compile Include="BLL\ManejadorTipoDocumento.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BLL\ManejadorTiposContenidos.cs" />
     <Compile Include="BOL\Ciudad.cs" />
     <Compile Include="BOL\Entidad.cs" />
     <Compile Include="BOL\EntidadDireccion.cs" />

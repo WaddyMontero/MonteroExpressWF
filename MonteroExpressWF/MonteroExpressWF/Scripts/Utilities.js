@@ -54,7 +54,7 @@ function MostrarDialogo(titulo, mensaje) {
     //$('<div id="message" title='+titulo+'> '+mensaje+'</div>');//.alert();
 }
 
-function AjaxCall(url, data, CallBackFunction)
+function AjaxCall(url, data,idContenedor ,callBackFunction)
 { 
     $.ajax({
         type: "POST",
@@ -63,12 +63,24 @@ function AjaxCall(url, data, CallBackFunction)
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            //$('#txtNumDocumento').removeAttr("disabled");
-            //$('#txtNumDocumento').mask(data.Mascara);
-            CallBackFunction('idPrueba',data);
+            //Llamada a la funcion para el callback
+            callBackFunction(idContenedor, data);
         }, error: function (jqXHR, textStatus, errorThrown) {
             ImprimirAlerta("error", textStatus);
-           
         }
     });
+}
+//Reinicia el dropdown de direcciones por el id.
+function restartDropDown(id,value,text) {
+    $('#' + id).empty();
+    $('#' + id).append($('<option value="'+value+'" selected="selected">'+text+'</option>'));
+}
+
+function CargarDropDown(idDropDown, options) {
+    if (options.d.length > 0) {
+        for (var i = 0; i < options.d.length; i++) {
+            $('#' + idDropDown).append($('<option value="' + options.d[i].Value + '">' + options.d[i].Text + '</option>'));
+        }
+    }
+    
 }

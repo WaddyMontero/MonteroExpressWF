@@ -7,12 +7,11 @@ using MonteroExpressWF.DAL;
 
 namespace MonteroExpressWF.BLL
 {
-    public class ManejadorEntidades
+    public class ManejadorSegurosEnvios
     {
-        public static Entidad BuscarEntidad(string NumDocumento) 
+        public static List<SeguroEnvio> ObtenerSegurosEnvios() 
         {
-            return ManejadorMonteroExpress.BuscarEntidad(NumDocumento);
+            return ManejadorMonteroExpress.ObtenerSegurosEnvios();
         }
-
     }
 }

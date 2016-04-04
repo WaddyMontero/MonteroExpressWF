@@ -13,8 +13,8 @@ namespace MonteroExpressWF.BOL
         public Nullable<int> IdTipoPaquete { get; set; }
         public string Descripcion { get; set; }
         public Nullable<decimal> PrecioUnitario { get; set; }
-        public Nullable<decimal> PrecioTotal { get; set; }
+        public Nullable<decimal> Peso { get; set; }
         public EstadoPaquete EstadoPaquete { get; set; }
-        public TipoPaquete TiposPaquete { get; set; }
+        //public TipoPaquete Tama { get; set; }
     }
 }

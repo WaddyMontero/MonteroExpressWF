@@ -3,7 +3,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-
+        $('#<%= txtTelefono1.ClientID %>').mask('999-999-9999');
+        $('#<%= txtTelefono2.ClientID %>').mask('999-999-9999');
         $('#<%= ddlDireccion.ClientID %>').change(function () {
             var idStartWith = $(this).attr('id').split('_')[0] + '_' + $(this).attr('id').split('_')[1]+'_';
             if ($(this).val()=="") {
@@ -13,6 +14,27 @@
             }
 
         });
+
+        $('#<%= ddlPais.ClientID %>').change(function () {            
+            var idStartWith = $(this).attr('id').split('_')[0] + '_' + $(this).attr('id').split('_')[1] + '_';
+            restartDropDown(idStartWith + 'ddlProvincia', '', 'Seleccione -->');
+            restartDropDown(idStartWith + 'ddlCiudad', '', 'Seleccione -->');
+            if ($(this).val() != "") {
+                AjaxCall("../WebServices/MonteroExpressWS.asmx/ObtenerProvinciasByPais", { "IdPais": parseInt($(this).val()) }, idStartWith + 'ddlProvincia', CargarDropDown);
+            }
+
+        });
+
+        $('#<%= ddlProvincia.ClientID %>').change(function () {
+            var idStartWith = $(this).attr('id').split('_')[0] + '_' + $(this).attr('id').split('_')[1] + '_';
+            restartDropDown(idStartWith + 'ddlCiudad', '', 'Seleccione -->');
+            if ($(this).val() != "") {
+                AjaxCall("../WebServices/MonteroExpressWS.asmx/ObtenerCiudadesByProvincia", { "IdProvincia": parseInt($(this).val()) }, idStartWith + 'ddlCiudad', CargarDropDown);
+            }
+
+        });
+
+
         if ($('#<%= ddlTipoDocumento.ClientID %>').val() == '') {
             $('#<%= txtDocumento.ClientID %>').attr('disabled', 'disabled');
             $('#<%= btnBuscar.ClientID %>').attr('disabled', 'disabled');
@@ -60,7 +82,7 @@
             $('#' + idStartWith + 'divControles').addClass('hidden');
             //ImprimirDialogo('Prueba', 'Debe digitar el # de documento que desea buscar');
         } else {            
-            AjaxCall("../WebServices/MonteroExpressWS.asmx/BuscarEntidad", { "NumDocumento": $('#' + idStartWith + 'txtDocumento').val() }, BuscarEntidadCallBack);
+            AjaxCall("../WebServices/MonteroExpressWS.asmx/BuscarEntidad", { "NumDocumento": $('#' + idStartWith + 'txtDocumento').val() },idStartWith, BuscarEntidadCallBack);
         }
         
     }
@@ -68,7 +90,6 @@
 </script>
 <div class="panel panel-default">
     <asp:HiddenField runat="server" ID="IdEntidad"/>
-    <asp:HiddenField runat="server" ID="IdEntidadDireccion"/>
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-6 col-xs-12">
@@ -105,9 +126,7 @@
                 <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="ddlDireccion">Direcciones:</label>
-                            <asp:DropDownList runat="server" ID="ddlDireccion" CssClass="form-control">
-                                <asp:ListItem Value="1" Text="Prueba"></asp:ListItem>
-                                <asp:ListItem Value="" Text="Agregar nueva dirección"></asp:ListItem>
+                            <asp:DropDownList runat="server" ID="ddlDireccion" CssClass="form-control">                                                                
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -125,7 +144,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="ddlPais">País:</label>
-                            <asp:DropDownList runat="server" CssClass="form-control" ID="ddlPais">
+                            <asp:DropDownList runat="server" CssClass="form-control" AppendDataBoundItems="true" ID="ddlPais">
                                 <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                             </asp:DropDownList>
                         </div>

@@ -31,6 +31,15 @@ namespace MonteroExpressWF.Administracion {
         protected global::MonteroExpressWF.UserControl.DatosGenerales usrControlDestinatario;
         
         /// <summary>
+        /// chkListTiposContenidos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkListTiposContenidos;
+        
+        /// <summary>
         /// usrControlDetallesEnvio control.
         /// </summary>
         /// <remarks>

@@ -17,7 +17,11 @@ namespace MonteroExpressWF.UserControl
                 ddlTipoDocumento.DataSource = ManejadorTipoDocumento.ObtenerTiposDocumentos();
                 ddlTipoDocumento.DataTextField = "Descripcion";
                 ddlTipoDocumento.DataValueField = "IdTipoDocumento";
-                ddlTipoDocumento.DataBind();    
+                ddlTipoDocumento.DataBind();
+                ddlPais.DataSource = ManejadorGeografico.ObtenerPaises();
+                ddlPais.DataTextField = "Nombre";
+                ddlPais.DataValueField = "IdPais";
+                ddlPais.DataBind();
             }
             
         }

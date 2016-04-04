@@ -7,12 +7,11 @@ using MonteroExpressWF.DAL;
 
 namespace MonteroExpressWF.BLL
 {
-    public class ManejadorEntidades
+    public class ManejadorTiposContenidos
     {
-        public static Entidad BuscarEntidad(string NumDocumento) 
+        public static List<TipoContenido> ObtenerTiposContenidos() 
         {
-            return ManejadorMonteroExpress.BuscarEntidad(NumDocumento);
+            return ManejadorMonteroExpress.ObtenerTiposContenidos();
         }
-
     }
 }
