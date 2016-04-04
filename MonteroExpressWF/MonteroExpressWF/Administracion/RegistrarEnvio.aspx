@@ -4,19 +4,16 @@
 <%@ Register Src="~/UserControl/DetallesEnvio.ascx" TagName="DetallesEnvio" TagPrefix="DE" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContentPlaceHolder">
-
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function () {            
             $('#tblPaquetes').jtable({
                 title: 'Listado Paquetes',
                 paging: false, //Enable paging
                 sorting: false, //Enable sorting
                 defaultSorting: 'Name ASC',
+                jqueryuiTheme: true,
                 actions: {
-                    listAction: '',
-                    deleteAction: '',
-                    updateAction: '',
-                    createAction: '../WebServices/MonteroExpressWS.asmx/ListarPaquetes'
+                    listAction: '../WebServices/MonteroExpressWS.asmx/ListarPaquetes'
                 },
                 fields: {
                     IdPaqueteEnvio: {
@@ -54,16 +51,16 @@
                 },
                 toolbar: {
                     items: [{
-                       // icon: '/images/excel.png',
-                        text: 'Agregar',
-                        cssClass: "form-control",
+                        //icon: '/images/excel.png',
+                        text: '+ Agregar',
+                        //cssClass: "form-control",
                         click: function () {
-                            //perform your custom job...
+                            $('#tblPaquetes').jtable();
                         }
                     }, {
                         //icon: '/images/pdf.png',
                         text: 'Eliminar',
-                        cssClass:"form-control",
+                        //cssClass:"form-control",
                         click: function () {
                             //perform your custom job...
                         }
@@ -89,8 +86,8 @@
                 }
             });
 
-            //Load student list from server
-            $('#tblPaquetes').jtable('load');
+        //    //Load student list from server
+            //$('#tblPaquetes').jtable('load');
 
         });
 
@@ -112,16 +109,16 @@
                             <div class="panel panel-info">
                                 <div class="panel-heading">Remitente</div>
                                 <div class="panel-body">
-                                    <DG:DatosGenerales ID="usrControlRemitente" runat="server" />
+                            <DG:DatosGenerales ID="usrControlRemitente" runat="server" />
                                 </div>
                             </div>
 
                             <div class="panel panel-info">
                                 <div class="panel-heading">Destinatario</div>
                                 <div class="panel-body">
-                                    <DG:DatosGenerales ID="usrControlDestinatario" runat="server" />
+                                <DG:DatosGenerales ID="usrControlDestinatario" runat="server" />
                                 </div>
-                            </div>
+                                </div>
                             <asp:CheckBoxList runat="server" CssClass="table table-responsive borderless" OnDataBound="chkListTiposContenidos_DataBound" ItemType="MonteroExpressWF.BOL.TipoContenido" RepeatColumns="3" RepeatDirection="Horizontal" ID="chkListTiposContenidos"></asp:CheckBoxList>
                         </div>
                         <div class="col-lg-6">
