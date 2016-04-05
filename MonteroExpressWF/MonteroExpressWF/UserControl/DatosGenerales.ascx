@@ -6,8 +6,8 @@
         $('#<%= txtTelefono1.ClientID %>').mask('999-999-9999');
         $('#<%= txtTelefono2.ClientID %>').mask('999-999-9999');
         $('#<%= ddlDireccion.ClientID %>').change(function () {
-            var idStartWith = $(this).attr('id').split('_')[0] + '_' + $(this).attr('id').split('_')[1]+'_';
-            if ($(this).val()=="") {
+            var idStartWith = $(this).attr('id').split('_')[0] + '_' + $(this).attr('id').split('_')[1] + '_';
+            if ($(this).val() == "") {
                 $('#' + idStartWith + 'divDireccion').removeClass('hidden');
             } else {
                 $('#' + idStartWith + 'divDireccion').addClass('hidden');
@@ -15,7 +15,7 @@
 
         });
 
-        $('#<%= ddlPais.ClientID %>').change(function () {            
+        $('#<%= ddlPais.ClientID %>').change(function () {
             var idStartWith = $(this).attr('id').split('_')[0] + '_' + $(this).attr('id').split('_')[1] + '_';
             restartDropDown(idStartWith + 'ddlProvincia', '', 'Seleccione -->');
             restartDropDown(idStartWith + 'ddlCiudad', '', 'Seleccione -->');
@@ -40,7 +40,7 @@
             $('#<%= btnBuscar.ClientID %>').attr('disabled', 'disabled');
             //$('#' + idStartWith + 'divDireccion').addClass('hidden');
             //$('#' + idStartWith + 'divControles').addClass('hidden');
-        } 
+        }
 
         $('#<%= ddlTipoDocumento.ClientID %>').change(function () {
             var idStartWith = $(this).attr("id").split('_')[0] + '_' + $(this).attr("id").split('_')[1] + '_';
@@ -49,7 +49,7 @@
                 $('#<%= btnBuscar.ClientID %>').attr('disabled', 'disabled');
                 $('#' + idStartWith + 'divControles').addClass('hidden');
                 $('#' + idStartWith + 'divDireccion').addClass('hidden');
-     
+
             } else {
                 $.ajax({
                     type: "POST",
@@ -65,7 +65,7 @@
                         }
                         //$('#txtNumDocumento').removeAttr("disabled");
                         //$('#txtNumDocumento').mask(data.Mascara);
-                       
+
                     }, error: function (jqXHR, textStatus, errorThrown) {
                         MostrarAlerta("error", textStatus);
                     }
@@ -74,22 +74,22 @@
         });
     });
 
-    function Buscar(control) {        
-        idStartWith = control.id.split('_')[0] + '_' + control.id.split('_')[1]+'_';
-        if ($('#' + idStartWith +'txtDocumento').val() == '') {
+    function Buscar(control) {
+        idStartWith = control.id.split('_')[0] + '_' + control.id.split('_')[1] + '_';
+        if ($('#' + idStartWith + 'txtDocumento').val() == '') {
             //bootbox.alert('Debe digitar el # de documento que desea buscar');
             MostrarAlerta('warning', 'Debe digitar el # de documento que desea buscar');
             $('#' + idStartWith + 'divControles').addClass('hidden');
             //ImprimirDialogo('Prueba', 'Debe digitar el # de documento que desea buscar');
-        } else {            
-            AjaxCall("../WebServices/MonteroExpressWS.asmx/BuscarEntidad", { "NumDocumento": $('#' + idStartWith + 'txtDocumento').val() },idStartWith, BuscarEntidadCallBack);
+        } else {
+            AjaxCall("../WebServices/MonteroExpressWS.asmx/BuscarEntidad", { "NumDocumento": $('#' + idStartWith + 'txtDocumento').val() }, idStartWith, BuscarEntidadCallBack);
         }
-        
+
     }
 
 </script>
 <div class="panel panel-default">
-    <asp:HiddenField runat="server" ID="IdEntidad"/>
+    <asp:HiddenField runat="server" ID="IdEntidad" />
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-6 col-xs-12">
@@ -113,7 +113,7 @@
             </div>
         </div>
 
-        <div runat="server" id="divControles" class="hidden" >
+        <div runat="server" id="divControles" class="hidden">
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
@@ -124,14 +124,14 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="ddlDireccion">Direcciones:</label>
-                            <asp:DropDownList runat="server" ID="ddlDireccion" CssClass="form-control">                                                                
-                            </asp:DropDownList>
-                        </div>
+                    <div class="form-group">
+                        <label for="ddlDireccion">Direcciones:</label>
+                        <asp:DropDownList runat="server" ID="ddlDireccion" CssClass="form-control">
+                        </asp:DropDownList>
                     </div>
+                </div>
             </div>
-            <div runat="server" id="divDireccion" class="hidden">                
+            <div runat="server" id="divDireccion" class="hidden">
                 <div class="row">
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
@@ -179,6 +179,14 @@
                         <div class="form-group">
                             <label for="txtTelefono2">Teléfono 2:</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="txtTelefono2"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-xs-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" id="chkPorDefecto">Dirección por defecto</label>
                         </div>
                     </div>
                 </div>
