@@ -61,19 +61,22 @@ namespace MonteroExpressWF.WebServices
 
         #region TamaniosPaquetes
 
+        //Para uso del jtable como options de un dropdown
         [WebMethod]
         public object ObtieneTamaniosPaquetes() 
         {
-            return ManejadorTamaniosPaquetes.ObtieneTamaniosPaquetes().Select(tp => new { Value = tp.IdTamanioPaquete, Text = tp.Descripcion });
+            return new { Result = "OK", Options = ManejadorTamaniosPaquetes.ObtieneTamaniosPaquetes().Select(tp => new { Value = tp.IdTamanioPaquete, DisplayText = tp.Descripcion }) };
         }
             
         #endregion
 
         #region Estados
 
+        [WebMethod]
+        //Para uso del jtable como options de un dropdown
         public object ObtieneEstadosPaquetes() 
         {
-            return ManejadorEstados.ObtieneEstadosPaquetes().Select(e => new { Value = e.IdEstado, Text = e.Descripcion });
+            return new { Result = "OK", Options = ManejadorEstados.ObtieneEstadosPaquetes().Select(e => new { Value = e.IdEstado, DisplayText = e.Descripcion }) };
         }
 
         #endregion
