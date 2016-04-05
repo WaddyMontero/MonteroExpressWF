@@ -12,10 +12,18 @@ namespace MonteroExpressWF.Administracion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos();
-            chkListTiposContenidos.DataTextField = "Descripcion";
-            chkListTiposContenidos.DataValueField = "IdTipoContenido";
-            chkListTiposContenidos.DataBind();
+            if (!IsPostBack)
+            {
+                ddlEstadoPaquete.DataSource = ManejadorEstados.ObtieneEstadosPaquetes();
+                ddlEstadoPaquete.DataTextField = "Descripcion";
+                ddlEstadoPaquete.DataValueField = "IdEstado";
+                ddlEstadoPaquete.DataBind();
+                chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos();
+                chkListTiposContenidos.DataTextField = "Descripcion";
+                chkListTiposContenidos.DataValueField = "IdTipoContenido";
+                chkListTiposContenidos.DataBind();
+            }
+            
         }
 
         protected void chkListTiposContenidos_DataBound(object sender, EventArgs e)

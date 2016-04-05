@@ -5,12 +5,11 @@ using System.Web;
 
 namespace MonteroExpressWF.BOL
 {
-    public class TamanioPaquete
+    public class Estado
     {
-        public int IdTamanioPaquete { get; set; }
+        public int IdEstado { get; set; }
         public string Descripcion { get; set; }
         public DateTime FechaIngreso { get; set; }
         public bool Activo { get; set; }
-    
     }
 }

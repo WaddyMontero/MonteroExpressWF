@@ -223,5 +223,57 @@ namespace MonteroExpressWF.DAL
             return lista;
         }
         #endregion
+
+        #region TamaniosPaquetes
+
+        public static List<TamanioPaquete> ObtieneTamaniosPaquetes() 
+        {
+            Conexion con = new Conexion("SqlCon");
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_TamaniosPaquetes]",true);
+            List<TamanioPaquete> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<TamanioPaquete>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new TamanioPaquete
+                    {
+                        IdTamanioPaquete = int.Parse(row["IdTamanioPaquete"].ToString()),
+                        Descripcion = row["Descripcion"].ToString(),
+                        FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString()),
+                        Activo = Convert.ToBoolean(row["Activo"].ToString())
+                    });
+                }
+            }
+            return lista;
+        }
+
+        #endregion
+
+        #region Estados
+
+        public static List<Estado> ObtieneEstadosPaquetes(int IdTipoEstado) 
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdTipoEstado",IdTipoEstado,DbType.Int32);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_EstadosByTipo]","",param);
+            List<Estado> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<Estado>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new Estado { 
+                         IdEstado = int.Parse(row["IdEstado"].ToString()),
+                         Descripcion = row["Descripcion"].ToString(),
+                         Activo = Convert.ToBoolean(row["Activo"].ToString()),
+                         FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString())
+                    });
+                }
+            }
+            return lista;
+        }
+
+        #endregion
     }
 }

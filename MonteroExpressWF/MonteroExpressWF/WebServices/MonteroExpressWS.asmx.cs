@@ -58,5 +58,25 @@ namespace MonteroExpressWF.WebServices
             return new { Result = "OK", Records = new List<PaqueteEnvio>(), TotalRecordCount = 0 };
         }
         #endregion
+
+        #region TamaniosPaquetes
+
+        [WebMethod]
+        public object ObtieneTamaniosPaquetes() 
+        {
+            return ManejadorTamaniosPaquetes.ObtieneTamaniosPaquetes().Select(tp => new { Value = tp.IdTamanioPaquete, Text = tp.Descripcion });
+        }
+            
+        #endregion
+
+        #region Estados
+
+        public object ObtieneEstadosPaquetes() 
+        {
+            return ManejadorEstados.ObtieneEstadosPaquetes().Select(e => new { Value = e.IdEstado, Text = e.Descripcion });
+        }
+
+        #endregion
+
     }
 }

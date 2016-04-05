@@ -166,11 +166,13 @@
     <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_666666_256x240.png" />
     <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_ff0100_256x240.png" />
     <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.css" />
+    <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.min.css" />
     <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.structure.min.css" />
     <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
     <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\jquery.validate\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate\messages_es.js" />
     <Content Include="Scripts\jtable.2.4.0\extensions\jquery.jtable.aspnetpagemethods.js" />
     <Content Include="Scripts\jtable.2.4.0\extensions\jquery.jtable.aspnetpagemethods.min.js" />
     <Content Include="Scripts\jtable.2.4.0\external\json2.js" />
@@ -403,8 +405,10 @@
     <Compile Include="BLL\ManejadorEntidadDirecciones.cs" />
     <Compile Include="BLL\ManejadorEntidades.cs" />
     <Compile Include="BLL\ManejadorEnvios.cs" />
+    <Compile Include="BLL\ManejadorEstados.cs" />
     <Compile Include="BLL\ManejadorGeografico.cs" />
     <Compile Include="BLL\ManejadorSegurosEnvios.cs" />
+    <Compile Include="BLL\ManejadorTamaniosPaquetes.cs" />
     <Compile Include="BLL\ManejadorTipoDocumento.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -413,8 +417,8 @@
     <Compile Include="BOL\Entidad.cs" />
     <Compile Include="BOL\EntidadDireccion.cs" />
     <Compile Include="BOL\Envio.cs" />
-    <Compile Include="BOL\EstadoEnvio.cs" />
-    <Compile Include="BOL\EstadoPaquete.cs" />
+    <Compile Include="BOL\TipoEstado.cs" />
+    <Compile Include="BOL\Estado.cs" />
     <Compile Include="BOL\Oficina.cs" />
     <Compile Include="BOL\Pais.cs" />
     <Compile Include="BOL\PaqueteEnvio.cs" />

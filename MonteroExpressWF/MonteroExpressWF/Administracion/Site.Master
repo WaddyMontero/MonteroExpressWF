@@ -27,8 +27,8 @@
     <script src="../Scripts/Utilities.js"></script>
     <script src="../Scripts/bootbox.min.js"></script>
     <script src="../Scripts/CallBacks.js"></script>
-    
-    
+    <script src="../Scripts/jquery.validate/jquery.validate.js"></script>
+    <script src="../Scripts/jquery.validate/messages_es.js"></script>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <asp:ContentPlaceHolder ID="HeadContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
