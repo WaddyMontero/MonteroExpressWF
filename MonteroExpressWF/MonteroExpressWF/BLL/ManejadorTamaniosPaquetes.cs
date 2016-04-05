@@ -11,7 +11,7 @@ namespace MonteroExpressWF.BLL
     {
         public static List<TamanioPaquete> ObtieneTamaniosPaquetes() 
         {
-            return ObtieneTamaniosPaquetes();
+            return ManejadorMonteroExpress.ObtieneTamaniosPaquetes();
         }
     }
 }

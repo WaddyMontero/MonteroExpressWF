@@ -14,6 +14,26 @@ namespace MonteroExpressWF.Administracion
         {
             if (!IsPostBack)
             {
+                ddlEstado.DataSource = ManejadorEstados.ObtieneEstadosPaquetes();
+                ddlEstado.DataTextField = "Descripcion";
+                ddlEstado.DataValueField = "IdEstado";
+                ddlEstado.DataBind();
+                ddlTamanioPaquete.DataSource = ManejadorTamaniosPaquetes.ObtieneTamaniosPaquetes();
+                ddlTamanioPaquete.DataTextField = "Descripcion";
+                ddlTamanioPaquete.DataValueField = "IdTamanioPaquete";
+                ddlTamanioPaquete.DataBind();
+                chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos();
+                chkListTiposContenidos.DataTextField = "Descripcion";
+                chkListTiposContenidos.DataValueField = "IdTipoContenido";
+                chkListTiposContenidos.DataBind();
+            }
+
+            chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos();
+            chkListTiposContenidos.DataTextField = "Descripcion";
+            chkListTiposContenidos.DataValueField = "IdTipoContenido";
+            chkListTiposContenidos.DataBind();
+            if (!IsPostBack)
+            {
                 ddlEstadoPaquete.DataSource = ManejadorEstados.ObtieneEstadosPaquetes();
                 ddlEstadoPaquete.DataTextField = "Descripcion";
                 ddlEstadoPaquete.DataValueField = "IdEstado";
@@ -23,7 +43,6 @@ namespace MonteroExpressWF.Administracion
                 chkListTiposContenidos.DataValueField = "IdTipoContenido";
                 chkListTiposContenidos.DataBind();
             }
-            
         }
 
         protected void chkListTiposContenidos_DataBound(object sender, EventArgs e)
