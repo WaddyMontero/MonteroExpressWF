@@ -10,6 +10,11 @@ namespace MonteroExpressWF.BOL
         public int IdEnvio { get; set; }
         public DateTime Fecha { get; set; }
         public string AlbaranNum { get; set; }
+        public string Origen { get; set; }
+        public string Destino { get; set; }
+        public string RecogidoPor { get; set; }
+        public string Ruta { get; set; }
+    
         public Entidad Remitente { get; set; }
         public Entidad Destinatario { get; set; }
         public decimal Valor { get; set; }
