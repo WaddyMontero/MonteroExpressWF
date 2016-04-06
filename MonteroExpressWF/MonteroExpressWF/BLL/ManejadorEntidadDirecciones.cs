@@ -18,5 +18,9 @@ namespace MonteroExpressWF.BLL
         {
             return ManejadorMonteroExpress.ObtenerEntidadDirecciones(NumDocumento);
         }
+        public static void InsertarEntidadDireccion(EntidadDireccion entidadDireccion) 
+        {
+            ManejadorMonteroExpress.InsertarEntidadDireccion(entidadDireccion);
+        }
     }
 }

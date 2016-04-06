@@ -130,18 +130,31 @@ namespace MonteroExpressWF.DAL
                     entidadDirecciones.Add(
                         new EntidadDireccion
                         {
+                            IdEntidad = IdEntidad,
                             IdEntidadDireccion = int.Parse(dr["IdEntidadDireccion"].ToString()),
                             Direccion = dr["Direccion"].ToString(),
                             Telefono1 = dr["Telefono1"].ToString(),
                             Telefono2 = dr["Telefono2"].ToString(),
-                            IdCiudad = int.Parse(dr["IdCiudad"].ToString())
+                            IdCiudad = int.Parse(dr["IdCiudad"].ToString()),
+                            PorDefecto = Convert.ToBoolean(dr["PorDefecto"].ToString())
                         });
                 }
             }
             return entidadDirecciones;
         }
 
-
+        public static void InsertarEntidadDireccion(EntidadDireccion entidadDireccion) 
+        {
+            Conexion con = new Conexion("SqlCon");
+            List<Parametro> parametros = new List<Parametro>();
+            parametros.Add(new Parametro("@IdEntidad", entidadDireccion.IdEntidad, DbType.Int32));
+            parametros.Add(new Parametro("@Direccion", entidadDireccion.Direccion, DbType.String));
+            parametros.Add(new Parametro("@IdCiudad", entidadDireccion.IdCiudad, DbType.Int32));
+            parametros.Add(new Parametro("@Telefono1", entidadDireccion.Telefono1, DbType.String));
+            parametros.Add(new Parametro("@Telefono2", entidadDireccion.Telefono2, DbType.String));
+            parametros.Add(new Parametro("@PorDefecto", entidadDireccion.PorDefecto, DbType.Boolean));
+            con.EjecucionNoRetorno("[dbo].[prc_Insertar_EntidadDireccion]",parametros.ToArray());
+        }
         public static List<EntidadDireccion> ObtenerEntidadDirecciones(string NumDocumento)
         {
             Conexion con = new Conexion("SqlCon");

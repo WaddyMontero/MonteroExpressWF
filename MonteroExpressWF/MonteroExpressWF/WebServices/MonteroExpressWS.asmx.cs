@@ -31,11 +31,26 @@ namespace MonteroExpressWF.WebServices
         #region DireccionesEntidad
         
         [WebMethod]
-        public static object ObtieneDireccionesPorEntidad(int IdEntidad)
+        public object ObtieneDireccionesByEntidad(int IdEntidad)
         {
-            return new { Result = "OK", Records = ManejadorEntidadDirecciones.ObtieneEntidadDireccionesByEntidad(IdEntidad) };
+            return new { Result = "OK", Records = ManejadorEntidadDirecciones.ObtieneEntidadDireccionesByEntidad(IdEntidad), TotalRecordCount = 0 };
+            
         }
 
+        [WebMethod]
+        public object InsertaEntidadDireccion(EntidadDireccion record)
+        {
+            try
+            {
+                ManejadorEntidadDirecciones.InsertarEntidadDireccion(record);
+                return new { Result = "OK", Record = record };
+            }
+            catch (Exception ex)
+            {
+                return new { Result = "ERROR", Message = ex.Message};
+            }
+
+        }
 
         #endregion
 
@@ -50,22 +65,42 @@ namespace MonteroExpressWF.WebServices
         [WebMethod]
         public object ListarEntidades()
         {
-            return new { Result = "OK", Records = ManejadorEntidades.ListarEntidades(),RecordCount=0 };
+            return new { Result = "OK", Records = ManejadorEntidades.ListarEntidades(), TotalRecordCount = 0 };
         }
 
         #endregion
 
         #region UbicacionesGeograficas
+
         [WebMethod]
         public object ObtenerProvinciasByPais(int IdPais) 
         {
-            return ManejadorGeografico.ObtenerProvincias(IdPais).Select(opt => new { Value = opt.IdProvincia, Text = opt.Nombre });
+            return ManejadorGeografico.ObtenerProvincias(IdPais).Select(opt => new { Value = opt.IdProvincia, DisplayText = opt.Nombre });
         }
         [WebMethod]
         public object ObtenerCiudadesByProvincia(int IdProvincia) 
         {
-            return ManejadorGeografico.ObtenerCiudades(IdProvincia).Select(opt => new {Value = opt.IdCiudad,Text=opt.Nombre});
+            return ManejadorGeografico.ObtenerCiudades(IdProvincia).Select(opt => new {Value = opt.IdCiudad,DisplayText=opt.Nombre});
         }
+        //Para uso del JTABLE
+        [WebMethod]
+        public object ObtenerProvinciasByPaisJT(int IdPais)
+        {
+            return new { Result = "OK", Options = ManejadorGeografico.ObtenerProvincias(IdPais).Select(opt => new { Value = opt.IdProvincia, DisplayText = opt.Nombre }) };
+        }
+        [WebMethod]
+        public object ObtenerCiudadesByProvinciaJT(int IdProvincia)
+        {
+            return new { Result = "OK", Options = ManejadorGeografico.ObtenerCiudades(IdProvincia).Select(opt => new { Value = opt.IdCiudad, DisplayText = opt.Nombre }) };
+        }
+
+
+        [WebMethod]
+        public object ObtenerPaises()
+        {
+            return new {Result = "OK", Options = ManejadorGeografico.ObtenerPaises().Select(p => new {Value = p.IdPais, DisplayText= p.Nombre})};
+        }
+
         [WebMethod]
         public static object ListarPaquetes() 
         {

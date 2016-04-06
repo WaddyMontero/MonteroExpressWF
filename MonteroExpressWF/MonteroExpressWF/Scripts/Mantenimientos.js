@@ -75,12 +75,34 @@
                         $('#tblMantenimiento').jtable('openChildTable',
                                 $mostrar.closest('tr'),
                                 {
+                                    messages: {
+                                        serverCommunicationError: 'Error de comunicación con el servidor.',
+                                        loadingMessage: 'Cargando registros...',
+                                        noDataAvailable: 'No hay datos para mostrar!',
+                                        addNewRecord: 'Agregar nuevo registro',
+                                        editRecord: 'Editar registro',
+                                        areYouSure: '¿Estas seguro?',
+                                        deleteConfirmation: '¿Esta seguro que desea eliminar este registro?',
+                                        save: 'Guardar',
+                                        saving: 'Guardando',
+                                        cancel: 'Cancel',
+                                        deleteText: 'Eliminar',
+                                        deleting: 'Eliminando',
+                                        error: 'Error',
+                                        close: 'Cerrar',
+                                        cannotLoadOptionsFor: 'No se pudo cargar las opciones para {0}',
+                                        pagingInfo: 'Mostrando {0}-{1} de {2}',
+                                        pageSizeChangeLabel: 'Conteo de fila',
+                                        gotoPageLabel: 'Go to page',
+                                        canNotDeletedRecords: 'No se eliminaron {0} de {1} registros!',
+                                        deleteProggress: 'Eliminando {0} de {1} registros, procesando...'
+                                    },
                                     title: entidadDireccion.record.Nombre + ' - Direcciones',
                                     actions: {
-                                        listAction: '../WebServices/MonteroExpressWS.asmx/ListarEntidades?IdEntidad=' + entidadDireccion.record.IdEntidad
+                                        listAction: '../WebServices/MonteroExpressWS.asmx/ObtieneDireccionesByEntidad?IdEntidad=' + entidadDireccion.record.IdEntidad,
                                         //deleteAction: '/Demo/DeletePhone',
                                         //updateAction: '/Demo/UpdatePhone',
-                                        //createAction: '/Demo/CreatePhone'
+                                        createAction: '../WebServices/MonteroExpressWS.asmx/InsertaEntidadDireccion'
                                     },
                                     fields: {
                                         IdEntidad: {
@@ -95,7 +117,8 @@
                                         },
                                         Direccion: {
                                             title: 'Direccion',
-                                            width: '30%'
+                                            width: '30%',
+                                            list:true
                                             //options: { '1': 'Home phone', '2': 'Office phone', '3': 'Cell phone' }
                                         },
                                         Telefono1: {
@@ -105,15 +128,57 @@
                                         Telefono2: {
                                             title: 'Teléfono2',
                                             width: '20%',
-                                            type: 'date',
                                             create: false,
                                             edit: false
                                         },
                                         IdPais: {
                                             title: 'País',
-                                            options:
+                                            list: false,
+                                            create: true,                                            
+                                            options: '../WebServices/MonteroExpressWS.asmx/ObtenerPaises'
 
-                                        }
+                                        },
+                                        IdProvincia: {
+                                            title: 'Provincia/Estado',
+                                            list: false,
+                                            create: true,
+                                            dependsOn: 'IdPais',
+                                            options: function (data) {
+                                                //if (data.source == 'list') {
+                                                //    //Return url of all cities for optimization. 
+                                                //    return '../WebServices/MonteroExpressWS.asmx/ObtenerCiudadesByProvincia?IdProvincia=0';
+                                                //}
+                                                //This code runs when user opens edit/create form or changes country combobox on an edit/create form.
+                                                return '../WebServices/MonteroExpressWS.asmx/ObtenerProvinciasByPaisJT?IdPais=' + data.dependedValues.IdPais;
+                                            },                                           
+                                            
+
+                                        },
+                                        IdCiudad: {
+                                            title: 'Ciudad',
+                                            list: true,
+                                            create: true,
+                                            dependsOn: 'IdProvincia',
+                                            options: function (data) {
+                                                if (data.source == 'list') {
+                                                    //Return url of all cities for optimization. 
+                                                    return '../WebServices/MonteroExpressWS.asmx/ObtenerCiudadesByProvinciaJT?IdProvincia=1';
+                                                }
+                                                //This code runs when user opens edit/create form or changes country combobox on an edit/create form.
+                                                return '../WebServices/MonteroExpressWS.asmx/ObtenerCiudadesByProvinciaJT?IdProvincia=' + data.dependedValues.IdProvincia;
+                                            },
+
+                                        },
+                                        PorDefecto:
+                                            {
+                                                title: "Por Defecto",
+                                                type: "checkbox",
+                                                values: {false:'No',true:'Si'}
+                                            }
+                                    },
+                                    recordAdded: function (event, data)
+                                    {
+                                        //data.childTable.jtable('reload');
                                     }
                                 }, function (data) { //opened handler
                                     data.childTable.jtable('load');

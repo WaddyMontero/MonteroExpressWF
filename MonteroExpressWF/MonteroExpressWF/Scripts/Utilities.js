@@ -79,7 +79,7 @@ function restartDropDown(id,value,text) {
 function CargarDropDown(idDropDown, options) {
     if (options.d.length > 0) {
         for (var i = 0; i < options.d.length; i++) {
-            $('#' + idDropDown).append($('<option value="' + options.d[i].Value + '">' + options.d[i].Text + '</option>'));
+            $('#' + idDropDown).append($('<option value="' + options.d[i].Value + '">' + options.d[i].DisplayText + '</option>'));
         }
     }
     
