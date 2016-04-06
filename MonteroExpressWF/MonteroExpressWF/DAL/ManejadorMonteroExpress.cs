@@ -275,5 +275,33 @@ namespace MonteroExpressWF.DAL
         }
 
         #endregion
+
+        #region Puertos
+
+        public static List<Puerto> ObtienePuertos() 
+        {
+            Conexion con = new Conexion("SqlCon");
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Puertos]",true);
+            List<Puerto> lista = null;
+            if (dt != null && dt.Rows.Count >0)
+            {
+                lista = new List<Puerto>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new Puerto { 
+                        IdPuerto = int.Parse(row["IdPuerto"].ToString()),
+                        Nombre = row["Nombre"].ToString(),
+                        Abrev = row["Abrev"].ToString(),
+                        Activo  = Convert.ToBoolean(row["Activo"].ToString()),
+                        FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString()),
+                        IdUsuario = int.Parse(row["IdUsuario"].ToString())
+                    });
+                }
+                
+            }
+            return lista;
+        }
+
+        #endregion
     }
 }

@@ -1,50 +1,61 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DetallesEnvio.ascx.cs" Inherits="MonteroExpressWF.UserControl.DetallesEnvio" %>
 <div class="panel panel-info">
-    <div class="panel-heading">
-        <div class="panel-title">Detalles</div>
-    </div>
+    <div class="panel-heading">Detalles</div>
     <div class="panel-body">
         <div class="form-group">
-            <label for="txtOrigen">Origen:</label>
-            <asp:TextBox ID="txtOrigen" runat="server" CssClass="form-control"></asp:TextBox>
+            <label for="ddlOrigen">Origen</label>
+            <%-- <asp:TextBox ID="ddlOrigen" runat="server" CssClass="form-control"></asp:TextBox>--%>
+            <select runat="server" id="ddlOrigen" class="form-control">
+                <option value="">Seleccione --></option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="txtDestino">Destino:</label>
-            <asp:TextBox ID="txtDestino" runat="server" CssClass="form-control"></asp:TextBox>
-
+            <label for="txtDestino">Destino</label>
+            <%--<asp:TextBox ID="txtDestino" runat="server" CssClass="form-control"></asp:TextBox>--%>
+            <select runat="server" id="ddlDestino" class="form-control">
+                <option value="">Seleccione --></option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="txtRecogido">Recogido por:</label>
+            <label for="txtRecogido">Recogido por</label>
             <asp:TextBox ID="txtRecogido" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label for="txtRuta">Ruta:</label>
+            <label for="txtRuta">Ruta</label>
             <asp:TextBox ID="txtRuta" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
         <div class="row">
-            <div class="alert alert-info">
-                <div class="form-inline">
-                    <label class="control-label">
-                        Valor</label>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Valor de la mercancía
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="txtRuta">Declarado</label>
+                        <asp:TextBox ID="txtValor" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
                 </div>
             </div>
+
             <hr />
-            <div class="alert alert-info">
-                <div class="form-inline">
-                    <label class="control-label">
-                        ¿Desea asegurar el paquete?</label>
-                    <label class="radio">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    
+                        Seguro del paquete
+                        <%--¿Desea asegurar el paquete?--%>
+                   
+                    <%-- <label class="radio">
                         <input type="radio" name="rbtnSeguroPaquete" value="0">No
                     </label>
                     <label class="radio">
                         <input type="radio" name="rbtnSeguroPaquete" value="1">Si
-                    </label>
+                    </label>--%>
+                </div>
+                <div class="panel-body">
+                    <asp:RadioButtonList runat="server" ID="rbtnListEnvioSeguro" OnDataBound="rbtnListEnvioSeguro_DataBound" ItemType="MonteroExpressWF.BOL.SeguroEnvio" RepeatDirection="Vertical"></asp:RadioButtonList>
                 </div>
             </div>
-            <asp:RadioButtonList runat="server" ID="rbtnListEnvioSeguro" OnDataBound="rbtnListEnvioSeguro_DataBound" ItemType="MonteroExpressWF.BOL.SeguroEnvio" RepeatDirection="Vertical"></asp:RadioButtonList>
-
-
         </div>
     </div>
 </div>

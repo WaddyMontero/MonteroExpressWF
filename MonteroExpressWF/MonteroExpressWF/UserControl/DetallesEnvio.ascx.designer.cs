@@ -13,22 +13,22 @@ namespace MonteroExpressWF.UserControl {
     public partial class DetallesEnvio {
         
         /// <summary>
-        /// txtOrigen control.
+        /// ddlOrigen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrigen;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlOrigen;
         
         /// <summary>
-        /// txtDestino control.
+        /// ddlDestino control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDestino;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlDestino;
         
         /// <summary>
         /// txtRecogido control.
@@ -47,6 +47,15 @@ namespace MonteroExpressWF.UserControl {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRuta;
+        
+        /// <summary>
+        /// txtValor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtValor;
         
         /// <summary>
         /// rbtnListEnvioSeguro control.

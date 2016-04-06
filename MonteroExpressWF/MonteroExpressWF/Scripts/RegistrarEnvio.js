@@ -15,15 +15,15 @@
                     record: {
                         IdPaqueteEnvio: idPaquete,
                         Cantidad: $('#txtCantidad').val(),
-                        IdTamanioPaquete: $('#<%= ddlTamanioPaquete.ClientID %>').val(),
+                        IdTamanioPaquete: $('#MainContent_ddlTamanioPaquete').val(),
                         Descripcion: $('#txtDescripcion').text(),
-                        IdEstado: $('#<%= ddlEstado.ClientID %>').val(),
+                        IdEstado: $('#MainContent_ddlEstado').val(),
                         Peso: $('#txtPeso').val()
                     },
                     clientOnly: true
                 });
-                //$('#tblPaquetes')
                 $(this).dialog("close");
+                GuardarEnvio();
             },
             "Cancelar": function () {
                 $(this).dialog("close");
@@ -105,26 +105,6 @@
                 title: 'Estado',
                 width: '12%',
                 options: "../WebServices/MonteroExpressWS.asmx/ObtieneEstadosPaquetes",
-                //input: function () {
-                //    var $ddl = $('<select id="ddlEstadoPaquete"></select>');
-                //    $.ajax({
-                //        type: "POST",
-                //        url: '../WebServices/MonteroExpressWS.asmx/ObtieneEstadosPaquetes',
-                //        contentType: "application/json; charset=utf-8",
-                //        dataType: "json",
-                //        success: function (data) {
-                //            //Llamada a la funcion para el callback
-                //            if (data != undefined) {
-                //                for (var i = 0; i < data.d.length; i++) {
-                //                    $ddl.append($('<option value="' + data.d[i].Value + '">' + data.d[i].Text + '</option>'));
-                //                }
-                //            }
-                //        }, error: function (jqXHR, textStatus, errorThrown) {
-                //            ImprimirAlerta("error", textStatus);
-                //        }
-                //    });
-                //    return $ddl;
-                //},
                 list: true
             }
         },
@@ -154,25 +134,25 @@
                     });
                 }
             }]
-        },
+        }//,
 
-        //Initialize validation logic when a form is created
-        formCreated: function (event, data) {
-            data.form.find('input[name="Cantidad"]').addClass('validate[required]');
-            data.form.find('input[name="Descripcion"]').addClass('validate[required]');
-            data.form.find('input[name="PrecioUnitario"]').addClass('validate[required]');
-            data.form.find('input[name="Peso"]').addClass('validate[required]');
-            data.form.validationEngine();
-        },
-        //Validate form when it is being submitted
-        formSubmitting: function (event, data) {
-            return data.form.validationEngine('validate');
-        },
-        //Dispose validation logic when form is closed
-        formClosed: function (event, data) {
-            data.form.validationEngine('hide');
-            data.form.validationEngine('detach');
-        }
+        ////Initialize validation logic when a form is created
+        //formCreated: function (event, data) {
+        //    data.form.find('input[name="Cantidad"]').addClass('validate[required]');
+        //    data.form.find('input[name="Descripcion"]').addClass('validate[required]');
+        //    data.form.find('input[name="PrecioUnitario"]').addClass('validate[required]');
+        //    data.form.find('input[name="Peso"]').addClass('validate[required]');
+        //    data.form.validationEngine();
+        //},
+        ////Validate form when it is being submitted
+        //formSubmitting: function (event, data) {
+        //    return data.form.validationEngine('validate');
+        //},
+        ////Dispose validation logic when form is closed
+        //formClosed: function (event, data) {
+        //    data.form.validationEngine('hide');
+        //    data.form.validationEngine('detach');
+        //}
     });
 
     //    //Load student list from server
@@ -183,57 +163,99 @@
 
 function GuardarEnvio() {
     //Información del remitente
-    var remitente = new Array();
-    if ($('#MainContent_usrControlRemitente_IdEntidad').val() != "") {
-        remitente.IdRemitente = $('#MainContent_usrControlRemitente_IdEntidad').val();
-    } else {
-        remitente.IdRemitente = 0;
-        remitente.Nombre = $('#MainContent_usrControlRemitente_txtNombre').val();
-        remitente.IdTipoDocumento = $('#MainContent_usrControlRemitente_ddlTipoDocumento').val();
-        remitente.NumDocumento = $('#MainContent_usrControlRemitente_txtNumDocumento').val();
-    }
-    remitente.EntidadDireccion = new Array();
-    if ($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") {
-        remitente.EntidadDireccion.IdEntidadDireccion = 0;
-        remitente.EntidadDireccion.Direccion = $('#MainContent_usrControlRemitente_txtDireccion').val();
-        remitente.EntidadDireccion.IdCiudad = $('#MainContent_usrControlRemitente_ddlCiudad').val();
-        remitente.EntidadDireccion.Telefono1 = $('#MainContent_usrControlRemitente_txtTelefono1').val();
-        remitente.EntidadDireccion.Telefono2 = $('#MainContent_usrControlRemitente_txtTelefono2').val();
-        remitente.EntidadDireccion.PorDefecto = $('#MainContent_usrControlRemitente_chkPorDefecto').is(':checked');
-    } else {
-        remitente.EntidadDireccion.IdEntidadDireccion = $('#MainContent_usrControlRemitente_ddlDireccion').val();
-    }
-    remitente.Detalles = new Array();
-    remitente.Detalles.Origen = $('#MainContent_usrControlRemitente_txtOrigen').val();
-    remitente.Detalles.Destino = $('#MainContent_usrControlRemitente_txtDestino').val();
-    remitente.Detalles.RecogidoPor = $('#MainContent_usrControlRemitente_txtRecogido').val();
-    remitente.Detalles.Ruta = $('#MainContent_usrControlRemitente_txtRuta').val();
-
+    //var remitente = new Array();
+    //var idRemitente = 0;
+    //if ($('#MainContent_usrControlRemitente_IdEntidad').val() != "") {
+        //remitente.IdRemitente = $('#MainContent_usrControlRemitente_IdEntidad').val();
+    //} else {
+    var Remitente = {
+        "IdRemitente": ($('#MainContent_usrControlRemitente_IdEntidad').val() != "") ? $('#MainContent_usrControlRemitente_IdEntidad').val():0,
+        "Nombre": $('#MainContent_usrControlRemitente_txtNombre').val(),
+        "IdTipoDocumento": $('#MainContent_usrControlRemitente_ddlTipoDocumento').val(),
+        "NumDocumento": $('#MainContent_usrControlRemitente_txtDocumento').val()
+    };
+        //remitente.IdRemitente = 0;
+        //remitente.Nombre = $('#MainContent_usrControlRemitente_txtNombre').val();
+        //remitente.IdTipoDocumento = $('#MainContent_usrControlRemitente_ddlTipoDocumento').val();
+        //remitente.NumDocumento = $('#MainContent_usrControlRemitente_txtDocumento').val();
+   // }
+    Remitente.EntidadDireccion = {
+        "IdEntidadDireccion": ($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") ? 0 : $('#MainContent_usrControlRemitente_ddlDireccion').val(),
+        "Direccion": $('#MainContent_usrControlRemitente_txtDireccion').val(),
+        "IdCiudad": $('#MainContent_usrControlRemitente_ddlCiudad').val(),
+        "Telefono1": $('#MainContent_usrControlRemitente_txtTelefono1').val(),
+        "Telefono2": $('#MainContent_usrControlRemitente_txtTelefono2').val(),
+        "PorDefecto": $('#MainContent_usrControlRemitente_chkPorDefecto').is(':checked')
+    };
+    //if ($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") {
+    //    remitente.EntidadDireccion.IdEntidadDireccion = 0;
+    //    remitente.EntidadDireccion.Direccion = $('#MainContent_usrControlRemitente_txtDireccion').val();
+    //    remitente.EntidadDireccion.IdCiudad = $('#MainContent_usrControlRemitente_ddlCiudad').val();
+    //    remitente.EntidadDireccion.Telefono1 = $('#MainContent_usrControlRemitente_txtTelefono1').val();
+    //    remitente.EntidadDireccion.Telefono2 = $('#MainContent_usrControlRemitente_txtTelefono2').val();
+    //    remitente.EntidadDireccion.PorDefecto = $('#MainContent_usrControlRemitente_chkPorDefecto').is(':checked');
+    //} else {
+    //    remitente.EntidadDireccion.IdEntidadDireccion = $('#MainContent_usrControlRemitente_ddlDireccion').val();
+    //}
 
     //Información del destinatario
-    var destinatario = new Array();
-    if ($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") {
-        destinatario.IdRemitente = $('#MainContent_usrControlDestinatario_IdEntidad').val();
-    } else {
-        destinatario.Nombre = $('#MainContent_usrControlDestinatario_txtNombre').val();
-        destinatario.IdTipoDocumento = $('#MainContent_usrControlDestinatario_ddlTipoDocumento').val();
-        destinatario.NumDocumento = $('#MainContent_usrControlDestinatario_txtNumDocumento').val();
-    }
-    destinatario.EntidadDireccion = new Array();
-    if ($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") {
-        destinatario.EntidadDireccion.IdEntidadDireccion = 0;
-        destinatario.EntidadDireccion.Direccion = $('#MainContent_usrControlDestinatario_txtDireccion').val();
-        destinatario.EntidadDireccion.IdCiudad = $('#MainContent_usrControlDestinatario_ddlCiudad').val();
-        destinatario.EntidadDireccion.Telefono1 = $('#MainContent_usrControlDestinatario_txtTelefono1').val();
-        destinatario.EntidadDireccion.Telefono2 = $('#MainContent_usrControlDestinatario_txtTelefono2').val();
-        destinatario.EntidadDireccion.PorDefecto = $('#MainContent_usrControlDestinatario_chkPorDefecto').is(':checked');
-    } else {
-        destinatario.EntidadDireccion.IdEntidadDireccion = $('#MainContent_usrControlDestinatario_ddlDireccion').val();
-    }
-    remitente.Detalles = new Array();
-    remitente.Detalles.Origen = $('#MainContent_usrControlDestinatario_txtOrigen').val();
-    remitente.Detalles.Destino = $('#MainContent_usrControlDestinatario_txtDestino').val();
-    remitente.Detalles.RecogidoPor = $('#MainContent_usrControlDestinatario_txtRecogido').val();
-    remitente.Detalles.Ruta = $('#MainContent_usrControlDestinatario_txtRuta').val();
+
+    var Destinatario = {
+        "IdRemitente": ($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") ? $('#MainContent_usrControlDestinatario_IdEntidad').val():0,
+        "Nombre": $('#MainContent_usrControlDestinatario_txtNombre').val(),
+        "IdTipoDocumento": $('#MainContent_usrControlDestinatario_ddlTipoDocumento').val(),
+        "NumDocumento": $('#MainContent_usrControlDestinatario_txtDocumento').val()
+    };
+    Destinatario.EntidadDireccion = {
+        "IdEntidadDireccion": ($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") ? 0 : $('#MainContent_usrControlDestinatario_ddlDireccion').val(),
+        "Direccion": $('#MainContent_usrControlDestinatario_txtDireccion').val(),
+        "IdCiudad": $('#MainContent_usrControlDestinatario_ddlCiudad').val(),
+        "Telefono1": $('#MainContent_usrControlDestinatario_txtTelefono1').val(),
+        "Telefono2": $('#MainContent_usrControlDestinatario_txtTelefono2').val(),
+        "PorDefecto": $('#MainContent_usrControlDestinatario_chkPorDefecto').is(':checked')
+    };
+    //var destinatario = new Array();
+    //if ($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") {
+    //    destinatario.IdRemitente = $('#MainContent_usrControlDestinatario_IdEntidad').val();
+    //} else {
+    //    destinatario.Nombre = $('#MainContent_usrControlDestinatario_txtNombre').val();
+    //    destinatario.IdTipoDocumento = $('#MainContent_usrControlDestinatario_ddlTipoDocumento').val();
+    //    destinatario.NumDocumento = $('#MainContent_usrControlDestinatario_txtDocumento').val();
+    //}
+    //destinatario.EntidadDireccion = new Array();
+    //if ($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") {
+    //    destinatario.EntidadDireccion.IdEntidadDireccion = 0;
+    //    destinatario.EntidadDireccion.Direccion = $('#MainContent_usrControlDestinatario_txtDireccion').val();
+    //    destinatario.EntidadDireccion.IdCiudad = $('#MainContent_usrControlDestinatario_ddlCiudad').val();
+    //    destinatario.EntidadDireccion.Telefono1 = $('#MainContent_usrControlDestinatario_txtTelefono1').val();
+    //    destinatario.EntidadDireccion.Telefono2 = $('#MainContent_usrControlDestinatario_txtTelefono2').val();
+    //    destinatario.EntidadDireccion.PorDefecto = $('#MainContent_usrControlDestinatario_chkPorDefecto').is(':checked');
+    //} else {
+    //    destinatario.EntidadDireccion.IdEntidadDireccion = $('#MainContent_usrControlDestinatario_ddlDireccion').val();
+    //}
+
+    //Información del envio
+    var Envio = {
+        "IdOrigen" : $('#MainContent_usrControlDetallesEnvio_ddlOrigen').val(),
+        "IdDestino": $('#MainContent_usrControlDetallesEnvio_ddlDestino').val(),
+        "RecogidoPor" : $('#MainContent_usrControlDetallesEnvio_txtRecogido').val(),
+        "Ruta" : $('#MainContent_usrControlDetallesEnvio_txtRuta').val(),
+        "Valor" : $('#MainContent_usrControlDetallesEnvio_txtValor').val(),
+        "IdSeguro" : $('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').val()
+    };
+    Envio.TiposContenidos = new Array();
+    var i = 0;
+    $('#MainContent_chkListTiposContenidos').find('input[type="checkbox"]:checked').each(function () {
+        var contenido = {"TipoContenido":{
+            "IdTipoContenido":$(this).val()
+        }};
+
+        Envio.TiposContenidos[0] = contenido;
+        i++;
+    });
+    Envio.Remitente = Remitente;
+    Envio.Destinatario = Destinatario;
+    var json = JSON.stringify(Envio);
+    //rbtnListEnvioSeguro
 
 }

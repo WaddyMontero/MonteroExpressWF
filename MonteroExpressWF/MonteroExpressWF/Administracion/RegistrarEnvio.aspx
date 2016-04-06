@@ -3,7 +3,7 @@
 <%@ Register Src="~/UserControl/DatosGenerales.ascx" TagName="DatosGenerales" TagPrefix="DG" %>
 <%@ Register Src="~/UserControl/DetallesEnvio.ascx" TagName="DetallesEnvio" TagPrefix="DE" %>
 
-<asp:Content runat="server" ContentPlaceHolderID="HeadContentPlaceHolder">
+<asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <script type="text/javascript">
         var idPaquete = 0;
     </script>
@@ -34,7 +34,7 @@
                                 <DG:DatosGenerales ID="usrControlDestinatario" runat="server" />
                                 </div>
                                 </div>
-                            <asp:CheckBoxList runat="server" CssClass="table table-responsive borderless" OnDataBound="chkListTiposContenidos_DataBound" ItemType="MonteroExpressWF.BOL.TipoContenido" RepeatColumns="3" RepeatDirection="Horizontal" ID="chkListTiposContenidos"></asp:CheckBoxList>
+                            <asp:CheckBoxList runat="server" CssClass="" OnDataBound="chkListTiposContenidos_DataBound" ItemType="MonteroExpressWF.BOL.TipoContenido" RepeatColumns="3" RepeatDirection="Vertical" ID="chkListTiposContenidos"></asp:CheckBoxList>
                         </div>
                         <div class="col-lg-6">
                             <DE:DetallesEnvio ID="usrControlDetallesEnvio" runat="server" />

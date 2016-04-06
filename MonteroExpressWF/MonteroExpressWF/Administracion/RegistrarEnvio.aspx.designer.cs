@@ -47,7 +47,6 @@ namespace MonteroExpressWF.Administracion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::MonteroExpressWF.UserControl.DetallesEnvio usrControlDetallesEnvio;
-
         
         /// <summary>
         /// ddlTamanioPaquete control.
@@ -66,14 +65,5 @@ namespace MonteroExpressWF.Administracion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSelect ddlEstado;
-        
-        /// <summary>
-        /// ddlEstadoPaquete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlEstadoPaquete;
     }
 }
