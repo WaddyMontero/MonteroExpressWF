@@ -13,7 +13,6 @@ namespace MonteroExpressWF.BOL
         public string NumDocumento { get; set; }
         public System.DateTime FechaIngreso { get; set; }
         public Nullable<bool> Activo { get; set; }
-
         public List<EntidadDireccion> EntidadDirecciones { get; set; }
         public TipoDocumento TiposDocumento { get; set; }
     }

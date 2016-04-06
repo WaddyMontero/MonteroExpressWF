@@ -31,13 +31,14 @@
     <script src="../Scripts/jquery.validate/jquery.validate.js"></script>
     <script src="../Scripts/jquery.validate/messages_es.js"></script>
     <script src="../Scripts/RegistrarEnvio.js"></script>
+    <script src="../Scripts/Mantenimientos.js"></script>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
 
 </head>
 <body >
-    <form runat="server" id="myForm">
+    <!--<form runat="server" id="myForm">-->
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -85,6 +86,6 @@
             </footer>
         </div>
 
-    </form>
+   <!-- </form> -->
 </body>
 </html>

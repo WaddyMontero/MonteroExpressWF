@@ -30,6 +30,13 @@ namespace MonteroExpressWF.WebServices
 
         #region DireccionesEntidad
         
+        [WebMethod]
+        public static object ObtieneDireccionesPorEntidad(int IdEntidad)
+        {
+            return new { Result = "OK", Records = ManejadorEntidadDirecciones.ObtieneEntidadDireccionesByEntidad(IdEntidad) };
+        }
+
+
         #endregion
 
         #region Entidad
@@ -39,6 +46,13 @@ namespace MonteroExpressWF.WebServices
         {
             return ManejadorEntidades.BuscarEntidad(NumDocumento);            
         }
+
+        [WebMethod]
+        public object ListarEntidades()
+        {
+            return new { Result = "OK", Records = ManejadorEntidades.ListarEntidades(),RecordCount=0 };
+        }
+
         #endregion
 
         #region UbicacionesGeograficas

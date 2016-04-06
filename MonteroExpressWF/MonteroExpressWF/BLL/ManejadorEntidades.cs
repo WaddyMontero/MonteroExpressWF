@@ -14,5 +14,10 @@ namespace MonteroExpressWF.BLL
             return ManejadorMonteroExpress.BuscarEntidad(NumDocumento);
         }
 
+        public static List<Entidad> ListarEntidades()
+        {
+            return ManejadorMonteroExpress.ListarEntidades();
+        }
+
     }
 }

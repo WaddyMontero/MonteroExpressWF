@@ -114,8 +114,87 @@ namespace MonteroExpressWF.DAL
         }
 
         #endregion
+
+        #region EntidadDirecciones
+        public static List<EntidadDireccion> ObtieneEntidadDireccionesByEntidad(int IdEntidad)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdEntidad", IdEntidad, DbType.Int32);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_EntidadesDireccionesByEntidad]", "", param);
+            List<EntidadDireccion> entidadDirecciones = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                entidadDirecciones = new List<EntidadDireccion>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    entidadDirecciones.Add(
+                        new EntidadDireccion
+                        {
+                            IdEntidadDireccion = int.Parse(dr["IdEntidadDireccion"].ToString()),
+                            Direccion = dr["Direccion"].ToString(),
+                            Telefono1 = dr["Telefono1"].ToString(),
+                            Telefono2 = dr["Telefono2"].ToString(),
+                            IdCiudad = int.Parse(dr["IdCiudad"].ToString())
+                        });
+                }
+            }
+            return entidadDirecciones;
+        }
+
+
+        public static List<EntidadDireccion> ObtenerEntidadDirecciones(string NumDocumento)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@NumDocumento", NumDocumento, DbType.String);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_DireccionesEntidad]", "", param);
+            List<EntidadDireccion> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<EntidadDireccion>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new EntidadDireccion
+                    {
+                        IdEntidad = int.Parse(row["IdEntidad"].ToString()),
+                        Telefono1 = row["Telefono1"].ToString(),
+                        Telefono2 = row["Telefono2"].ToString(),
+                        Direccion = row["Direccion"].ToString(),
+                        FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString())//,
+                        //Ciudad = new Ciudad(int.Parse(row["IdCiudad"].ToString()),row["IdCiudad"].ToString(),new Provincia(Convert.ToInt32(row["IdProvincia"].ToString()),row["Nombre"].ToString(),row["Provincia"].ToString())) 
+
+                    });
+                }
+            }
+            return lista;
+        }
+
+
+
+        #endregion
         #region Entidad
 
+
+        public static List<Entidad> ListarEntidades()
+        {
+            Conexion con = new Conexion("SqlCon");
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Entidades]");
+            List<Entidad> lista = null;
+            if (dt!=null && dt.Rows.Count > 0)
+            {
+                lista = new List<Entidad>();
+                foreach(DataRow dr in dt.Rows)
+                {
+                    lista.Add(new Entidad
+                    {
+                        IdEntidad = int.Parse(dr["IdEntidad"].ToString()),
+                        Nombre = dr["Nombre"].ToString(),
+                        NumDocumento = dr["NumDocumento"].ToString(),
+                        FechaIngreso = Convert.ToDateTime(dr["FechaIngreso"].ToString())
+                    });
+                }
+            }
+            return lista;
+        }
         public static Entidad BuscarEntidad(string NumDocumento) 
         {
             Conexion con = new Conexion("SqlCon");

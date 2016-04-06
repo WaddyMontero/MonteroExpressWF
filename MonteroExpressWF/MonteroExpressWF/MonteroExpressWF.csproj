@@ -56,6 +56,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
@@ -96,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Administracion\Mant_Entidades.aspx" />
     <Content Include="Administracion\RegistrarEnvio.aspx" />
     <Content Include="Administracion\ViewSwitcher.ascx" />
     <Content Include="Contact.aspx" />
@@ -103,6 +105,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\addressbook.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
@@ -236,6 +239,7 @@
     <Content Include="Scripts\jtable.2.4.0\themes\metro\red\jtable.css" />
     <Content Include="Scripts\jtable.2.4.0\themes\metro\red\jtable.min.css" />
     <Content Include="Scripts\jtable.2.4.0\themes\metro\red\loading.gif" />
+    <Content Include="Scripts\Mantenimientos.js" />
     <Content Include="Scripts\RegistrarEnvio.js" />
     <Content Include="Scripts\Utilities.js" />
     <Content Include="WebServices\MonteroExpressWS.asmx" />
@@ -319,6 +323,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\Mant_Entidades.aspx.cs">
+      <DependentUpon>Mant_Entidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Mant_Entidades.aspx.designer.cs">
+      <DependentUpon>Mant_Entidades.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administracion\RegistrarEnvio.aspx.cs">
       <DependentUpon>RegistrarEnvio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
