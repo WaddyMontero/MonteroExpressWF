@@ -22,5 +22,10 @@ namespace MonteroExpressWF.BLL
         {
             ManejadorMonteroExpress.InsertarEntidadDireccion(entidadDireccion);
         }
+
+        public static void EliminarEntidadDireccion(int IdEntidadDireccion)
+        {
+            ManejadorMonteroExpress.EliminarEntidadDireccion(IdEntidadDireccion);
+        }
     }
 }

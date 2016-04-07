@@ -33,7 +33,40 @@
             deleteProggress: 'Eliminando {0} de {1} registros, procesando...'
         },
         actions: {
-            listAction: '../WebServices/MonteroExpressWS.asmx/ListarEntidades'
+            listAction: '../WebServices/MonteroExpressWS.asmx/ListarEntidades',
+            createAction: function (postData) {
+                var param = postData.split('&');
+                var values = new Array();
+                for (var i = 0; i < param.length; i++)
+                {
+                    values[i] = param[i].split('=')[1];
+                }
+                
+                var record = {
+                    "Entidad": {
+                        "Nombre": values[0],
+                        "IdTipoDocumento": values[1],
+                        "NumDocumento": values[2]
+                    }
+                };
+                alert(record);
+                //alert(JSON.stringify(postData, ['Nombre', 'IdTipoDocumento', 'NumDocumento']));
+                //alert(JSON.stringify(postData, ['Nombre', 'IdTipoDocumento', 'NumDocumento']));
+                return $.Deferred(function ($dfd) {
+                    $.ajax({
+                        url: '../WebServices/MonteroExpressWS.asmx/InsertarEntidad',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: record,
+                        success: function (data) {
+                            $dfd.resolve(data);
+                        },
+                        error: function () {
+                            $dfd.reject();
+                        }
+                    });
+                });
+            }
         },
         fields: {
             IdEntidad: {
@@ -49,17 +82,88 @@
                 edit: true,
                 list: true
             },
+            hdTipoDoc: {
+                input: function (data) {
+                    return $('<input type="text" class="hidden" name="IdTipoDocumento" id="hdTipoDoc"/>');
+                },
+                list: true,
+                create: true,
+                edit:false
+                
+            },
+            IdTipoDocumento:{
+                title: 'Tipo Documento',
+                width: '10%',
+                input: function (data) {
+                    var $ddl = $("<select id='JTddlTipoDocumento' name=''></select>").change(function () {
+                        //var idStartWith = $(this).attr("id").split('_')[0] + '_' + $(this).attr("id").split('_')[1] + '_';
+                        if ($(this).val() == '') {
+                            $('#JTNumDocumento').attr('disabled', 'disabled');
+                            $('#JTNumDocumento').val("");
+                            $('#hdTipoDoc').val("");
+                        } else {
+                            $.ajax({
+                                type: "POST",
+                                url: "../WebServices/MonteroExpressWS.asmx/ObtenerTipoDocumento",
+                                data: JSON.stringify({ 'IdTipoDocumento': parseInt($(this).val()) }),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (result) {
+                                    if (data != undefined) {
+                                        $('#JTNumDocumento').mask(result.d.Mascara);
+                                        $('#JTNumDocumento').removeAttr("disabled");
+                                        $('#hdTipoDoc').val(result.d.IdTipoDocumento);
+                                    }
+                                }, error: function (jqXHR, textStatus, errorThrown) {
+                                    MostrarAlerta("error", textStatus);
+                                }
+                            });
+                        }
+
+                    });
+                    $.ajax({
+                        type: "POST",
+                        url: "../WebServices/MonteroExpressWS.asmx/ObtenerTiposDocumentos",
+                        //data: JSON.stringify({ 'IdTipoDocumento': parseInt($('#<%= ddlTipoDocumento.ClientID %>').val()) }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data != undefined) {
+                                $ddl.append('<option value="" selected="selected">Seleccione --></option>');
+                                for (i = 0; i < data.d.length;i++)
+                                {
+                                    $ddl.append('<option value="' + data.d[i].IdTipoDocumento + '">' + data.d[i].Descripcion + '</option>');
+                                }
+                            }
+                            //$('#txtNumDocumento').removeAttr("disabled");
+                            //$('#txtNumDocumento').mask(data.Mascara);
+
+                        }, error: function (jqXHR, textStatus, errorThrown) {
+                            MostrarAlerta("error", textStatus);
+                        }
+                    });
+                    // AjaxCall("../WebServices/MonteroExpressWS.asmx/ObtenerTiposDocumentos","JTddlTipoDocumento",CargarDropDown);                    
+                    return $ddl;
+                },
+                list: false,
+                create:true
+            },
             NumDocumento: {
                 title: 'Número Documento',
                 width: '10%',
+                input:function(data)
+                {
+                    return $('<input type="text" name="NumDocumento" id="JTNumDocumento" disabled="disabled"/>');
+                },
+                create: true,
                 list: true
             },
             FechaIngreso: {
                 title: 'FechaIngreso',
-                create: true,
+                create: false,
                 type: "date",
                 dateFormat:"dd/MM/yyyy",
-                edit: true,
+                edit: false,
                 list: true
             },
             Direcciones: {
@@ -100,7 +204,7 @@
                                     title: entidadDireccion.record.Nombre + ' - Direcciones',
                                     actions: {
                                         listAction: '../WebServices/MonteroExpressWS.asmx/ObtieneDireccionesByEntidad?IdEntidad=' + entidadDireccion.record.IdEntidad,
-                                        //deleteAction: '/Demo/DeletePhone',
+                                        deleteAction: '../WebServices/MonteroExpressWS.asmx/EliminarEntidadDireccion',
                                         //updateAction: '/Demo/UpdatePhone',
                                         createAction: '../WebServices/MonteroExpressWS.asmx/InsertaEntidadDireccion'
                                     },
@@ -178,7 +282,8 @@
                                     },
                                     recordAdded: function (event, data)
                                     {
-                                        //data.childTable.jtable('reload');
+                                        //$('#tblMantenimiento').jtable('reload');
+                                        //$mostrar.click();
                                     }
                                 }, function (data) { //opened handler
                                     data.childTable.jtable('load');
@@ -188,32 +293,7 @@
                     return $mostrar;
                 }
             }
-        }//,
-        //toolbar: {
-        //    items: [{
-        //        //icon: '/images/excel.png',
-        //        text: '+ Agregar',
-        //        //cssClass: "form-control",
-        //        click: function () {
-        //            $("#divAgregarPaquete").dialog('open');
-        //        }
-        //    }, {
-        //        //icon: '/images/pdf.png',
-        //        text: 'Eliminar',
-        //        //cssClass:"form-control",
-        //        click: function () {
-        //            var $selectedRows = $('#tblPaquetes').jtable('selectedRows');
-        //            $selectedRows.each(function () {
-        //                var record = $(this).data('record');
-        //                //var personId = record.PersonId;
-        //                $('#tblPaquetes').jtable('deleteRecord', {
-        //                    key: record.IdPaqueteEnvio,
-        //                    clientOnly: true
-        //                });
-        //            });
-        //        }
-        //    }]
-        //}
+        }
     });
 
     $('#tblMantenimiento').jtable('load');

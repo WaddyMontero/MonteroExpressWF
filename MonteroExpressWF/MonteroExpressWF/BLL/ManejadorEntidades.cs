@@ -19,5 +19,9 @@ namespace MonteroExpressWF.BLL
             return ManejadorMonteroExpress.ListarEntidades();
         }
 
+        public static void InsertarEntidad(string nombreEntidad, int tipoDocumento, string numDocumento)
+        {
+            ManejadorMonteroExpress.InsertarEntidad(nombreEntidad, tipoDocumento, numDocumento);
+        }
     }
 }

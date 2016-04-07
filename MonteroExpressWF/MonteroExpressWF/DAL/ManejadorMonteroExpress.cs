@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Web;
 using MonteroExpressWF.BOL;
@@ -155,6 +156,13 @@ namespace MonteroExpressWF.DAL
             parametros.Add(new Parametro("@PorDefecto", entidadDireccion.PorDefecto, DbType.Boolean));
             con.EjecucionNoRetorno("[dbo].[prc_Insertar_EntidadDireccion]",parametros.ToArray());
         }
+
+        public static void EliminarEntidadDireccion(int IdEntidadDireccion)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdEntidadDireccion",IdEntidadDireccion,DbType.Int32);
+            con.EjecucionNoRetorno("[dbo].[prc_Elimina_EntidadDirecciones]", param);
+        }
         public static List<EntidadDireccion> ObtenerEntidadDirecciones(string NumDocumento)
         {
             Conexion con = new Conexion("SqlCon");
@@ -207,6 +215,16 @@ namespace MonteroExpressWF.DAL
                 }
             }
             return lista;
+        }
+
+        public static void InsertarEntidad(string nombreEntidad, int tipoDocumento, string numDocumento)
+        {
+            Conexion con = new Conexion("SqlCon");
+            List<Parametro> parametros = new List<Parametro>();
+            parametros.Add(new Parametro("@Nombre", nombreEntidad, DbType.String));
+            parametros.Add(new Parametro("@IdTipoDocumento", tipoDocumento, DbType.Int16));
+            parametros.Add(new Parametro("@NumDocumento", numDocumento, DbType.String));
+            con.EjecucionNoRetorno("[dbo].[prc_Insertar_Entidad]", parametros.ToArray());
         }
         public static Entidad BuscarEntidad(string NumDocumento) 
         {

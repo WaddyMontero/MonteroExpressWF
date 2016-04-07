@@ -26,6 +26,20 @@ namespace MonteroExpressWF.WebServices
             //return JsonConvert.SerializeObject(ManejadorMonteroExpress.ObtenerTipoDocumento(int.Parse(IdTipoDocumento)));
             return ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento);
         }
+        [WebMethod]
+        public List<TipoDocumento> ObtenerTiposDocumentos() 
+        {
+            return ManejadorTipoDocumento.ObtenerTiposDocumentos();
+        }
+
+
+        //[WebMethod]
+        //public object ObtenerTipoDocumentoJT(int IdTipoDocumento)
+        //{
+        //    //return JsonConvert.SerializeObject(ManejadorMonteroExpress.ObtenerTipoDocumento(int.Parse(IdTipoDocumento)));
+        //    return new {Result = "OK", Records = ManejadorTipoDocumento.ObtenerTipoDocumentoById(IdTipoDocumento)};
+        //}
+
         #endregion
 
         #region DireccionesEntidad
@@ -51,7 +65,19 @@ namespace MonteroExpressWF.WebServices
             }
 
         }
-
+        [WebMethod]
+        public object EliminarEntidadDireccion(int IdEntidadDireccion)
+        {
+            try
+            {
+                ManejadorEntidadDirecciones.EliminarEntidadDireccion(IdEntidadDireccion);
+                return new { Result = "OK" };
+            }
+            catch(Exception ex)
+            {
+                return new { Result = "ERROR", Message = ex.Message };
+            }
+        }
         #endregion
 
         #region Entidad
@@ -68,6 +94,19 @@ namespace MonteroExpressWF.WebServices
             return new { Result = "OK", Records = ManejadorEntidades.ListarEntidades(), TotalRecordCount = 0 };
         }
 
+        [WebMethod]
+        public object InsertarEntidad(Entidad record)
+        {
+            try
+            {
+                ManejadorEntidades.InsertarEntidad(record.Nombre,record.IdTipoDocumento,record.NumDocumento);
+                return new { Result = "OK", Record = record};
+            }
+            catch (Exception ex)
+            {
+                return new { Result = "OK", Message = ex.Message};
+            }
+        }
         #endregion
 
         #region UbicacionesGeograficas
