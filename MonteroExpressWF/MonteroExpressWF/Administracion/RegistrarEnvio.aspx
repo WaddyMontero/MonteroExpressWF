@@ -24,17 +24,22 @@
                             <div class="panel panel-info">
                                 <div class="panel-heading">Remitente</div>
                                 <div class="panel-body">
-                            <DG:DatosGenerales ID="usrControlRemitente" runat="server" />
+                                    <DG:DatosGenerales ID="usrControlRemitente" runat="server" />
                                 </div>
                             </div>
 
                             <div class="panel panel-info">
                                 <div class="panel-heading">Destinatario</div>
                                 <div class="panel-body">
-                                <DG:DatosGenerales ID="usrControlDestinatario" runat="server" />
+                                    <DG:DatosGenerales ID="usrControlDestinatario" runat="server" />
                                 </div>
+                            </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading">Contenidos</div>
+                                <div class="panel-body">
+                                    <asp:CheckBoxList runat="server" CssClass="" OnDataBound="chkListTiposContenidos_DataBound" ItemType="MonteroExpressWF.BOL.TipoContenido" RepeatColumns="3" RepeatDirection="Vertical" ID="chkListTiposContenidos"></asp:CheckBoxList>
                                 </div>
-                            <asp:CheckBoxList runat="server" CssClass="" OnDataBound="chkListTiposContenidos_DataBound" ItemType="MonteroExpressWF.BOL.TipoContenido" RepeatColumns="3" RepeatDirection="Vertical" ID="chkListTiposContenidos"></asp:CheckBoxList>
+                            </div>                            
                         </div>
                         <div class="col-lg-6">
                             <DE:DetallesEnvio ID="usrControlDetallesEnvio" runat="server" />
@@ -42,11 +47,11 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <div id="divAgregarPaquete" title="Agregar Paquete">       
+                            <div id="divAgregarPaquete" title="Agregar Paquete">
                                 <div class="row">
                                     <div class="form-group">
                                         <label for="txtCantidad">Cantidad</label>
-                                        <input type="text" required name="txtCantidad" class="form-control" id="txtCantidad"/>
+                                        <input type="text" required name="txtCantidad" class="form-control" id="txtCantidad" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -58,13 +63,13 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <label for="txtPrecioUnitario">Precio Unitario</label>
-                                        <input type="text" class="form-control" id="txtPrecioUnitario"/>
+                                        <input type="text" class="form-control" id="txtPrecioUnitario" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group">
                                         <label for="txtPeso">Peso</label>
-                                        <input type="text" class="form-control" id="txtPeso"/>
+                                        <input type="text" class="form-control" id="txtPeso" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -73,13 +78,13 @@
                                         <select runat="server" class="form-control" id="ddlTamanioPaquete"></select>
                                     </div>
                                 </div>
-                               <div class="row">
+                                <div class="row">
                                     <div class="form-group">
                                         <label for="ddlEstado">Estado</label>
                                         <select runat="server" class="form-control" id="ddlEstado"></select>
                                     </div>
                                 </div>
-                            </div>          
+                            </div>
                             <div id="tblPaquetes"></div>
                         </div>
                     </div>
@@ -88,10 +93,10 @@
                     <div class="row">
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <input type="button" class="form-control btn btn-primary" onclick="GuardarEnvio()" value="Guardar"/>
+                            <input type="button" class="form-control btn btn-primary" onclick="GuardarEnvio()" value="Guardar" />
                         </div>
                         <div class="col-xs-3">
-                            <input type="button" class="form-control btn btn-danger" value="Cancelar"/>
+                            <input type="button" class="form-control btn btn-danger" value="Cancelar" />
                         </div>
                         <div class="col-xs-3"></div>
                     </div>
