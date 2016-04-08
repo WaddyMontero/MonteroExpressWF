@@ -64,9 +64,13 @@ function AjaxCall(url, data,idContenedor ,callBackFunction)
         dataType: "json",
         success: function (data) {
             //Llamada a la funcion para el callback
-            callBackFunction(idContenedor, data);
+            if (callBackFunction == undefined) {
+                MostrarDialogo("Mensaje informativo","La acción se realizó exitosamente.");
+            } else {
+                callBackFunction(idContenedor, data);
+            }
         }, error: function (jqXHR, textStatus, errorThrown) {
-            ImprimirAlerta("error", textStatus);
+            MostrarAlerta("error", textStatus);
         }
     });
 }

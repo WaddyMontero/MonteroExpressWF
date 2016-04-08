@@ -166,27 +166,45 @@ function GuardarEnvio() {
     //var remitente = new Array();
     //var idRemitente = 0;
     //if ($('#MainContent_usrControlRemitente_IdEntidad').val() != "") {
-        //remitente.IdRemitente = $('#MainContent_usrControlRemitente_IdEntidad').val();
+    //remitente.IdRemitente = $('#MainContent_usrControlRemitente_IdEntidad').val();
     //} else {
-    var Remitente = {
-        "IdRemitente": ($('#MainContent_usrControlRemitente_IdEntidad').val() != "") ? $('#MainContent_usrControlRemitente_IdEntidad').val():0,
-        "Nombre": $('#MainContent_usrControlRemitente_txtNombre').val(),
-        "IdTipoDocumento": $('#MainContent_usrControlRemitente_ddlTipoDocumento').val(),
-        "NumDocumento": $('#MainContent_usrControlRemitente_txtDocumento').val()
-    };
-        //remitente.IdRemitente = 0;
-        //remitente.Nombre = $('#MainContent_usrControlRemitente_txtNombre').val();
-        //remitente.IdTipoDocumento = $('#MainContent_usrControlRemitente_ddlTipoDocumento').val();
-        //remitente.NumDocumento = $('#MainContent_usrControlRemitente_txtDocumento').val();
-   // }
-    Remitente.EntidadDireccion = {
-        "IdEntidadDireccion": ($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") ? 0 : $('#MainContent_usrControlRemitente_ddlDireccion').val(),
-        "Direccion": $('#MainContent_usrControlRemitente_txtDireccion').val(),
-        "IdCiudad": $('#MainContent_usrControlRemitente_ddlCiudad').val(),
+    var Remitente = new Object();
+    
+    Remitente.IdRemitente = ($('#MainContent_usrControlRemitente_IdEntidad').val() != "") ? $('#MainContent_usrControlRemitente_IdEntidad').val() : 0;
+    Remitente.Nombre = $('#MainContent_usrControlRemitente_txtNombre').val();
+    Remitente.IdTipoDocumento = $('#MainContent_usrControlRemitente_ddlTipoDocumento').val();
+    Remitente.NumDocumento = $('#MainContent_usrControlRemitente_txtDocumento').val();
+    
+    //var Remitente = {
+    //    "IdRemitente": ($('#MainContent_usrControlRemitente_IdEntidad').val() != "") ? $('#MainContent_usrControlRemitente_IdEntidad').val():0,
+    //    "Nombre": $('#MainContent_usrControlRemitente_txtNombre').val(),
+    //    "IdTipoDocumento": $('#MainContent_usrControlRemitente_ddlTipoDocumento').val(),
+    //    "NumDocumento": $('#MainContent_usrControlRemitente_txtDocumento').val()
+    //};
+    //remitente.IdRemitente = 0;
+    //remitente.Nombre = $('#MainContent_usrControlRemitente_txtNombre').val();
+    //remitente.IdTipoDocumento = $('#MainContent_usrControlRemitente_ddlTipoDocumento').val();
+    //remitente.NumDocumento = $('#MainContent_usrControlRemitente_txtDocumento').val();
+    // }
+    var EntidadDireccionesRemitente = new Array();
+    var dir1 = {
+        "IdEntidadDireccion" : ($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") ? "0" : $('#MainContent_usrControlRemitente_ddlDireccion').val(),
+        "Direccion" : $('#MainContent_usrControlRemitente_txtDireccion').val(),
+        "IdCiudad" : (Remitente.IdRemitente > 0)?"0":$('#MainContent_usrControlRemitente_ddlCiudad').val(),
         "Telefono1": $('#MainContent_usrControlRemitente_txtTelefono1').val(),
-        "Telefono2": $('#MainContent_usrControlRemitente_txtTelefono2').val(),
+        "Telefono2": $('#MainContent_usrControlRemitente_txtTelefono2').val(),        
         "PorDefecto": $('#MainContent_usrControlRemitente_chkPorDefecto').is(':checked')
     };
+    EntidadDireccionesRemitente[0] = dir1;
+    Remitente.EntidadDirecciones = EntidadDireccionesRemitente;
+    //Remitente.EntidadDireccion = {
+    //    "IdEntidadDireccion": ($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") ? 0 : $('#MainContent_usrControlRemitente_ddlDireccion').val(),
+    //    "Direccion": $('#MainContent_usrControlRemitente_txtDireccion').val(),
+    //    "IdCiudad": $('#MainContent_usrControlRemitente_ddlCiudad').val(),
+    //    "Telefono1": $('#MainContent_usrControlRemitente_txtTelefono1').val(),
+    //    "Telefono2": $('#MainContent_usrControlRemitente_txtTelefono2').val(),
+    //    "PorDefecto": $('#MainContent_usrControlRemitente_chkPorDefecto').is(':checked')
+    //};
     //if ($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") {
     //    remitente.EntidadDireccion.IdEntidadDireccion = 0;
     //    remitente.EntidadDireccion.Direccion = $('#MainContent_usrControlRemitente_txtDireccion').val();
@@ -199,21 +217,37 @@ function GuardarEnvio() {
     //}
 
     //Información del destinatario
-
-    var Destinatario = {
-        "IdRemitente": ($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") ? $('#MainContent_usrControlDestinatario_IdEntidad').val():0,
-        "Nombre": $('#MainContent_usrControlDestinatario_txtNombre').val(),
-        "IdTipoDocumento": $('#MainContent_usrControlDestinatario_ddlTipoDocumento').val(),
-        "NumDocumento": $('#MainContent_usrControlDestinatario_txtDocumento').val()
+    var Destinatario = new Object();
+    Destinatario.IdRemitente = ($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") ? $('#MainContent_usrControlDestinatario_IdEntidad').val():0;
+    Destinatario.Nombre = $('#MainContent_usrControlDestinatario_txtNombre').val();
+    Destinatario.IdTipoDocumento = $('#MainContent_usrControlDestinatario_ddlTipoDocumento').val();
+    Destinatario.NumDocumento = $('#MainContent_usrControlDestinatario_txtDocumento').val();
+    
+    EntidadDireccionesDestinatario = new Array();
+    var dir2 = {
+        "IdEntidadDireccion" : ($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") ? "0" : $('#MainContent_usrControlDestinatario_ddlDireccion').val(),
+        "Direccion" : $('#MainContent_usrControlDestinatario_txtDireccion').val(),
+        "IdCiudad" : (Destinatario.IdRemitente > 0)?"0":$('#MainContent_usrControlDestinatario_ddlCiudad').val(),
+        "Telefono1" : $('#MainContent_usrControlDestinatario_txtTelefono1').val(),
+        "Telefono2" : $('#MainContent_usrControlDestinatario_txtTelefono2').val(),
+        "PorDefecto" : $('#MainContent_usrControlDestinatario_chkPorDefecto').is(':checked')
     };
-    Destinatario.EntidadDireccion = {
-        "IdEntidadDireccion": ($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") ? 0 : $('#MainContent_usrControlDestinatario_ddlDireccion').val(),
-        "Direccion": $('#MainContent_usrControlDestinatario_txtDireccion').val(),
-        "IdCiudad": $('#MainContent_usrControlDestinatario_ddlCiudad').val(),
-        "Telefono1": $('#MainContent_usrControlDestinatario_txtTelefono1').val(),
-        "Telefono2": $('#MainContent_usrControlDestinatario_txtTelefono2').val(),
-        "PorDefecto": $('#MainContent_usrControlDestinatario_chkPorDefecto').is(':checked')
-    };
+    EntidadDireccionesDestinatario[0] = dir2;
+    Destinatario.EntidadDirecciones = EntidadDireccionesDestinatario;
+    //var Destinatario = {
+    //    "IdRemitente": ($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") ? $('#MainContent_usrControlDestinatario_IdEntidad').val():0,
+    //    "Nombre": $('#MainContent_usrControlDestinatario_txtNombre').val(),
+    //    "IdTipoDocumento": $('#MainContent_usrControlDestinatario_ddlTipoDocumento').val(),
+    //    "NumDocumento": $('#MainContent_usrControlDestinatario_txtDocumento').val()
+    //};
+    //Destinatario.EntidadDireccion = {
+    //    "IdEntidadDireccion": ($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") ? 0 : $('#MainContent_usrControlDestinatario_ddlDireccion').val(),
+    //    "Direccion": $('#MainContent_usrControlDestinatario_txtDireccion').val(),
+    //    "IdCiudad": $('#MainContent_usrControlDestinatario_ddlCiudad').val(),
+    //    "Telefono1": $('#MainContent_usrControlDestinatario_txtTelefono1').val(),
+    //    "Telefono2": $('#MainContent_usrControlDestinatario_txtTelefono2').val(),
+    //    "PorDefecto": $('#MainContent_usrControlDestinatario_chkPorDefecto').is(':checked')
+    //};
     //var destinatario = new Array();
     //if ($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") {
     //    destinatario.IdRemitente = $('#MainContent_usrControlDestinatario_IdEntidad').val();
@@ -235,27 +269,65 @@ function GuardarEnvio() {
     //}
 
     //Información del envio
-    var Envio = {
-        "IdOrigen" : $('#MainContent_usrControlDetallesEnvio_ddlOrigen').val(),
-        "IdDestino": $('#MainContent_usrControlDetallesEnvio_ddlDestino').val(),
-        "RecogidoPor" : $('#MainContent_usrControlDetallesEnvio_txtRecogido').val(),
-        "Ruta" : $('#MainContent_usrControlDetallesEnvio_txtRuta').val(),
-        "Valor" : $('#MainContent_usrControlDetallesEnvio_txtValor').val(),
-        "IdSeguro" : $('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').val()
-    };
-    Envio.TiposContenidos = new Array();
+    //var Envio = {
+    //    "IdOrigen" : $('#MainContent_usrControlDetallesEnvio_ddlOrigen').val(),
+    //    "IdDestino": $('#MainContent_usrControlDetallesEnvio_ddlDestino').val(),
+    //    "RecogidoPor" : $('#MainContent_usrControlDetallesEnvio_txtRecogido').val(),
+    //    "Ruta" : $('#MainContent_usrControlDetallesEnvio_txtRuta').val(),
+    //    "Valor" : $('#MainContent_usrControlDetallesEnvio_txtValor').val(),
+    //    "IdSeguro" : $('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').val()
+    //};
+    //Envio.TiposContenidos = new Array();
+    //var i = 0;
+    //$('#MainContent_chkListTiposContenidos').find('input[type="checkbox"]:checked').each(function () {
+    //    var contenido = {"TipoContenido":{
+    //        "IdTipoContenido":$(this).val()
+    //    }};
+
+    //    Envio.TiposContenidos[0] = contenido;
+    //    i++;
+//});
+
+    var Envio = new Object();
+    Envio.IdOrigen = $('#MainContent_usrControlDetallesEnvio_ddlOrigen').val();
+    Envio.IdDestino = $('#MainContent_usrControlDetallesEnvio_ddlDestino').val();
+    Envio.RecogidoPor = $('#MainContent_usrControlDetallesEnvio_txtRecogido').val();
+    Envio.Ruta = $('#MainContent_usrControlDetallesEnvio_txtRuta').val();
+    Envio.Valor = $('#MainContent_usrControlDetallesEnvio_txtValor').val();
+    Envio.IdSeguro = $('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').find('input[type="radio"]:checked').val();
+    
+    var TiposContenidos = new Array();
     var i = 0;
     $('#MainContent_chkListTiposContenidos').find('input[type="checkbox"]:checked').each(function () {
-        var contenido = {"TipoContenido":{
-            "IdTipoContenido":$(this).val()
-        }};
+        var TipoContenido = {
 
-        Envio.TiposContenidos[0] = contenido;
+            "IdTipoContenido": $(this).val()
+        };
+
+        TiposContenidos[i] = TipoContenido;
         i++;
     });
+    
     Envio.Remitente = Remitente;
     Envio.Destinatario = Destinatario;
-    var json = JSON.stringify(Envio);
+    Envio.TiposContenidos = TiposContenidos;
+    //var json = JSON.stringify(Envio);
+    //alert(json);
+    alert(JSON.stringify({ 'Envio': Envio }));
+    //AjaxCall("../WebServices/MonteroExpressWS.asmx/InsertarEnvio", {'Envio':Envio}, "", MostrarAlerta);
     //rbtnListEnvioSeguro
-
+    $.ajax({
+        type: "POST",
+        url: '../WebServices/MonteroExpressWS.asmx/InsertarEnvio',
+        data: JSON.stringify({ 'Envio': Envio }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            //Llamada a la funcion para el callback
+            
+           MostrarDialogo("Mensaje informativo", "La acción se realizó exitosamente.");            
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            MostrarAlerta("error", textStatus);
+        }
+    });
 }
