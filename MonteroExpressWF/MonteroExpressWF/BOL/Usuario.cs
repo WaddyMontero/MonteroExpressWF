@@ -14,5 +14,24 @@ namespace MonteroExpressWF.BOL
         public Rol Rol { get; set; }
         public bool Habilitado { get; set; }
         public Nullable<DateTime> FechaIngreso { get; set; }
+
+        public static Usuario UsuarioActual 
+        {
+            get 
+            {
+                if (HttpContext.Current.Session["Usuario"] != null)
+                {
+                    return HttpContext.Current.Session["Usuario"] as Usuario;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                HttpContext.Current.Session["Usuario"] = value;
+            }
+        }
     }
 }
