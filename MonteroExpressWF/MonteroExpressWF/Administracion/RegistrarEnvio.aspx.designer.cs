@@ -13,6 +13,24 @@ namespace MonteroExpressWF.Administracion {
     public partial class RegistrarEnvio {
         
         /// <summary>
+        /// formRegistroEnvio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm formRegistroEnvio;
+        
+        /// <summary>
+        /// ddlOficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOficina;
+        
+        /// <summary>
         /// usrControlRemitente control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace MonteroExpressWF.Administracion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::MonteroExpressWF.UserControl.DetallesEnvio usrControlDetallesEnvio;
+        
+        /// <summary>
+        /// ddlEstadoEnvio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstadoEnvio;
         
         /// <summary>
         /// ddlTamanioPaquete control.

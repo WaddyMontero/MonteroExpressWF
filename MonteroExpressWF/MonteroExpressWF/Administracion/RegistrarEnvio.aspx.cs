@@ -14,7 +14,7 @@ namespace MonteroExpressWF.Administracion
         {
             if (!IsPostBack)
             {
-                ddlEstado.DataSource = ManejadorEstados.ObtieneEstadosPaquetes();
+                ddlEstado.DataSource = ManejadorEstados.ObtieneEstadosPaquetesActivos();
                 ddlEstado.DataTextField = "Descripcion";
                 ddlEstado.DataValueField = "IdEstado";
                 ddlEstado.DataBind();
@@ -26,6 +26,14 @@ namespace MonteroExpressWF.Administracion
                 chkListTiposContenidos.DataTextField = "Descripcion";
                 chkListTiposContenidos.DataValueField = "IdTipoContenido";
                 chkListTiposContenidos.DataBind();
+                ddlOficina.DataSource = ManejadorOficinas.ObtenerOficinasActivas();
+                ddlOficina.DataTextField = "Nombre";
+                ddlOficina.DataValueField = "IdOficina";                
+                ddlOficina.DataBind();
+                ddlEstadoEnvio.DataSource = ManejadorEstados.ObtieneEstadosEnviosActivos();
+                ddlEstadoEnvio.DataTextField = "Descripcion";
+                ddlEstadoEnvio.DataValueField = "IdEstado";
+                ddlEstadoEnvio.DataBind();
             }
 
             chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos();
