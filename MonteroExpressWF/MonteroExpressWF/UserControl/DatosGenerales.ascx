@@ -95,7 +95,7 @@
             <div class="col-lg-6 col-xs-12">
                 <div class="form-group">
                     <label for="ddlTipoDocumento">DNI/NIF/Pasaporte:</label>
-                    <asp:DropDownList runat="server" CssClass="form-control" ID="ddlTipoDocumento" AppendDataBoundItems="true">
+                    <asp:DropDownList runat="server" CssClass="form-control" name="ddlTipoDocumento" ID="ddlTipoDocumento" AppendDataBoundItems="true">
                         <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
@@ -104,7 +104,7 @@
                 <div class="form-group">
                     <label for="txtDocumento"># Documento:</label>
                     <div class="input-group">
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtDocumento"></asp:TextBox>
+                        <asp:TextBox runat="server" CssClass="form-control" name="txtDocumento" ID="txtDocumento"></asp:TextBox>
                         <span class="input-group-btn">
                             <input type="button" runat="server" class="btn btn-info" id="btnBuscar" value="Buscar" onclick="javascript: Buscar(this);" />
                         </span>
@@ -118,7 +118,7 @@
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
                         <label for="txtNombre">Nombre/Razón Social:</label>
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtNombre"></asp:TextBox>
+                        <asp:TextBox runat="server" name="txtNombre" CssClass="form-control" ID="txtNombre"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
                         <label for="ddlDireccion">Direcciones:</label>
-                        <asp:DropDownList runat="server" ID="ddlDireccion" CssClass="form-control">
+                        <asp:DropDownList runat="server" name="ddlDireccion" ID="ddlDireccion" CssClass="form-control">
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="txtDirección">Dirección:</label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txtDireccion" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox runat="server" name="txtDireccion" CssClass="form-control" ID="txtDireccion" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="ddlPais">País:</label>
-                            <asp:DropDownList runat="server" CssClass="form-control" AppendDataBoundItems="true" ID="ddlPais">
+                            <asp:DropDownList runat="server" name="ddlPais" CssClass="form-control" AppendDataBoundItems="true" ID="ddlPais">
                                 <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -152,7 +152,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="ddlProvincia">Provincia:</label>
-                            <asp:DropDownList runat="server" CssClass="form-control" ID="ddlProvincia">
+                            <asp:DropDownList runat="server" name="ddlProvincia" CssClass="form-control" ID="ddlProvincia">
                                 <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -162,7 +162,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="ddlCiudad">Ciudad:</label>
-                            <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCiudad">
+                            <asp:DropDownList runat="server" name="ddlCiudad" CssClass="form-control" ID="ddlCiudad">
                                 <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -170,7 +170,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="txtTelefono1">Teléfono 1:</label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txtTelefono1"></asp:TextBox>
+                            <asp:TextBox runat="server" name="txtTelefono1" CssClass="form-control" ID="txtTelefono1"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="txtTelefono2">Teléfono 2:</label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txtTelefono2"></asp:TextBox>
+                            <asp:TextBox runat="server" name="txtTelefono2" CssClass="form-control" ID="txtTelefono2"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="" id="chkPorDefecto">Dirección por defecto</label>
+                                <input type="checkbox" name="chkPorDefecto" id="chkPorDefecto">Dirección por defecto</label>
                         </div>
                     </div>
                 </div>
