@@ -9,10 +9,16 @@ namespace MonteroExpressWF.BLL
 {
     public class ManejadorEstados
     {
-        public static List<Estado> ObtieneEstadosPaquetes()
+        public static List<Estado> ObtieneEstadosPaquetesActivos()
         {
             //Obtiene los estados de IdTipoPaquete 2 que pertenecen a los paquetes
-            return ManejadorMonteroExpress.ObtieneEstadosPaquetes(2);
+            return ManejadorMonteroExpress.ObtieneEstadosPaquetes(2).Where(ep => ep.Activo == true).ToList();
+        }
+
+        public static List<Estado> ObtieneEstadosEnviosActivos()
+        {
+            //Obtiene los estados de IdTipoPaquete 2 que pertenecen a los paquetes
+            return ManejadorMonteroExpress.ObtieneEstadosPaquetes(1).Where(ee => ee.Activo == true).ToList();
         }
     }
 }
