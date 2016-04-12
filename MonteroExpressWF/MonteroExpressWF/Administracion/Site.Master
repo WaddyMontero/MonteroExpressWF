@@ -30,6 +30,8 @@
 <script src="../Scripts/jquery.validate/messages_es.js"></script>
 <script src="../Scripts/RegistrarEnvio.js"></script>
 <script src="../Scripts/Mant_Entidades.js"></script>
+<script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
+<script src="../Scripts/jquery.validate/utilities/require_from_group.js"></script>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
