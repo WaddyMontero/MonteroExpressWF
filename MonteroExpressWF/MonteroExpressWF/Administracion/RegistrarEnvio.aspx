@@ -27,7 +27,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="ddlOficina">Oficina</label>
-                                    <asp:DropDownList runat="server" name="ddlOficina" ID="ddlOficina" AppendDataBoundItems="true" required CssClass="form-control">
+                                    <asp:DropDownList runat="server" name="ddlOficina" ID="ddlOficina" AppendDataBoundItems="true" CssClass="form-control">
                                         <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
