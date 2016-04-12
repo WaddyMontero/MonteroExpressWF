@@ -19,11 +19,23 @@ namespace MonteroExpressWF.BOL
         public Entidad Destinatario { get; set; }
         public decimal Valor { get; set; }
         public DateTime FechaIngreso { get; set; }
-
+        public string NumeroEnvio { get; set; }
         public int IdOficina { get; set; }
         public int IdSeguro { get; set; }
         public List<PaqueteEnvio> PaquetesEnvios { get; set; }
         public List<TipoContenido> TiposContenidos { get; set; }
+
+        //Campos Utilizados Para El JTable
+
+        public string direccionRemitente { get; set; }
+        public string direccionDestinatario { get; set; }
+        public string nombreRemitente { get; set; }
+        public string nombreDestinatario { get; set; }
+        public string descripcionSeguro { get; set; }
+        public string nombrePuertoDestino { get; set; }
+        public string nombrePuertoOrigen{ get; set; }
+        
+
         public Int32 IdEstado { get; set; }
     }
 }
