@@ -581,19 +581,66 @@ namespace MonteroExpressWF.DAL
         public static List<Oficina> ObtenerOficinas() 
         {
             Conexion con = new Conexion("SqlCon");
+<<<<<<< .mine
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Envios]");
+            List<Envio> lista = null;
+||||||| .r50
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Entidades]");
+            List<Entidad> lista = null;
+=======
             DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Oficinas]",true);
             List<Oficina> lista = null;
+>>>>>>> .r69
             if (dt != null && dt.Rows.Count > 0)
             {
+<<<<<<< .mine
+                lista = new List<Envio>();
+                foreach (DataRow dr in dt.Rows)
+||||||| .r50
+                lista = new List<Entidad>();
+                foreach (DataRow dr in dt.Rows)
+=======
                 lista = new List<Oficina>();
                 foreach (DataRow row in dt.Rows)
+>>>>>>> .r69
                 {
+<<<<<<< .mine
+                    lista.Add(new Envio
+||||||| .r50
+                    lista.Add(new Entidad
+=======
                     lista.Add(new Oficina
+>>>>>>> .r69
                     {
+<<<<<<< .mine
+                        IdEnvio = int.Parse(dr["IdEnvio"].ToString()),
+                        NumeroEnvio = dr["NumeroEnvio"].ToString(),
+                        Fecha = Convert.ToDateTime(dr["FechaEnvio"].ToString()),
+                        AlbaranNum = dr["NumeroAlbaran"].ToString(),
+                        Remitente = new Entidad {IdEntidad = int.Parse(dr["IdEntidadRemitente"].ToString()), Nombre = dr["Remitente"].ToString()},
+                        Destinatario = new Entidad {IdEntidad = int.Parse(dr["IdEntidadDestinatario"].ToString()), Nombre = dr["Destinatario"].ToString()},
+                        IdSeguro = int.Parse(dr["IdSeguroEnvio"].ToString()),
+                        Valor = decimal.Parse(dr["Valor"].ToString()),
+                        IdOrigen = int.Parse(dr["IdPuertoOrigen"].ToString()),
+                        IdDestino = int.Parse(dr["IdPuertoDestino"].ToString()),
+                        direccionRemitente = dr["DireccionRemitente"].ToString(),
+                        direccionDestinatario = dr["DireccionDestinatario"].ToString(),
+                        nombreRemitente = dr["Remitente"].ToString(),
+                        nombreDestinatario = dr["Destinatario"].ToString(),
+                        nombrePuertoDestino = dr["PuertoDestino"].ToString(),
+                        nombrePuertoOrigen = dr["PuertoOrigen"].ToString(),
+                        descripcionSeguro = dr["SeguroEnvio"].ToString()
+||||||| .r50
+                        IdEntidad = int.Parse(dr["IdEntidad"].ToString()),
+                        Nombre = dr["Nombre"].ToString(),
+                        NumDocumento = dr["NumDocumento"].ToString(),
+                        FechaIngreso = Convert.ToDateTime(dr["FechaIngreso"].ToString())
+=======
                         IdOficina = int.Parse(row["IdOficina"].ToString()),
                         Nombre = row["Nombre"].ToString(),
                         FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString()),
                         Activo = Convert.ToBoolean(row["Activo"].ToString())
+>>>>>>> .r69
                     });
                 }
             }
