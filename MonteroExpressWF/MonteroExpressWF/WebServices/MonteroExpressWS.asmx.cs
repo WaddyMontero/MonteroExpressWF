@@ -164,10 +164,25 @@ namespace MonteroExpressWF.WebServices
         //Para uso del jtable como options de un dropdown
         public object ObtieneEstadosPaquetes() 
         {
-            return new { Result = "OK", Options = ManejadorEstados.ObtieneEstadosPaquetes().Select(e => new { Value = e.IdEstado, DisplayText = e.Descripcion }) };
+            return new { Result = "OK", Options = ManejadorEstados.ObtieneEstadosPaquetesActivos().Select(e => new { Value = e.IdEstado, DisplayText = e.Descripcion }) };
         }
 
         #endregion
 
+        #region Envio
+
+        [WebMethod]
+        public object InsertarEnvio(Envio Envio) 
+        {
+            try
+            {
+                return ManejadorEnvios.RegistrarEnvio(Envio);
+            }
+            catch (Exception ex)
+            {
+                return new { Result = "ERROR", Message = ex.Message };
+            }
+        }
+        #endregion
     }
 }
