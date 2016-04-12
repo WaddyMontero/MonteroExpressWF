@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace MonteroExpressWF.Mantenimientos
 {
-    public partial class Mant_Entidades : System.Web.UI.Page
+    public partial class Mant_Envios : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
