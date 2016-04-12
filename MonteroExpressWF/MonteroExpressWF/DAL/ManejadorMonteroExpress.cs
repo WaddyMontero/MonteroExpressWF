@@ -192,6 +192,7 @@ namespace MonteroExpressWF.DAL
 
 
         #endregion
+
         #region Entidad
 
 
@@ -319,6 +320,7 @@ namespace MonteroExpressWF.DAL
         }
 
         #endregion
+
         #region SegurosEnvios
 
         public static List<SeguroEnvio> ObtenerSegurosEnvios() 
@@ -394,6 +396,30 @@ namespace MonteroExpressWF.DAL
             return lista;
         }
 
+        public static List<Estado> ObtieneEstadosEnvios(int IdTipoEstado)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdTipoEstado", IdTipoEstado, DbType.Int32);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_EstadosByTipo]", "", param);
+            List<Estado> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<Estado>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new Estado
+                    {
+                        IdEstado = int.Parse(row["IdEstado"].ToString()),
+                        Descripcion = row["Descripcion"].ToString(),
+                        Activo = Convert.ToBoolean(row["Activo"].ToString()),
+                        FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString())
+                    });
+                }
+            }
+            return lista;
+        }
+
+
         #endregion
 
         #region Puertos
@@ -424,34 +450,153 @@ namespace MonteroExpressWF.DAL
 
         #endregion
 
-
         #region Envios
-
-        public static List<Envio> ListarEnvios()
+            
+        public static object RegistrarEnvio(Envio Envio)
         {
             Conexion con = new Conexion("SqlCon");
-            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Entidades]");
-            List<Entidad> lista = null;
-            if (dt != null && dt.Rows.Count > 0)
+            DbTransaction tran = con.BeginTransaction();
+            try
             {
-                lista = new List<Entidad>();
-                foreach (DataRow dr in dt.Rows)
+                List<Parametro> parametros = new List<Parametro>();
+                DbCommand command;
+                if (Envio.Remitente.IdEntidad == 0)
                 {
-                    lista.Add(new Entidad
-                    {
-                        IdEntidad = int.Parse(dr["IdEntidad"].ToString()),
-                        Nombre = dr["Nombre"].ToString(),
-                        NumDocumento = dr["NumDocumento"].ToString(),
-                        FechaIngreso = Convert.ToDateTime(dr["FechaIngreso"].ToString())
-                    });
+                    parametros.Add(new Parametro("@IdEntidad",0,DbType.Int32));
+                    parametros.Add(new Parametro("@Nombre", Envio.Remitente.Nombre, DbType.String));
+                    parametros.Add(new Parametro("@IdTipoDocumento", Envio.Remitente.IdTipoDocumento, DbType.Int32));
+                    parametros.Add(new Parametro("@NumDocumento", Envio.Remitente.NumDocumento, DbType.String));
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Entidad]", tran, parametros.ToArray());
+                    Envio.Remitente.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());
+
+                    parametros.Clear();
+                    //Inserta la dirección del remitente
+                    parametros.Add(new Parametro("@IdEntidad",Envio.Remitente.IdEntidad,DbType.Int32));
+                    parametros.Add(new Parametro("@Direccion", Envio.Remitente.EntidadDirecciones[0].Direccion, DbType.String));
+                    parametros.Add(new Parametro("@IdCiudad", Envio.Remitente.EntidadDirecciones[0].IdCiudad, DbType.Int32));
+                    parametros.Add(new Parametro("@Telefono1", Envio.Remitente.EntidadDirecciones[0].Telefono1, DbType.String));
+                    parametros.Add(new Parametro("@Telefono2", Envio.Remitente.EntidadDirecciones[0].Telefono2, DbType.String));
+                    parametros.Add(new Parametro("@PorDefecto", Envio.Remitente.EntidadDirecciones[0].PorDefecto, DbType.Boolean));                    
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_EntidadDireccion]",tran,parametros.ToArray());
+                    Envio.Remitente.EntidadDirecciones[0].IdEntidadDireccion = int.Parse(command.Parameters["@IdEntidadDireccion"].Value.ToString());
                 }
+                if (Envio.Destinatario.IdEntidad == 0)
+                {
+                    parametros.Add(new Parametro("@IdEntidad", 0, DbType.Int32));
+                    parametros.Add(new Parametro("@Nombre", Envio.Destinatario.Nombre, DbType.String));
+                    parametros.Add(new Parametro("@IdTipoDocumento", Envio.Destinatario.IdTipoDocumento, DbType.Int32));
+                    parametros.Add(new Parametro("@NumDocumento", Envio.Destinatario.NumDocumento, DbType.String));
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Entidad]", tran, parametros.ToArray());
+                    Envio.Destinatario.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());
+                
+                    parametros.Clear();
+                    //Inserta la dirección del destinatario
+                    parametros.Add(new Parametro("@IdEntidad", Envio.Destinatario.IdEntidad, DbType.Int32));
+                    parametros.Add(new Parametro("@Direccion", Envio.Destinatario.EntidadDirecciones[0].Direccion, DbType.String));
+                    parametros.Add(new Parametro("@IdCiudad", Envio.Destinatario.EntidadDirecciones[0].IdCiudad, DbType.Int32));
+                    parametros.Add(new Parametro("@Telefono1", Envio.Destinatario.EntidadDirecciones[0].Telefono1, DbType.String));
+                    parametros.Add(new Parametro("@Telefono2", Envio.Destinatario.EntidadDirecciones[0].Telefono2, DbType.String));
+                    parametros.Add(new Parametro("@PorDefecto", Envio.Destinatario.EntidadDirecciones[0].PorDefecto, DbType.Boolean));
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_EntidadDireccion]", tran, parametros.ToArray());
+                    Envio.Destinatario.EntidadDirecciones[0].IdEntidadDireccion = int.Parse(command.Parameters["@IdEntidadDireccion"].Value.ToString());
+                }
+
+                //Insertando el envio
+                parametros.Clear();
+                parametros.Add(new Parametro("@Fecha", Envio.Fecha, DbType.Date));
+                parametros.Add(new Parametro("@AlbaranNum", Envio.AlbaranNum, DbType.String));
+                parametros.Add(new Parametro("@IdOficina", Envio.IdOficina, DbType.Int32));
+                parametros.Add(new Parametro("@IdPuertoOrigen", Envio.IdPuertoOrigen, DbType.Int32));
+                parametros.Add(new Parametro("@IdPuertoDestino", Envio.IdPuertoDestino, DbType.Int32));
+                parametros.Add(new Parametro("@RecogidoPor", Envio.RecogidoPor, DbType.String));
+                parametros.Add(new Parametro("@Ruta", Envio.Ruta, DbType.String));
+                parametros.Add(new Parametro("@IdRemitenteDir", Envio.Remitente.EntidadDirecciones[0].IdEntidadDireccion, DbType.Int32));
+                parametros.Add(new Parametro("@IdDestinatarioDir", Envio.Destinatario.EntidadDirecciones[0].IdEntidadDireccion, DbType.Int32));
+                parametros.Add(new Parametro("@IdSeguroEnvio", Envio.IdSeguro, DbType.Int32));
+                parametros.Add(new Parametro("@Valor", Envio.Valor, DbType.Decimal));
+                parametros.Add(new Parametro("@IdEstado", Envio.IdEstado, DbType.Int32));
+                parametros.Add(new Parametro("@IdUsuario", Usuario.UsuarioActual.IdUsuario, DbType.Int32));
+                command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Envio]", tran, parametros.ToArray());
+                Envio.IdEnvio = int.Parse(command.Parameters["@IdEnvio"].ToString());
+
+                
+                //Insertando los tipos de contenido
+                
+                foreach (TipoContenido cont in Envio.TiposContenidos)
+                {
+                    parametros.Clear();
+                    parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int32));
+                    parametros.Add(new Parametro("@IdTipoContenido", cont.IdTipoContenido, DbType.Int32));
+                    con.EjecucionNoRetorno("[dbo].[prc_Insertar_TipoContenidoEnvio]", tran, parametros.ToArray());
+                }
+                //Inserta los paquetes del envio
+                foreach (PaqueteEnvio paq in Envio.PaquetesEnvios)
+                {
+                    parametros.Clear();
+                    parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int32));
+                    parametros.Add(new Parametro("@Cantidad", paq.Cantidad, DbType.Int32));
+                    parametros.Add(new Parametro("@IdTamanioPaquete", paq.IdTamanoPaquete, DbType.Int32));
+                    parametros.Add(new Parametro("@Descripcion", paq.Descripcion, DbType.String));
+                    parametros.Add(new Parametro("@IdEstado", paq.IdEstado, DbType.Int32));
+                    parametros.Add(new Parametro("@Peso", paq.Peso, DbType.Decimal));
+                    con.EjecucionNoRetorno("[dbo].[prc_Insertar_PaqueteEnvio]", tran, parametros.ToArray());
+                }
+
+                tran.Commit();
+                return new { Result = "OK", Message = "El envio se ha registrado satisfactoriamente."};
+                
             }
-            return lista;
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                return new { Result = "ERROR", Message = ex.Message };
+            }
         }
 
-
-
+        //public static List<Envio> ListarEnvios()
+        //{
+        //    Conexion con = new Conexion("SqlCon");
+        //    DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Entidades]");
+        //    List<Entidad> lista = null;
+        //    if (dt != null && dt.Rows.Count > 0)
+        //    {
+        //        lista = new List<Entidad>();
+        //        foreach (DataRow dr in dt.Rows)
+        //        {
+        //            lista.Add(new Entidad
+        //            {
+        //                IdEntidad = int.Parse(dr["IdEntidad"].ToString()),
+        //                Nombre = dr["Nombre"].ToString(),
+        //                NumDocumento = dr["NumDocumento"].ToString(),
+        //                FechaIngreso = Convert.ToDateTime(dr["FechaIngreso"].ToString())
+        //            });
+        //        }
+        //    }
+        //    return lista;
+        //}
         #endregion
+
+        #region Oficinas
+
+        public static List<Oficina> ObtenerOficinas() 
+        {
+            Conexion con = new Conexion("SqlCon");
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Oficinas]",true);
+            List<Oficina> lista = null;
+            if (dt!= null && dt.Rows.Count > 0)
+            {
+                lista = new List<Oficina>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new Oficina { 
+                        IdOficina = int.Parse(row["IdOficina"].ToString()),
+                        Nombre = row["Nombre"].ToString(),
+                        FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString()),
+                        Activo = Convert.ToBoolean(row["Activo"].ToString())
+                    });
+                }
+        #endregion
+
 
     }
 }
