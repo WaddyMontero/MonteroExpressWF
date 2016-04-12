@@ -9,6 +9,10 @@ namespace MonteroExpressWF.BLL
 {
     public class ManejadorEnvios
     {
+        public static List<Envio> ListarEnvios()
+        {
+            return ManejadorMonteroExpress.ListarEnvios();
+        }
         public static object RegistrarEnvio(Envio Envio) 
         {
             return ManejadorMonteroExpress.RegistrarEnvio(Envio);
