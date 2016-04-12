@@ -583,20 +583,22 @@ namespace MonteroExpressWF.DAL
             Conexion con = new Conexion("SqlCon");
             DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Oficinas]",true);
             List<Oficina> lista = null;
-            if (dt!= null && dt.Rows.Count > 0)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 lista = new List<Oficina>();
                 foreach (DataRow row in dt.Rows)
                 {
-                    lista.Add(new Oficina { 
+                    lista.Add(new Oficina
+                    {
                         IdOficina = int.Parse(row["IdOficina"].ToString()),
                         Nombre = row["Nombre"].ToString(),
                         FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString()),
                         Activo = Convert.ToBoolean(row["Activo"].ToString())
                     });
                 }
+            }
+            return lista;
+        }
         #endregion
-
-
     }
 }
