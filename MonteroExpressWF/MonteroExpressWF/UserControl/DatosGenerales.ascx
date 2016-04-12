@@ -118,7 +118,7 @@
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
                         <label for="txtNombre">Nombre/Razón Social:</label>
-                        <asp:TextBox runat="server" name="txtNombre" CssClass="form-control" ID="txtNombre"></asp:TextBox>
+                        <asp:TextBox runat="server" name="txtNombre" CssClass="form-control entidad-group" ID="txtNombre"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="txtDirección">Dirección:</label>
-                            <asp:TextBox runat="server" name="txtDireccion" CssClass="form-control" ID="txtDireccion" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox runat="server" name="txtDireccion" CssClass="form-control entidad-group" ID="txtDireccion" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="ddlCiudad">Ciudad:</label>
-                            <asp:DropDownList runat="server" name="ddlCiudad" CssClass="form-control" ID="ddlCiudad">
+                            <asp:DropDownList runat="server" name="ddlCiudad" CssClass="form-control entidad-group" ID="ddlCiudad">
                                 <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -170,7 +170,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label for="txtTelefono1">Teléfono 1:</label>
-                            <asp:TextBox runat="server" name="txtTelefono1" CssClass="form-control" ID="txtTelefono1"></asp:TextBox>
+                            <asp:TextBox runat="server" name="txtTelefono1" CssClass="form-control entidad-group" ID="txtTelefono1"></asp:TextBox>
                         </div>
                     </div>
                 </div>
