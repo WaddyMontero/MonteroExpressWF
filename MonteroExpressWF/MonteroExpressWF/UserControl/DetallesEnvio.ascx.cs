@@ -30,6 +30,7 @@ namespace MonteroExpressWF.UserControl
             for (int i = 0; i < rbtnListEnvioSeguro.Items.Count; i++)
             {
                 rbtnListEnvioSeguro.Items[i].Attributes.Add("class", "radio-inline");
+                rbtnListEnvioSeguro.Items[i].Attributes.Add("class", "radio-seguro");
             }
         }
     }
