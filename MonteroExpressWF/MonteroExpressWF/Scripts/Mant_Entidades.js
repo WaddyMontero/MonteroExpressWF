@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     //Se inicializa la tabla de los paquetes
     //alert("Esto es una Tabla");
-    $('#tblMantenimiento').jtable({
+    $('#tblMantEntidades').jtable({
         title: 'Lista Entidades',
         paging: false, 
         sorting: false,
@@ -34,6 +34,7 @@
         },
         actions: {
             listAction: '../WebServices/MonteroExpressWS.asmx/ListarEntidades',
+            updateAction: '../WebServices/MonteroExpressWS.asmx/ActualizarNombreEntidad',
             createAction: function (postData) {
                 var param = postData.split('&');
                 var values = new Array();
@@ -42,30 +43,34 @@
                     values[i] = param[i].split('=')[1];
                 }
                 
-                var record = {
-                    "Entidad": {
-                        "Nombre": values[0],
-                        "IdTipoDocumento": values[1],
-                        "NumDocumento": values[2]
-                    }
-                };
-                alert(record);
-                //alert(JSON.stringify(postData, ['Nombre', 'IdTipoDocumento', 'NumDocumento']));
-                //alert(JSON.stringify(postData, ['Nombre', 'IdTipoDocumento', 'NumDocumento']));
+                var Entidad = new Object();
+                Entidad.IdEntidad = 0;
+                Entidad.Nombre = values[0];
+                Entidad.IdTipoDocumento = parseInt(values[1]);
+                Entidad.NumDocumento = values[2];
+                Entidad.Activo = true;              
+
                 return $.Deferred(function ($dfd) {
                     $.ajax({
                         url: '../WebServices/MonteroExpressWS.asmx/InsertarEntidad',
                         type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({"Entidad":Entidad}),
                         dataType: 'json',
-                        data: record,
                         success: function (data) {
                             $dfd.resolve(data);
                         },
-                        error: function () {
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(JSON.stringify(jqXHR));
                             $dfd.reject();
                         }
                     });
                 });
+            }
+        },
+        rowUpdated: function (event, data) {
+            if (data.record) {
+                $('#tblMantEntidades').jtable('reload');
             }
         },
         fields: {
@@ -86,7 +91,7 @@
                 input: function (data) {
                     return $('<input type="text" class="hidden" name="IdTipoDocumento" id="hdTipoDoc"/>');
                 },
-                list: true,
+                list:false,
                 create: true,
                 edit:false
                 
@@ -124,7 +129,6 @@
                     $.ajax({
                         type: "POST",
                         url: "../WebServices/MonteroExpressWS.asmx/ObtenerTiposDocumentos",
-                        //data: JSON.stringify({ 'IdTipoDocumento': parseInt($('#<%= ddlTipoDocumento.ClientID %>').val()) }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
@@ -135,17 +139,14 @@
                                     $ddl.append('<option value="' + data.d[i].IdTipoDocumento + '">' + data.d[i].Descripcion + '</option>');
                                 }
                             }
-                            //$('#txtNumDocumento').removeAttr("disabled");
-                            //$('#txtNumDocumento').mask(data.Mascara);
-
                         }, error: function (jqXHR, textStatus, errorThrown) {
                             MostrarAlerta("error", textStatus);
                         }
                     });
-                    // AjaxCall("../WebServices/MonteroExpressWS.asmx/ObtenerTiposDocumentos","JTddlTipoDocumento",CargarDropDown);                    
                     return $ddl;
                 },
                 list: false,
+                edit: false,
                 create:true
             },
             NumDocumento: {
@@ -156,7 +157,8 @@
                     return $('<input type="text" name="NumDocumento" id="JTNumDocumento" disabled="disabled"/>');
                 },
                 create: true,
-                list: true
+                list: true,
+                edit: false
             },
             FechaIngreso: {
                 title: 'FechaIngreso',
@@ -167,16 +169,16 @@
                 list: true
             },
             Direcciones: {
-                title: '',
+                title: 'Direcciones',
                 width: '5%',
                 sorting: false,
                 edit: false,
                 create: false,
-                display: function (entidadDireccion) {
+               display: function (entidadDireccion) {
                     var $mostrar = $('<img src="../Content/img/addressbook.png" title="Mostrar Direcciones" />');
                     //Open child table when user clicks the image
                     $mostrar.click(function () {
-                        $('#tblMantenimiento').jtable('openChildTable',
+                        $('#tblMantEntidades').jtable('openChildTable',
                                 $mostrar.closest('tr'),
                                 {
                                     messages: {
@@ -248,16 +250,9 @@
                                             create: true,
                                             dependsOn: 'IdPais',
                                             options: function (data) {
-                                                //if (data.source == 'list') {
-                                                //    //Return url of all cities for optimization. 
-                                                //    return '../WebServices/MonteroExpressWS.asmx/ObtenerCiudadesByProvincia?IdProvincia=0';
-                                                //}
-                                                //This code runs when user opens edit/create form or changes country combobox on an edit/create form.
                                                 return '../WebServices/MonteroExpressWS.asmx/ObtenerProvinciasByPaisJT?IdPais=' + data.dependedValues.IdPais;
                                             },                                           
-                                            
-
-                                        },
+                                         },
                                         IdCiudad: {
                                             title: 'Ciudad',
                                             list: true,
@@ -265,13 +260,11 @@
                                             dependsOn: 'IdProvincia',
                                             options: function (data) {
                                                 if (data.source == 'list') {
-                                                    //Return url of all cities for optimization. 
+
                                                     return '../WebServices/MonteroExpressWS.asmx/ObtenerCiudadesByProvinciaJT?IdProvincia=1';
                                                 }
-                                                //This code runs when user opens edit/create form or changes country combobox on an edit/create form.
                                                 return '../WebServices/MonteroExpressWS.asmx/ObtenerCiudadesByProvinciaJT?IdProvincia=' + data.dependedValues.IdProvincia;
                                             },
-
                                         },
                                         PorDefecto:
                                             {
@@ -282,7 +275,7 @@
                                     },
                                     recordAdded: function (event, data)
                                     {
-                                        //$('#tblMantenimiento').jtable('reload');
+                                        //$('#tblMantEntidades').jtable('reload');
                                         //$mostrar.click();
                                     }
                                 }, function (data) { //opened handler
@@ -292,11 +285,13 @@
                     //Return image to show on the person row
                     return $mostrar;
                 }
+                
+                }
             }
         }
-    });
+    );
 
-    $('#tblMantenimiento').jtable('load');
+    $('#tblMantEntidades').jtable('load');
 });
 
 
