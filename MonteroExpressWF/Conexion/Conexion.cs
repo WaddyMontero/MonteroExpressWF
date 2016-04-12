@@ -254,13 +254,26 @@ namespace Persistencia
         /// <returns></returns>
         public DbCommand EjecucionNoRetornoWithOutput(string nombreProcedure, params Parametro[] parametros)
         {
+            return EjecucionNoRetornoWithOutput(nombreProcedure, null, parametros);
+        }
+
+        public DbCommand EjecucionNoRetornoWithOutput(string nombreProcedure,DbTransaction tran ,params Parametro[] parametros)
+        {
             DbCommand dbCommand = _db.GetStoredProcCommand(nombreProcedure);
-            
+
             SetParametros(dbCommand, _db, parametros);
 
             try
             {
-                _db.ExecuteNonQuery(dbCommand);
+                if (tran != null)
+                {
+                    _db.ExecuteNonQuery(dbCommand,tran);
+                }
+                else
+                {
+                    _db.ExecuteNonQuery(dbCommand);
+                }
+                
                 return dbCommand;
             }
             catch (SqlException ex)
