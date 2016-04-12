@@ -13,12 +13,6 @@ $(document).ready(function () {
             {
                 required:true
             },
-
-            // compound rule
-            chkListTiposContenidos: {
-                required: true,
-                minlength:1                
-            },
             ddlEstadoEnvio: {
                 required:true
             },
@@ -39,18 +33,44 @@ $(document).ready(function () {
             },
             ddlDireccion: {
                 required:true
-            },
-            tblPaquetes: {
+            },           
+            ctl00$MainContent$usrControlDetallesEnvio$ddlOrigen: {
+                required:true
+            }, ctl00$MainContent$usrControlDetallesEnvio$ddlDestino: {
+                required:true
+            }, ctl00$MainContent$usrControlDetallesEnvio$txtRecogido: {
+                lettersonly:true
+            }, ctl00$MainContent$usrControlDetallesEnvio$txtRuta: {
+                lettersonly:true
+            }, ctl00$MainContent$usrControlDetallesEnvio$txtValor: {
                 required:true,
-                minCantPaquetes: 1
+                number: true
+            }, ctl00$MainContent$usrControlDestinatario$txtNombre: {
+                required:true
+            },
+            ctl00$MainContent$usrControlDestinatario$txtDireccion: {
+                required: '#MainContent_usrControlDestinatario_divDireccion:visible'
+            },
+            ctl00$MainContent$usrControlDestinatario$ddlCiudad: {
+                required: '#MainContent_usrControlDestinatario_divDireccion:visible'
+            },
+            ctl00$MainContent$usrControlDestinatario$txtTelefono1: {
+                required: '#MainContent_usrControlDestinatario_divDireccion:visible'
+            },
+            ctl00$MainContent$usrControlRemitente$txtNombre: {
+                required: true
+            },
+            ctl00$MainContent$usrControlRemitente$txtDireccion: {
+                required: '#MainContent_usrControlRemitente_divDireccion:visible'
+            },
+            ctl00$MainContent$usrControlRemitente$ddlCiudad: {
+                required: '#MainContent_usrControlRemitente_divDireccion:visible'
+            },
+            ctl00$MainContent$usrControlRemitente$txtTelefono1: {
+                required: '#MainContent_usrControlRemitente_divDireccion:visible'
             }
         }
     });
-    //Metodo para validar los tipos de contenidos
-    jQuery.validator.addMethod("minCantPaquetes", function (value, element) {
-        return (paquetes.length >= value) ? true : false;
-        alert((paquetes.length >= value));
-    }, "Debe seleccionar los contenidos del envio");
     
     $('#txtCantidad').mask('999999');
     $('#txtPrecioUnitario').mask('9999999.99');
@@ -225,8 +245,9 @@ $(document).ready(function () {
 function GuardarEnvio() {
 
     var validator = $("#formRegistroEnvio").validate();
-    validator.form();
+    
 
+    alert(validator.form());
 
     ////Información del remitente
     //var Remitente = new Object();
