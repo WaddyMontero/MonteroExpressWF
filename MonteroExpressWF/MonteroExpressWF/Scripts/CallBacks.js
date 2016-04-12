@@ -26,7 +26,11 @@ function BuscarEntidadCallBack(idContenedor, data)
     $('#' + idContenedor + 'divControles').removeClass('hidden');
 }
 
+function EnvioGuardadoCallBack(IdContenedor, data)
+{
+    MostrarDialogo(result.d.Result, result.d.Message);
 
+}
 
 
 
