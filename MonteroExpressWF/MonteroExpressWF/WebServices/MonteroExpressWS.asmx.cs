@@ -89,22 +89,29 @@ namespace MonteroExpressWF.WebServices
         }
 
         [WebMethod]
+        public object ActualizarNombreEntidad(Entidad record)
+        {
+            ManejadorEntidades.ActualizarNombreEntidad(record);
+            return new { Result = "OK", Record = record};
+        }
+
+        [WebMethod]
         public object ListarEntidades()
         {
             return new { Result = "OK", Records = ManejadorEntidades.ListarEntidades(), TotalRecordCount = 0 };
         }
 
         [WebMethod]
-        public object InsertarEntidad(Entidad record)
+        public object InsertarEntidad(Entidad Entidad)
         {
             try
             {
-                ManejadorEntidades.InsertarEntidad(record.Nombre,record.IdTipoDocumento,record.NumDocumento);
-                return new { Result = "OK", Record = record};
+                ManejadorEntidades.InsertarEntidad(Entidad.Nombre, Entidad.IdTipoDocumento, Entidad.NumDocumento);
+                return new { Result = "OK", Record = Entidad };
             }
             catch (Exception ex)
             {
-                return new { Result = "OK", Message = ex.Message};
+                return new { Result = "OK", Message = ex.Message };
             }
         }
         #endregion
@@ -168,6 +175,28 @@ namespace MonteroExpressWF.WebServices
         }
 
         #endregion
+
+        #region Envios
+
+        [WebMethod]
+        public object ListarEnvios()
+        {
+            return new { Result = "OK", Records = ManejadorEnvios.ListarEnvios(), TotalRecordCount = 0 };
+        }
+
+
+
+        #endregion
+
+#region SegurosEnvios
+
+        public object ObtenerSegurosEnvios()
+        {
+            return new { Result = "OK", Records = ManejadorSegurosEnvios.ObtenerSegurosEnvios(), TotalRecordCount = 0 };
+        }
+
+#endregion
+
 
         #region Envio
 
