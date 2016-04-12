@@ -217,12 +217,22 @@ namespace MonteroExpressWF.DAL
             return lista;
         }
 
+        public static void ActualizarNombreEntidad(Entidad Entidad)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Entidad.Nombre = Entidad.Nombre.Replace("+", " ");
+            List<Parametro> parametros = new List<Parametro>();
+            parametros.Add(new Parametro("@NuevoNombre", Entidad.Nombre, DbType.String));
+            parametros.Add(new Parametro("@IdEntidad", Entidad.IdEntidad, DbType.Int32));
+            con.EjecucionNoRetorno("[dbo].[prc_Actualiza_EntidadNombre]",parametros.ToArray());
+        }
         public static void InsertarEntidad(string nombreEntidad, int tipoDocumento, string numDocumento)
         {
             Conexion con = new Conexion("SqlCon");
             List<Parametro> parametros = new List<Parametro>();
+            nombreEntidad = nombreEntidad.Replace("+", " ");
             parametros.Add(new Parametro("@Nombre", nombreEntidad, DbType.String));
-            parametros.Add(new Parametro("@IdTipoDocumento", tipoDocumento, DbType.Int16));
+            parametros.Add(new Parametro("@IdTipoDocumento", tipoDocumento, DbType.String));
             parametros.Add(new Parametro("@NumDocumento", numDocumento, DbType.String));
             con.EjecucionNoRetorno("[dbo].[prc_Insertar_Entidad]", parametros.ToArray());
         }
@@ -413,5 +423,35 @@ namespace MonteroExpressWF.DAL
         }
 
         #endregion
+
+
+        #region Envios
+
+        public static List<Envio> ListarEnvios()
+        {
+            Conexion con = new Conexion("SqlCon");
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Entidades]");
+            List<Entidad> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<Entidad>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    lista.Add(new Entidad
+                    {
+                        IdEntidad = int.Parse(dr["IdEntidad"].ToString()),
+                        Nombre = dr["Nombre"].ToString(),
+                        NumDocumento = dr["NumDocumento"].ToString(),
+                        FechaIngreso = Convert.ToDateTime(dr["FechaIngreso"].ToString())
+                    });
+                }
+            }
+            return lista;
+        }
+
+
+
+        #endregion
+
     }
 }
