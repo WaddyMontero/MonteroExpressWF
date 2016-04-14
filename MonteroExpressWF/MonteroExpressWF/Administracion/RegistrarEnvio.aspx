@@ -4,6 +4,7 @@
 <%@ Register Src="~/UserControl/DetallesEnvio.ascx" TagName="DetallesEnvio" TagPrefix="DE" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
+    
 </asp:Content>
 
 
@@ -23,7 +24,12 @@
                                     <input type="text" name="txtAlbaran" class="form-control" id="txtAlbaran" />
                                 </div>
                             </div>
-                            <div class="col-lg-3"></div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="txtFecha">Fecha</label>
+                                    <input type="text" name="txtFecha" class="form-control" id="txtFecha" />
+                                </div>
+                            </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="ddlOficina">Oficina</label>
@@ -53,6 +59,7 @@
                                     <div class="panel-heading">Contenidos</div>
                                     <div class="panel-body">
                                         <asp:CheckBoxList runat="server" CssClass="" name="chkListTiposContenidos" OnDataBound="chkListTiposContenidos_DataBound" ItemType="MonteroExpressWF.BOL.TipoContenido" RepeatColumns="3" RepeatDirection="Vertical" ID="chkListTiposContenidos"></asp:CheckBoxList>
+                                        <p id="lblValidacionTiposContenidos" class="control-label  text-danger hidden"><strong>Debe seleccionar los tipos de contenidos del envio.</strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +69,8 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <div id="tblPaquetes" name="tblPaquetes"></div>
+                                <div id="tblPaquetes"></div>
+                                <p id="lblValidacionPaquetes" class="control-label text-danger hidden"><strong>Debe agregar al menos 1 paquete al envio.</strong></p>
                             </div>
                         </div>
                         <div class="row">
@@ -107,12 +115,12 @@
                         <textarea class="form-control" id="txtDescripcion"></textarea>
                     </div>
                 </div>
-                <div class="row">
+            <%--    <div class="row">
                     <div class="form-group">
                         <label for="txtPrecioUnitario">Precio Unitario</label>
                         <input type="text" class="form-control" id="txtPrecioUnitario" />
                     </div>
-                </div>
+                </div>--%>
                 <div class="row">
                     <div class="form-group">
                         <label for="txtPeso">Peso</label>

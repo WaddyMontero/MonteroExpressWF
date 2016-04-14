@@ -28,8 +28,21 @@ function BuscarEntidadCallBack(idContenedor, data)
 
 function EnvioGuardadoCallBack(IdContenedor, data)
 {
-    MostrarDialogo(result.d.Result, result.d.Message);
-
+    if (data.d.Result == "OK") {
+        var btn = $('<button type="button" class="btn btn-default">Imprimir</button>').click(function () {
+            window.location('ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
+        });
+        MostrarDialogo(data.d.Title, data.d.Message, false, new Array(
+            btn,
+            $('<button type="button" class="btn btn-default">Nuevo Envio</button>').click(function () {
+                window.location('RegistrarEnvio.aspx');
+            })
+            ));
+    } else {
+        MostrarDialogo(data.d.Title, data.d.Message);
+    }
+   
+    
 }
 
 

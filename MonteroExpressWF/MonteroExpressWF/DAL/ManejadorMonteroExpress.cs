@@ -462,34 +462,40 @@ namespace MonteroExpressWF.DAL
                 DbCommand command;
                 if (Envio.Remitente.IdEntidad == 0)
                 {
-                    parametros.Add(new Parametro("@IdEntidad",0,DbType.Int32));
+                    parametros.Add(new Parametro("@IdEntidad",0,DbType.Int32,ParameterDirection.Output));
                     parametros.Add(new Parametro("@Nombre", Envio.Remitente.Nombre, DbType.String));
                     parametros.Add(new Parametro("@IdTipoDocumento", Envio.Remitente.IdTipoDocumento, DbType.Int32));
                     parametros.Add(new Parametro("@NumDocumento", Envio.Remitente.NumDocumento, DbType.String));
                     command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Entidad]", tran, parametros.ToArray());
-                    Envio.Remitente.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());
-
+                    Envio.Remitente.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());                   
+                }
+                if(Envio.Remitente.EntidadDirecciones[0].IdEntidadDireccion == 0)
+                {
                     parametros.Clear();
                     //Inserta la dirección del remitente
-                    parametros.Add(new Parametro("@IdEntidad",Envio.Remitente.IdEntidad,DbType.Int32));
+                    parametros.Add(new Parametro("@IdEntidad", Envio.Remitente.IdEntidad, DbType.Int32));
                     parametros.Add(new Parametro("@Direccion", Envio.Remitente.EntidadDirecciones[0].Direccion, DbType.String));
                     parametros.Add(new Parametro("@IdCiudad", Envio.Remitente.EntidadDirecciones[0].IdCiudad, DbType.Int32));
                     parametros.Add(new Parametro("@Telefono1", Envio.Remitente.EntidadDirecciones[0].Telefono1, DbType.String));
                     parametros.Add(new Parametro("@Telefono2", Envio.Remitente.EntidadDirecciones[0].Telefono2, DbType.String));
-                    parametros.Add(new Parametro("@PorDefecto", Envio.Remitente.EntidadDirecciones[0].PorDefecto, DbType.Boolean));                    
-                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_EntidadDireccion]",tran,parametros.ToArray());
+                    parametros.Add(new Parametro("@PorDefecto", Envio.Remitente.EntidadDirecciones[0].PorDefecto, DbType.Boolean));
+                    parametros.Add(new Parametro("@IdEntidadDireccion", 0, DbType.Int32,ParameterDirection.Output));
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_EntidadDireccion]", tran, parametros.ToArray());
                     Envio.Remitente.EntidadDirecciones[0].IdEntidadDireccion = int.Parse(command.Parameters["@IdEntidadDireccion"].Value.ToString());
                 }
                 if (Envio.Destinatario.IdEntidad == 0)
                 {
-                    parametros.Add(new Parametro("@IdEntidad", 0, DbType.Int32));
+                    parametros.Add(new Parametro("@IdEntidad", 0, DbType.Int32,ParameterDirection.Output));
                     parametros.Add(new Parametro("@Nombre", Envio.Destinatario.Nombre, DbType.String));
                     parametros.Add(new Parametro("@IdTipoDocumento", Envio.Destinatario.IdTipoDocumento, DbType.Int32));
                     parametros.Add(new Parametro("@NumDocumento", Envio.Destinatario.NumDocumento, DbType.String));
                     command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Entidad]", tran, parametros.ToArray());
                     Envio.Destinatario.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());
                 
-                    parametros.Clear();
+                }
+                if (Envio.Destinatario.EntidadDirecciones[0].IdEntidadDireccion == 0)
+                {
+                     parametros.Clear();
                     //Inserta la dirección del destinatario
                     parametros.Add(new Parametro("@IdEntidad", Envio.Destinatario.IdEntidad, DbType.Int32));
                     parametros.Add(new Parametro("@Direccion", Envio.Destinatario.EntidadDirecciones[0].Direccion, DbType.String));
@@ -497,13 +503,14 @@ namespace MonteroExpressWF.DAL
                     parametros.Add(new Parametro("@Telefono1", Envio.Destinatario.EntidadDirecciones[0].Telefono1, DbType.String));
                     parametros.Add(new Parametro("@Telefono2", Envio.Destinatario.EntidadDirecciones[0].Telefono2, DbType.String));
                     parametros.Add(new Parametro("@PorDefecto", Envio.Destinatario.EntidadDirecciones[0].PorDefecto, DbType.Boolean));
+                    parametros.Add(new Parametro("@IdEntidadDireccion", 0, DbType.Int32, ParameterDirection.Output));
                     command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_EntidadDireccion]", tran, parametros.ToArray());
                     Envio.Destinatario.EntidadDirecciones[0].IdEntidadDireccion = int.Parse(command.Parameters["@IdEntidadDireccion"].Value.ToString());
                 }
 
                 //Insertando el envio
                 parametros.Clear();
-                parametros.Add(new Parametro("@Fecha", Envio.Fecha, DbType.Date));
+                parametros.Add(new Parametro("@Fecha", Convert.ToDateTime(Envio.FechaString), DbType.Date));
                 parametros.Add(new Parametro("@AlbaranNum", Envio.AlbaranNum, DbType.String));
                 parametros.Add(new Parametro("@IdOficina", Envio.IdOficina, DbType.Int32));
                 parametros.Add(new Parametro("@IdPuertoOrigen", Envio.IdPuertoOrigen, DbType.Int32));
@@ -515,9 +522,11 @@ namespace MonteroExpressWF.DAL
                 parametros.Add(new Parametro("@IdSeguroEnvio", Envio.IdSeguro, DbType.Int32));
                 parametros.Add(new Parametro("@Valor", Envio.Valor, DbType.Decimal));
                 parametros.Add(new Parametro("@IdEstado", Envio.IdEstado, DbType.Int32));
-                parametros.Add(new Parametro("@IdUsuario", Usuario.UsuarioActual.IdUsuario, DbType.Int32));
+                parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int32,ParameterDirection.Output));
+                //parametros.Add(new Parametro("@IdUsuario", Usuario.UsuarioActual.IdUsuario, DbType.Int32));
+                parametros.Add(new Parametro("@IdUsuario", 2, DbType.Int32));
                 command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Envio]", tran, parametros.ToArray());
-                Envio.IdEnvio = int.Parse(command.Parameters["@IdEnvio"].ToString());
+                Envio.IdEnvio = int.Parse(command.Parameters["@IdEnvio"].Value.ToString());
 
                 
                 //Insertando los tipos de contenido
@@ -535,7 +544,7 @@ namespace MonteroExpressWF.DAL
                     parametros.Clear();
                     parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int32));
                     parametros.Add(new Parametro("@Cantidad", paq.Cantidad, DbType.Int32));
-                    parametros.Add(new Parametro("@IdTamanioPaquete", paq.IdTamanoPaquete, DbType.Int32));
+                    parametros.Add(new Parametro("@IdTamanioPaquete", paq.IdTamanioPaquete, DbType.Int32));
                     parametros.Add(new Parametro("@Descripcion", paq.Descripcion, DbType.String));
                     parametros.Add(new Parametro("@IdEstado", paq.IdEstado, DbType.Int32));
                     parametros.Add(new Parametro("@Peso", paq.Peso, DbType.Decimal));
@@ -543,13 +552,13 @@ namespace MonteroExpressWF.DAL
                 }
 
                 tran.Commit();
-                return new { Result = "OK", Message = "El envio se ha registrado satisfactoriamente."};
+                return new { Result = "OK", Title="Registrar Envio", Message = "El envio se ha registrado satisfactoriamente.",IdEnvio = Envio.IdEnvio};
                 
             }
             catch (Exception ex)
             {
                 tran.Rollback();
-                return new { Result = "ERROR", Message = ex.Message };
+                return new { Result = "ERROR", Message = ex.Message,Title="Error" };
             }
         }
 

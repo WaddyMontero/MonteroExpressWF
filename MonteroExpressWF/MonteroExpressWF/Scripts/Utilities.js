@@ -31,31 +31,57 @@
     //$('<div id="message" title='+titulo+'> '+mensaje+'</div>');//.alert();
 }
 
-function MostrarDialogo(titulo, mensaje) {
+function MostrarDialogo(titulo, mensaje,showBtnCerrar,botones) {
+    showBtnCerrar = (showBtnCerrar == undefined) ? true : showBtnCerrar;
+
+    var btnX = $('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>').click(function () {
+        $('#myCustomModal').modal('hide');
+    });
     var modal = $('<!-- Modal -->' +
-        '<div id="myCustomModal" class="modal fade in" style="padding-left: 17px; display: block;" role="dialog">' +
+        '<div id="myCustomModal" class="modal fade" tabindex="-1" role="dialog">' +
         '<div class="modal-dialog">' +
         '<!-- Modal content-->' +
         '<div class="modal-content">' +
         '<div class="modal-header">' +
-        '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
         '<h4 class="modal-title">'+titulo+'</h4>' +
         '</div>' +
         '<div class="modal-body">' +
         '<p>'+mensaje+'</p>' +
         '</div>' +
-        '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>' +
+        '<div class="modal-footer">'+
         '</div>' +
         '</div>' +
         '</div>' +
         '</div>');
+
     modal.appendTo($('form'));
+    $('#myCustomModal').find('.modal-header').append(btnX);
+    if (botones != undefined && botones.length > 0) {
+        for (var i = 0; i < botones.length; i++)
+        {
+            $('#myCustomModal').find('.modal-footer').append(botones[i]);
+        }
+    }
+    if (showBtnCerrar) {
+        $('#myCustomModal').find('.modal-footer').append($('<button type="button" id="btnModalClose" class="btn btn-default" data-dismiss="modal">Cerrar</button>').click(function () {
+            $('#myCustomModal').modal('hide');
+            
+        }))
+    }
+    
+    $('#myCustomModal').on('hidden.bs.modal', function (event) {
+        alert('se removera');
+        $(this).remove();
+    })
+    $('#myCustomModal').modal();
+    //$('<button type="button" id="btnModalClose" class="btn btn-default" data-dismiss="modal">Cerrar</button>').click(function () {
+    //    $('')
+    //});
     //$('<div id="message" title='+titulo+'> '+mensaje+'</div>');//.alert();
 }
 
 function AjaxCall(url, data,idContenedor ,callBackFunction)
-{ 
+{    
     $.ajax({
         type: "POST",
         url: url,
@@ -70,7 +96,7 @@ function AjaxCall(url, data,idContenedor ,callBackFunction)
                 callBackFunction(idContenedor, data);
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
-            MostrarAlerta("error", textStatus);
+            MostrarDialogo("Error", textStatus);
         }
     });
 }

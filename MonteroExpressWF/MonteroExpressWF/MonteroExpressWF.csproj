@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Administracion\ImprimirEnvio.aspx" />
     <Content Include="Administracion\Mant_Envios.aspx" />
     <Content Include="Administracion\Mant_Entidades.aspx" />
     <Content Include="Administracion\RegistrarEnvio.aspx" />
@@ -373,6 +374,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\ImprimirEnvio.aspx.cs">
+      <DependentUpon>ImprimirEnvio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\ImprimirEnvio.aspx.designer.cs">
+      <DependentUpon>ImprimirEnvio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administracion\Mant_Envios.aspx.cs">
       <DependentUpon>Mant_Envios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

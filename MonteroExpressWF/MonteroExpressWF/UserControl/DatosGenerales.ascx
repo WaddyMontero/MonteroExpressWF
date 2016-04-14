@@ -49,6 +49,8 @@
                 $('#<%= btnBuscar.ClientID %>').attr('disabled', 'disabled');
                 $('#' + idStartWith + 'divControles').addClass('hidden');
                 $('#' + idStartWith + 'divDireccion').addClass('hidden');
+                $('#' + idStartWith + 'Mascara').val('');
+                
 
             } else {
                 $.ajax({
@@ -62,6 +64,7 @@
                             $('#<%= txtDocumento.ClientID %>').removeAttr('disabled');
                             $('#<%= btnBuscar.ClientID %>').removeAttr('disabled');
                             $('#<%= txtDocumento.ClientID %>').mask(data.d.Mascara);
+                            $('#' + idStartWith + 'Mascara').val(data.d.Mascara);
                         }
                         //$('#txtNumDocumento').removeAttr("disabled");
                         //$('#txtNumDocumento').mask(data.Mascara);
@@ -81,7 +84,7 @@
             MostrarAlerta('warning', 'Debe digitar el # de documento que desea buscar');
             $('#' + idStartWith + 'divControles').addClass('hidden');
             //ImprimirDialogo('Prueba', 'Debe digitar el # de documento que desea buscar');
-        } else {
+        } else {            
             AjaxCall("../WebServices/MonteroExpressWS.asmx/BuscarEntidad", { "NumDocumento": $('#' + idStartWith + 'txtDocumento').val() }, idStartWith, BuscarEntidadCallBack);
         }
 
@@ -90,6 +93,7 @@
 </script>
 <div class="panel panel-default">
     <asp:HiddenField runat="server" ID="IdEntidad" />
+    <asp:HiddenField runat="server" ID="Mascara" />
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-6 col-xs-12">

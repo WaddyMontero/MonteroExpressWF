@@ -2,12 +2,20 @@
 var paquetes = new Array();
 $(document).ready(function () {
 
+    $('#txtFecha').datepicker({
+        dateFormat:'dd/mm/yy'
+    });
     $("#formRegistroEnvio").validate({
+        errorClass: 'control-label text-danger',        
         rules: {
             // simple rule, converted to {required:true}
             txtAlbaran:{
                 required:true,
                 digits:true
+            },
+            txtFecha:{
+                required:true,
+                minlength:10
             },
             ctl00$MainContent$ddlOficina:
             {
@@ -23,10 +31,12 @@ $(document).ready(function () {
                 required: true
             },
             ctl00$MainContent$usrControlRemitente$txtDocumento: {
-                required:true
+                required: true,
+                numDocCompleto:true
             },
             ctl00$MainContent$usrControlDestinatario$txtDocumento: {
-                required: true
+                required: true,
+                numDocCompleto: true
             },
             txtNombre: {
                 required:true
@@ -55,7 +65,11 @@ $(document).ready(function () {
                 required: '#MainContent_usrControlDestinatario_divDireccion:visible'
             },
             ctl00$MainContent$usrControlDestinatario$txtTelefono1: {
-                required: '#MainContent_usrControlDestinatario_divDireccion:visible'
+                required: '#MainContent_usrControlDestinatario_divDireccion:visible',
+                minlength:12
+            },
+            ctl00$MainContent$usrControlDestinatario$txtTelefono2: {
+                minlength: 12
             },
             ctl00$MainContent$usrControlRemitente$txtNombre: {
                 required: true
@@ -67,10 +81,22 @@ $(document).ready(function () {
                 required: '#MainContent_usrControlRemitente_divDireccion:visible'
             },
             ctl00$MainContent$usrControlRemitente$txtTelefono1: {
-                required: '#MainContent_usrControlRemitente_divDireccion:visible'
+                required: '#MainContent_usrControlRemitente_divDireccion:visible',
+                minlength: 12
+            },
+            ctl00$MainContent$usrControlRemitente$txtTelefono2: {
+                minlength:12
             }
         }
     });
+
+    $.validator.addMethod( "numDocCompleto", function(value, element) {
+        //ctl00$MainContent$usrControlRemitente$txtDocumento
+        var idStartWith = element.id.split('_')[0] + '_' + element.id.split('_')[1] + '_';                
+        var valueLength = $('#'+element.id).val().length;
+        return this.optional(element) || valueLength >= $('#'+idStartWith+'Mascara').val().length;
+
+    }, "Complete el # de documento.");
     
     $('#txtCantidad').mask('999999');
     $('#txtPrecioUnitario').mask('9999999.99');
@@ -88,13 +114,17 @@ $(document).ready(function () {
                     record: {
                         IdPaqueteEnvio: idPaquete,
                         Cantidad: $('#txtCantidad').val(),
-                        IdTamanioPaquete: $('#MainContent_ddlTamanioPaquete').val(),
+                        IdTamanioPaquete: parseInt($('#MainContent_ddlTamanioPaquete').val()),
                         Descripcion: $('#txtDescripcion').val(),
-                        IdEstado: $('#MainContent_ddlEstado').val(),
-                        Peso: $('#txtPeso').val()
+                        IdEstado: parseInt($('#MainContent_ddlEstado').val()),
+                        Peso: parseFloat($('#txtPeso').val())
                     },
                     clientOnly: true
                 });
+                if ($('#lblValidacionPaquetes:visible')) {
+                    $('#lblValidacionPaquetes').addClass('hidden');
+                }
+                
                 $(this).dialog("close");
                // GuardarEnvio();
             },
@@ -196,15 +226,23 @@ $(document).ready(function () {
                 text: 'Eliminar',
                 //cssClass:"form-control",
                 click: function () {
+                   // var contador = 0;
                     var $selectedRows = $('#tblPaquetes').jtable('selectedRows');
-                    $selectedRows.each(function () {
-                        var record = $(this).data('record');
-                        //var personId = record.PersonId;
-                        $('#tblPaquetes').jtable('deleteRecord', {
-                            key: record.IdPaqueteEnvio,
-                            clientOnly: true
+                    if ($selectedRows.length >0) {
+                        $selectedRows.each(function () {
+                            var record = $(this).data('record');
+                            //var personId = record.PersonId;
+                            $('#tblPaquetes').jtable('deleteRecord', {
+                                key: record.IdPaqueteEnvio,
+                                clientOnly: true
+                            });
+                            var index = paquetes.indexOf(record);
+                            paquetes.splice(index, 1);
                         });
-                    });
+                    } else {
+                        MostrarDialogo("Eliminar paquete","Seleccione el paquete que desea eliminar");
+                    }
+                                      
                 }
             }]
         },
@@ -241,96 +279,108 @@ $(document).ready(function () {
 
 });
 
+function FormValido()
+{
+    var validator = $("#formRegistroEnvio").validate();
+    var validado = validator.form();
+    if ($('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').find('input[type="radio"]:checked').length == 0) {
+        validado = false;
+        $('#lblValidacionSeguro').removeClass('hidden');
+    } else {
+        $('#lblValidacionSeguro').addClass('hidden');
+    }
+    if ($('#MainContent_chkListTiposContenidos').find('input[type="checkbox"]:checked').length == 0) {
+        validado = false;
+        $('#lblValidacionTiposContenidos').removeClass('hidden');
+    } else {
+        $('#lblValidacionTiposContenidos').addClass('hidden');
+    }
+    if (paquetes.length == 0) {
+        validado = false;
+        $('#lblValidacionPaquetes').removeClass('hidden');
+    } else {
+        $('#lblValidacionPaquetes').addClass('hidden');
+    }
+    
+    return validado;   
+}
 
 function GuardarEnvio() {
 
-    var validator = $("#formRegistroEnvio").validate();
-    
+    if (FormValido()) {        
+        //Información del remitente
+        var Remitente = new Object();
 
-    alert(validator.form());
+        Remitente.IdEntidad = parseInt(($('#MainContent_usrControlRemitente_IdEntidad').val() != "") ? $('#MainContent_usrControlRemitente_IdEntidad').val() : 0);
+        Remitente.Nombre = $('#MainContent_usrControlRemitente_txtNombre').val();
+        Remitente.IdTipoDocumento = parseInt($('#MainContent_usrControlRemitente_ddlTipoDocumento').val());
+        Remitente.NumDocumento = $('#MainContent_usrControlRemitente_txtDocumento').val();
 
-    ////Información del remitente
-    //var Remitente = new Object();
-    
-    //Remitente.IdEntidad = ($('#MainContent_usrControlRemitente_IdEntidad').val() != "") ? $('#MainContent_usrControlRemitente_IdEntidad').val() : 0;
-    //Remitente.Nombre = $('#MainContent_usrControlRemitente_txtNombre').val();
-    //Remitente.IdTipoDocumento = $('#MainContent_usrControlRemitente_ddlTipoDocumento').val();
-    //Remitente.NumDocumento = $('#MainContent_usrControlRemitente_txtDocumento').val();
-    
-    //var EntidadDireccionesRemitente = new Array();
-    //var dir1 = {
-    //    "IdEntidadDireccion" : ($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") ? "0" : $('#MainContent_usrControlRemitente_ddlDireccion').val(),
-    //    "Direccion" : $('#MainContent_usrControlRemitente_txtDireccion').val(),
-    //    "IdCiudad" : (Remitente.IdRemitente > 0)?"0":$('#MainContent_usrControlRemitente_ddlCiudad').val(),
-    //    "Telefono1": $('#MainContent_usrControlRemitente_txtTelefono1').val(),
-    //    "Telefono2": $('#MainContent_usrControlRemitente_txtTelefono2').val(),        
-    //    "PorDefecto": $('#MainContent_usrControlRemitente_chkPorDefecto').is(':checked')
-    //};
-    //EntidadDireccionesRemitente[0] = dir1;
-    //Remitente.EntidadDirecciones = EntidadDireccionesRemitente;
+        var idDirRem = parseInt(($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") ? "0" : $('#MainContent_usrControlRemitente_ddlDireccion').val());
+        var EntidadDireccionesRemitente = new Array();
+        var dir1 = {
+            "IdEntidadDireccion": idDirRem,
+            "Direccion" : $('#MainContent_usrControlRemitente_txtDireccion').val(),
+            "IdCiudad": parseInt((idDirRem > 0) ? "0" : $('#MainContent_usrControlRemitente_ddlCiudad').val()),
+            "Telefono1": $('#MainContent_usrControlRemitente_txtTelefono1').val(),
+            "Telefono2": $('#MainContent_usrControlRemitente_txtTelefono2').val(),        
+            "PorDefecto": $('#MainContent_usrControlRemitente_chkPorDefecto').is(':checked')
+        };
+        EntidadDireccionesRemitente[0] = dir1;
+        Remitente.EntidadDirecciones = EntidadDireccionesRemitente;
 
-    ////Información del destinatario
-    //var Destinatario = new Object();
-    //Destinatario.IdEntidad = ($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") ? $('#MainContent_usrControlDestinatario_IdEntidad').val() : 0;
-    //Destinatario.Nombre = $('#MainContent_usrControlDestinatario_txtNombre').val();
-    //Destinatario.IdTipoDocumento = $('#MainContent_usrControlDestinatario_ddlTipoDocumento').val();
-    //Destinatario.NumDocumento = $('#MainContent_usrControlDestinatario_txtDocumento').val();
-    
-    //EntidadDireccionesDestinatario = new Array();
-    //var dir2 = {
-    //    "IdEntidadDireccion" : ($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") ? "0" : $('#MainContent_usrControlDestinatario_ddlDireccion').val(),
-    //    "Direccion" : $('#MainContent_usrControlDestinatario_txtDireccion').val(),
-    //    "IdCiudad" : (Destinatario.IdRemitente > 0)?"0":$('#MainContent_usrControlDestinatario_ddlCiudad').val(),
-    //    "Telefono1" : $('#MainContent_usrControlDestinatario_txtTelefono1').val(),
-    //    "Telefono2" : $('#MainContent_usrControlDestinatario_txtTelefono2').val(),
-    //    "PorDefecto" : $('#MainContent_usrControlDestinatario_chkPorDefecto').is(':checked')
-    //};
-    //EntidadDireccionesDestinatario[0] = dir2;
-    //Destinatario.EntidadDirecciones = EntidadDireccionesDestinatario;
+        //Información del destinatario
+        var Destinatario = new Object();
+        Destinatario.IdEntidad = parseInt(($('#MainContent_usrControlDestinatario_IdEntidad').val() != "") ? $('#MainContent_usrControlDestinatario_IdEntidad').val() : 0);
+        Destinatario.Nombre = $('#MainContent_usrControlDestinatario_txtNombre').val();
+        Destinatario.IdTipoDocumento = parseInt($('#MainContent_usrControlDestinatario_ddlTipoDocumento').val());
+        Destinatario.NumDocumento = $('#MainContent_usrControlDestinatario_txtDocumento').val();
 
-    //var Envio = new Object();
-    //Envio.IdOrigen = $('#MainContent_usrControlDetallesEnvio_ddlOrigen').val();
-    //Envio.IdDestino = $('#MainContent_usrControlDetallesEnvio_ddlDestino').val();
-    //Envio.RecogidoPor = $('#MainContent_usrControlDetallesEnvio_txtRecogido').val();
-    //Envio.Ruta = $('#MainContent_usrControlDetallesEnvio_txtRuta').val();
-    //Envio.Valor = $('#MainContent_usrControlDetallesEnvio_txtValor').val();
-    //Envio.IdSeguro = $('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').find('input[type="radio"]:checked').val();
-    //Envio.AlbaranNum = $('#txtAlbaran').val();
-    //Envio.IdOficina = $('#MainContent_ddlOficina').val();
-    
-    ////Tipos de contenido del envio
-    //Envio.TiposContenidos = new Array();
-    //var i = 0;
-    //$('#MainContent_chkListTiposContenidos').find('input[type="checkbox"]:checked').each(function () {
-    //    var TipoContenido = {
+        var IdDirDest = parseInt(($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") ? "0" : $('#MainContent_usrControlDestinatario_ddlDireccion').val());
+        EntidadDireccionesDestinatario = new Array();
+        var dir2 = {
+            "IdEntidadDireccion" :IdDirDest,
+            "Direccion" : $('#MainContent_usrControlDestinatario_txtDireccion').val(),
+            "IdCiudad": parseInt((IdDirDest > 0) ? "0" : $('#MainContent_usrControlDestinatario_ddlCiudad').val()),
+            "Telefono1" : $('#MainContent_usrControlDestinatario_txtTelefono1').val(),
+            "Telefono2" : $('#MainContent_usrControlDestinatario_txtTelefono2').val(),
+            "PorDefecto" : $('#MainContent_usrControlDestinatario_chkPorDefecto').is(':checked')
+        };
+        EntidadDireccionesDestinatario[0] = dir2;
+        Destinatario.EntidadDirecciones = EntidadDireccionesDestinatario;
 
-    //        "IdTipoContenido": $(this).val()
-    //    };
+        var Envio = new Object();
+        Envio.IdPuertoOrigen = parseInt($('#MainContent_usrControlDetallesEnvio_ddlOrigen').val());
+        Envio.IdPuertoDestino = parseInt($('#MainContent_usrControlDetallesEnvio_ddlDestino').val());
+        Envio.RecogidoPor = $('#MainContent_usrControlDetallesEnvio_txtRecogido').val();
+        Envio.Ruta = $('#MainContent_usrControlDetallesEnvio_txtRuta').val();
+        Envio.Valor = parseFloat($('#MainContent_usrControlDetallesEnvio_txtValor').val());
+        Envio.IdSeguro = parseInt($('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').find('input[type="radio"]:checked').val());
+        Envio.AlbaranNum = $('#txtAlbaran').val();
+        Envio.IdOficina = parseInt($('#MainContent_ddlOficina').val());
+        Envio.IdEstado = parseInt($('#MainContent_ddlEstadoEnvio').val());
+        Envio.FechaString = $('#txtFecha').val();
+        //Tipos de contenido del envio
+        Envio.TiposContenidos = new Array();
+        var i = 0;
+        $('#MainContent_chkListTiposContenidos').find('input[type="checkbox"]:checked').each(function () {
+            var TipoContenido = {
 
-    //    Envio.TiposContenidos[i] = TipoContenido;
-    //    i++;
-    //});
-    
-    //Envio.Remitente = Remitente;
-    //Envio.Destinatario = Destinatario;    
+                "IdTipoContenido": parseInt($(this).val())
+            };
 
-    ////Paquetes del envio
-    //Envio.PaquetesEnvios = new Array();
-    //Envio.PaquetesEnvios = paquetes;
+            Envio.TiposContenidos[i] = TipoContenido;
+            i++;
+        });
 
-    ////Guardando la información...
-    //AjaxCall("../WebServices/MonteroExpressWS.asmx/InsertarEnvio", { 'Envio': Envio }, "", EnvioGuardadoCallBack);
-    ////$.ajax({
-    ////    type: "POST",
-    ////    url: '../WebServices/MonteroExpressWS.asmx/InsertarEnvio',
-    ////    data: JSON.stringify({ 'Envio': Envio }),
-    ////    contentType: "application/json; charset=utf-8",
-    ////    dataType: "json",
-    ////    success: function (result) {
-    ////        //Llamada a la funcion para el callback
-    ////        MostrarDialogo(result.d.Result, result.d.Message);
-    ////    }, error: function (jqXHR, textStatus, errorThrown) {
-    ////        MostrarDialogo("Guardar envio", textStatus +"\nHa ocurrido un error al guardar el envio. Si el problema persiste contacte su administrador.");
-    ////    }
-    ////});
+        Envio.Remitente = Remitente;
+        Envio.Destinatario = Destinatario;    
+
+        //Paquetes del envio
+        Envio.PaquetesEnvios = new Array();
+        Envio.PaquetesEnvios = paquetes;
+
+        //Guardando la información...
+        AjaxCall("../WebServices/MonteroExpressWS.asmx/InsertarEnvio", { 'Envio': Envio }, "", EnvioGuardadoCallBack);        
+    }
 }

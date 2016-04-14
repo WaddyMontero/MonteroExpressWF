@@ -200,12 +200,12 @@ namespace MonteroExpressWF.WebServices
 
         #region Envio
 
-        [WebMethod]
+        [WebMethod(EnableSession=true)]
         public object InsertarEnvio(Envio Envio) 
         {
             try
             {
-                return ManejadorEnvios.RegistrarEnvio(Envio);
+                return ManejadorEnvios.RegistrarEnvio(Envio);                
             }
             catch (Exception ex)
             {

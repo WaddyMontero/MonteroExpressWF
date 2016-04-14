@@ -4,16 +4,14 @@
 
 <html lang="en">
 <head runat="server">
+    <title>Montero Express S.L.</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
-
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
     <link href="../Scripts/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
     <link href="../Scripts/jquery-ui-1.11.4.custom/jquery-ui.structure.min.css" rel="stylesheet" />
     <link href="../Scripts/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css" rel="stylesheet" />
     <link href="../Scripts/jtable.2.4.0/themes/jqueryui/jtable_jqueryui.min.css" rel="stylesheet" />
-     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+     <link href="../Content/bootstrap.min.css" media="print" rel="stylesheet" />
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="../Scripts/jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
     <script src="../Scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
@@ -40,11 +38,8 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
-
 </head>
-<body>    
-  
-
+<body> 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -69,7 +64,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; Montero Express S.L.</p>
             </footer>
         </div>
 

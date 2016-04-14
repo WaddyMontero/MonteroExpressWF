@@ -54,6 +54,7 @@
                 </div>
                 <div class="panel-body">
                     <asp:RadioButtonList runat="server" ID="rbtnListEnvioSeguro" OnDataBound="rbtnListEnvioSeguro_DataBound" ItemType="MonteroExpressWF.BOL.SeguroEnvio" RepeatDirection="Vertical"></asp:RadioButtonList>
+                    <p id="lblValidacionSeguro" class="control-label text-danger hidden"><strong>Debe seleccionar el seguro del envio.</strong></p>
                 </div>
             </div>
         </div>
