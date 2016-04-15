@@ -814,7 +814,7 @@ namespace MonteroExpressWF.DAL
                         Cantidad = int.Parse(dr["Cantidad"].ToString()),
                         IdEstado = int.Parse(dr["IdEstado"].ToString()),
                         EstadoPaquete = dr["EstadoPaquete"].ToString(),
-                        IdTamanoPaquete = int.Parse(dr["IdTamanioPaquete"].ToString()),
+                        IdTamanioPaquete = int.Parse(dr["IdTamanioPaquete"].ToString()),
                         TamanoPaquete = dr["TamanoPaquete"].ToString(),
                         Peso = decimal.Parse(dr["Peso"].ToString()),
                         ValorEnvio = dr["ValorEnvio"].ToString()
