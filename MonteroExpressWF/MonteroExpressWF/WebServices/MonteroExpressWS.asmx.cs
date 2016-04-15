@@ -188,7 +188,7 @@ namespace MonteroExpressWF.WebServices
 
         #endregion
 
-#region SegurosEnvios
+        #region SegurosEnvios
 
         public object ObtenerSegurosEnvios()
         {
@@ -197,6 +197,15 @@ namespace MonteroExpressWF.WebServices
 
 #endregion
 
+        #region PaquetesEnvios
+        [WebMethod]
+        public object ObtenerPaquetesPorEnvio(int idEnvio)
+        {
+            return new { Result = "OK", Records = ManejadorPaquetesEnvios.ObtenerPaquetesPorEnvio(idEnvio), TotalRecordCount = 0 };
+        }
+
+
+        #endregion
 
         #region Envio
 
