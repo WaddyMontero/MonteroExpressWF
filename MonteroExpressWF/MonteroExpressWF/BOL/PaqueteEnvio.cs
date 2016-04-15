@@ -16,8 +16,18 @@ namespace MonteroExpressWF.BOL
         public Nullable<decimal> Peso { get; set; }
         public int IdEstado { get; set; }
 
+        //Campos Utilizados Para El JTable
+        public string TamanoPaquete { get; set; }
+        public string EstadoPaquete { get; set; }
+        public string ValorEnvio { get; set; }
+
+
+        //public TipoPaquete Tama { get; set; }
+
+
         public TamanioPaquete TamanioPaquete { get; set; }
         public Estado Estado{ get; set; }
         //public TipoPaquete Tama { get; set; }
+
     }
 }
