@@ -14,14 +14,17 @@ namespace MonteroExpressWF.BOL
         public int IdPuertoDestino { get; set; }
         public string RecogidoPor { get; set; }
         public string Ruta { get; set; }
-    
+
         public Entidad Remitente { get; set; }
         public Entidad Destinatario { get; set; }
         public decimal Valor { get; set; }
         public DateTime FechaIngreso { get; set; }
         public string NumeroEnvio { get; set; }
         public int IdOficina { get; set; }
+
+        public Oficina Oficina { get; set; }
         public int IdSeguro { get; set; }
+        public SeguroEnvio SeguroEnvio { get; set; }
         public List<PaqueteEnvio> PaquetesEnvios { get; set; }
         public List<TipoContenido> TiposContenidos { get; set; }
 
