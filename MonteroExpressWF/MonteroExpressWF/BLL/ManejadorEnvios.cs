@@ -13,6 +13,10 @@ namespace MonteroExpressWF.BLL
         {
             return ManejadorMonteroExpress.ListarEnvios();
         }
+        public static Envio ObtenerEnvio(int IdEnvio)
+        {
+            return ManejadorMonteroExpress.ObtenerEnvio(IdEnvio);
+        }
         public static object RegistrarEnvio(Envio Envio) 
         {
             return ManejadorMonteroExpress.RegistrarEnvio(Envio);
