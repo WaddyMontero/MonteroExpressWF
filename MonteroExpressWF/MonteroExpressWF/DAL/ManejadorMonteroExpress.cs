@@ -562,6 +562,171 @@ namespace MonteroExpressWF.DAL
             }
         }
 
+        public static Envio ObtenerEnvio(int IdEnvio) 
+        {
+            Conexion con = new Conexion("SqlCon");
+
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_EnvioById]","Envios",new Parametro("@IdEnvio",IdEnvio,DbType.Int32));
+            Envio envio = null;
+            if (dt!= null && dt.Rows.Count > 0)
+            {
+                envio = new Envio();
+                string data = dt.Rows[0][0].ToString();
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.LoadXml(data);
+                XmlNode nodoEnvio = xmlDocument.FirstChild;
+                envio.IdEnvio = IdEnvio;
+                envio.Fecha = Convert.ToDateTime(nodoEnvio.Attributes["Fecha"].Value.ToString());
+                envio.IdOficina = int.Parse(nodoEnvio.Attributes["IdOficina"].Value.ToString());
+                envio.Oficina = new Oficina { 
+                    IdOficina = int.Parse(nodoEnvio.Attributes["IdOficina"].Value.ToString()),
+                    Nombre = nodoEnvio.Attributes["NombreOficina"].Value.ToString()
+                };
+                envio.AlbaranNum = nodoEnvio.Attributes["AlbaranNum"].Value.ToString();
+                envio.IdSeguro = int.Parse(nodoEnvio.Attributes["IdSeguroEnvio"].Value.ToString());
+                envio.SeguroEnvio = new SeguroEnvio { 
+                    IdSeguroEnvio = int.Parse(nodoEnvio.Attributes["IdSeguroEnvio"].Value.ToString()),
+                    Descripcion = nodoEnvio.Attributes["DescripcionSeguro"].Value.ToString()
+                };
+                envio.Valor = Convert.ToDecimal(nodoEnvio.Attributes["Valor"].Value.ToString());
+                envio.FechaIngreso = Convert.ToDateTime(nodoEnvio.Attributes["FechaIngreso"].Value.ToString());
+                envio.IdPuertoOrigen = int.Parse(nodoEnvio.Attributes["IdPuertoOrigen"].Value.ToString());
+                envio.IdPuertoDestino = int.Parse(nodoEnvio.Attributes["IdPuertoDestino"].Value.ToString());
+                envio.nombrePuertoOrigen = nodoEnvio.Attributes["PuertoOrigen"].Value.ToString();
+                envio.nombrePuertoDestino = nodoEnvio.Attributes["PuertoDestino"].Value.ToString();
+                envio.NumeroEnvio = nodoEnvio.Attributes["NumeroEnvio"].Value.ToString();
+
+                //Remitente
+                XmlNode nodoEntidad = nodoEnvio.SelectSingleNode("Remitente");
+                if (nodoEntidad != null)
+                {
+                    envio.Remitente = new Entidad
+                    {
+                        IdEntidad = int.Parse(nodoEntidad.Attributes["IdEntidad"].Value.ToString()),
+                        Nombre = nodoEntidad.Attributes["Nombre"].Value.ToString(),
+                        IdTipoDocumento = int.Parse(nodoEntidad.Attributes["IdTipoDocumento"].Value.ToString()),
+                        TiposDocumento = new TipoDocumento
+                        {
+                            IdTipoDocumento = int.Parse(nodoEntidad.Attributes["IdTipoDocumento"].Value.ToString()),
+                            Descripcion = nodoEntidad.Attributes["DescripcionTipoDocumento"].Value.ToString()
+                        },
+                        NumDocumento = nodoEntidad.Attributes["NumDocumento"].Value.ToString(),
+                        EntidadDirecciones = new List<EntidadDireccion>(),
+                        
+                    };
+                    envio.Remitente.EntidadDirecciones.Add(
+                        new EntidadDireccion
+                        {
+                            IdEntidadDireccion = int.Parse(nodoEntidad.Attributes["IdEntidadDireccion"].Value.ToString()),
+                            Direccion = nodoEntidad.Attributes["Direccion"].Value.ToString(),
+                            Telefono1 = nodoEntidad.Attributes["Telefono1"].Value.ToString(),
+                            Telefono2 = nodoEntidad.Attributes["Telefono2"].Value.ToString(),
+                            Ciudad = new Ciudad
+                            {
+                                IdCiudad = int.Parse(nodoEntidad.Attributes["IdCiudad"].Value.ToString()),
+                                Nombre = nodoEntidad.Attributes["NombreCiudad"].Value.ToString(),
+                                Provincia = new Provincia
+                                {
+                                    IdProvincia = int.Parse(nodoEntidad.Attributes["IdProvincia"].Value.ToString()),
+                                    Nombre = nodoEntidad.Attributes["NombreProvincia"].Value.ToString(),
+                                    Pais = new Pais
+                                    {
+                                        IdPais = int.Parse(nodoEntidad.Attributes["IdPais"].Value.ToString()),
+                                        Nombre = nodoEntidad.Attributes["NombrePais"].Value.ToString()
+                                    }
+
+                                }
+                            }
+                        }
+                    );
+                }
+                //Destinatario
+                nodoEntidad = nodoEnvio.SelectSingleNode("Destinatario");
+                if (nodoEntidad != null)
+                {
+                    envio.Destinatario = new Entidad
+                    {
+                        IdEntidad = int.Parse(nodoEntidad.Attributes["IdEntidad"].Value.ToString()),
+                        Nombre = nodoEntidad.Attributes["Nombre"].Value.ToString(),
+                        IdTipoDocumento = int.Parse(nodoEntidad.Attributes["IdTipoDocumento"].Value.ToString()),
+                        TiposDocumento = new TipoDocumento
+                        {
+                            IdTipoDocumento = int.Parse(nodoEntidad.Attributes["IdTipoDocumento"].Value.ToString()),
+                            Descripcion = nodoEntidad.Attributes["DescripcionTipoDocumento"].Value.ToString()
+                        },
+                        NumDocumento = nodoEntidad.Attributes["NumDocumento"].Value.ToString(),
+                        EntidadDirecciones = new List<EntidadDireccion>(),
+
+                    };
+                    envio.Destinatario.EntidadDirecciones.Add(
+                        new EntidadDireccion
+                        {
+                            IdEntidadDireccion = int.Parse(nodoEntidad.Attributes["IdEntidadDireccion"].Value.ToString()),
+                            Direccion = nodoEntidad.Attributes["Direccion"].Value.ToString(),
+                            Telefono1 = nodoEntidad.Attributes["Telefono1"].Value.ToString(),
+                            Telefono2 = nodoEntidad.Attributes["Telefono2"].Value.ToString(),
+                            Ciudad = new Ciudad
+                            {
+                                IdCiudad = int.Parse(nodoEntidad.Attributes["IdCiudad"].Value.ToString()),
+                                Nombre = nodoEntidad.Attributes["NombreCiudad"].Value.ToString(),
+                                Provincia = new Provincia
+                                {
+                                    IdProvincia = int.Parse(nodoEntidad.Attributes["IdProvincia"].Value.ToString()),
+                                    Nombre = nodoEntidad.Attributes["NombreProvincia"].Value.ToString(),
+                                    Pais = new Pais
+                                    {
+                                        IdPais = int.Parse(nodoEntidad.Attributes["IdPais"].Value.ToString()),
+                                        Nombre = nodoEntidad.Attributes["NombrePais"].Value.ToString()
+                                    }
+                                }
+                            }
+                        }
+                    );
+                }
+                //Tipos de contenidos del envio
+                XmlNode nodoTiposContenidos = nodoEnvio.SelectSingleNode("TiposContenidos");
+                if (nodoTiposContenidos != null && nodoTiposContenidos.HasChildNodes)
+                {
+                    envio.TiposContenidos = new List<TipoContenido>();
+                    foreach (XmlNode hijo in nodoTiposContenidos.ChildNodes)
+                    {
+                        envio.TiposContenidos.Add(new TipoContenido {
+                            IdTipoContenido = int.Parse(hijo.Attributes["IdTIpoContenidoPaqueteEnvio"].Value.ToString()),
+                            Descripcion = hijo.Attributes["DescripcionTipoContenido"].Value.ToString(),
+                        });
+                    }
+                }
+                //Paquetes del envio
+                XmlNode nodoPaquetes = nodoEnvio.SelectSingleNode("Paquetes");
+                if (nodoPaquetes != null && nodoPaquetes.HasChildNodes)
+                {
+                    envio.PaquetesEnvios = new List<PaqueteEnvio>();
+                    foreach (XmlNode hijo in nodoPaquetes.ChildNodes)
+                    {
+                        envio.PaquetesEnvios.Add(new PaqueteEnvio
+                        {
+                            IdPaqueteEnvio = int.Parse(hijo.Attributes["IdPaqueteEnvio"].Value.ToString()),
+                            Cantidad = int.Parse(hijo.Attributes["Cantidad"].Value.ToString()),
+                            IdTamanioPaquete = int.Parse(hijo.Attributes["IdTamanioPaquete"].Value.ToString()),
+                            TamanioPaquete = new TamanioPaquete{
+                                IdTamanioPaquete = int.Parse(hijo.Attributes["IdTamanioPaquete"].Value.ToString()),
+                                Descripcion = hijo.Attributes["DescripcionTamanoPaquete"].Value.ToString()
+                            },
+                            Descripcion = hijo.Attributes["DescripcionPaquete"].Value.ToString(),
+                            Estado = new Estado
+                            {
+                                IdEstado = int.Parse(hijo.Attributes["IdEstado"].Value.ToString()),
+                                Descripcion = hijo.Attributes["EstadoPaquete"].Value.ToString()
+
+                            },
+                            Peso = Convert.ToDecimal(hijo.Attributes["Peso"].Value.ToString())
+                        });
+                    }
+                }
+            }
+            return envio;
+            
+        }
         public static List<Envio> ListarEnvios()
         {
             Conexion con = new Conexion("SqlCon");
