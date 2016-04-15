@@ -17,7 +17,7 @@ namespace MonteroExpressWF.DAL
         public static List<TipoDocumento> ObtenerTiposDocumentos()
         {
             Conexion con = new Conexion("SqlCon");
-            DataTable dt = con.GetDataTable("prc_Obtener_TiposDocumentos",true);
+            DataTable dt = con.GetDataTable("prc_Obtiene_TiposDocumentos",true);
             List<TipoDocumento> lista = null;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -235,13 +235,13 @@ namespace MonteroExpressWF.DAL
             parametros.Add(new Parametro("@Nombre", nombreEntidad, DbType.String));
             parametros.Add(new Parametro("@IdTipoDocumento", tipoDocumento, DbType.String));
             parametros.Add(new Parametro("@NumDocumento", numDocumento, DbType.String));
-            con.EjecucionNoRetorno("[dbo].[prc_Insertar_Entidad]", parametros.ToArray());
+            con.EjecucionNoRetorno("[dbo].[prc_Inserta_Entidad]", parametros.ToArray());
         }
         public static Entidad BuscarEntidad(string NumDocumento) 
         {
             Conexion con = new Conexion("SqlCon");
             Parametro param = new Parametro("@NumDocumento",NumDocumento,DbType.String);
-            DataTable dt = con.GetDataTable("[dbo].[prc_Buscar_Entidad]","",param);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Busca_Entidad]","",param);
             Entidad entidad = null;
             if (dt!= null && dt.Rows.Count > 0)
             {
@@ -466,8 +466,8 @@ namespace MonteroExpressWF.DAL
                     parametros.Add(new Parametro("@Nombre", Envio.Remitente.Nombre, DbType.String));
                     parametros.Add(new Parametro("@IdTipoDocumento", Envio.Remitente.IdTipoDocumento, DbType.Int32));
                     parametros.Add(new Parametro("@NumDocumento", Envio.Remitente.NumDocumento, DbType.String));
-                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Entidad]", tran, parametros.ToArray());
-                    Envio.Remitente.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());                   
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Inserta_Entidad]", tran, parametros.ToArray());
+                    Envio.Remitente.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());
                 }
                 if(Envio.Remitente.EntidadDirecciones[0].IdEntidadDireccion == 0)
                 {
@@ -478,7 +478,7 @@ namespace MonteroExpressWF.DAL
                     parametros.Add(new Parametro("@IdCiudad", Envio.Remitente.EntidadDirecciones[0].IdCiudad, DbType.Int32));
                     parametros.Add(new Parametro("@Telefono1", Envio.Remitente.EntidadDirecciones[0].Telefono1, DbType.String));
                     parametros.Add(new Parametro("@Telefono2", Envio.Remitente.EntidadDirecciones[0].Telefono2, DbType.String));
-                    parametros.Add(new Parametro("@PorDefecto", Envio.Remitente.EntidadDirecciones[0].PorDefecto, DbType.Boolean));
+                    parametros.Add(new Parametro("@PorDefecto", Envio.Remitente.EntidadDirecciones[0].PorDefecto, DbType.Boolean));                    
                     parametros.Add(new Parametro("@IdEntidadDireccion", 0, DbType.Int32,ParameterDirection.Output));
                     command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_EntidadDireccion]", tran, parametros.ToArray());
                     Envio.Remitente.EntidadDirecciones[0].IdEntidadDireccion = int.Parse(command.Parameters["@IdEntidadDireccion"].Value.ToString());
@@ -489,13 +489,13 @@ namespace MonteroExpressWF.DAL
                     parametros.Add(new Parametro("@Nombre", Envio.Destinatario.Nombre, DbType.String));
                     parametros.Add(new Parametro("@IdTipoDocumento", Envio.Destinatario.IdTipoDocumento, DbType.Int32));
                     parametros.Add(new Parametro("@NumDocumento", Envio.Destinatario.NumDocumento, DbType.String));
-                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Entidad]", tran, parametros.ToArray());
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Inserta_Entidad]", tran, parametros.ToArray());
                     Envio.Destinatario.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());
                 
                 }
                 if (Envio.Destinatario.EntidadDirecciones[0].IdEntidadDireccion == 0)
                 {
-                     parametros.Clear();
+                    parametros.Clear();
                     //Inserta la dirección del destinatario
                     parametros.Add(new Parametro("@IdEntidad", Envio.Destinatario.IdEntidad, DbType.Int32));
                     parametros.Add(new Parametro("@Direccion", Envio.Destinatario.EntidadDirecciones[0].Direccion, DbType.String));
@@ -536,7 +536,7 @@ namespace MonteroExpressWF.DAL
                     parametros.Clear();
                     parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int32));
                     parametros.Add(new Parametro("@IdTipoContenido", cont.IdTipoContenido, DbType.Int32));
-                    con.EjecucionNoRetorno("[dbo].[prc_Insertar_TipoContenidoEnvio]", tran, parametros.ToArray());
+                    con.EjecucionNoRetorno("[dbo].[prc_Inserta_TipoContenidoEnvio]", tran, parametros.ToArray());
                 }
                 //Inserta los paquetes del envio
                 foreach (PaqueteEnvio paq in Envio.PaquetesEnvios)
@@ -548,7 +548,7 @@ namespace MonteroExpressWF.DAL
                     parametros.Add(new Parametro("@Descripcion", paq.Descripcion, DbType.String));
                     parametros.Add(new Parametro("@IdEstado", paq.IdEstado, DbType.Int32));
                     parametros.Add(new Parametro("@Peso", paq.Peso, DbType.Decimal));
-                    con.EjecucionNoRetorno("[dbo].[prc_Insertar_PaqueteEnvio]", tran, parametros.ToArray());
+                    con.EjecucionNoRetorno("[dbo].[prc_Inserta_PaqueteEnvio]", tran, parametros.ToArray());
                 }
 
                 tran.Commit();
@@ -722,10 +722,10 @@ namespace MonteroExpressWF.DAL
                             Peso = Convert.ToDecimal(hijo.Attributes["Peso"].Value.ToString())
                         });
                     }
-                }
             }
+        }
             return envio;
-            
+
         }
         public static List<Envio> ListarEnvios()
         {
@@ -793,5 +793,43 @@ namespace MonteroExpressWF.DAL
             return lista;
         }
         #endregion
+
+        #region PaquetesEnvios
+
+        public static List<PaqueteEnvio> ObtenerPaquetesPorEnvio(int IdEnvio)
+        {
+            Conexion conexion = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdEnvio", IdEnvio, DbType.Int32);
+            DataTable dt = conexion.GetDataTable("[dbo].[prc_Obtiene_PaqueteEnviosByEnvio]","",param);
+            List<PaqueteEnvio> lista = null;
+            if (dt!=null && dt.Rows.Count > 0)
+            {
+                lista = new List<PaqueteEnvio>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                   lista .Add(new PaqueteEnvio{
+                        IdEnvio = IdEnvio,
+                        IdPaqueteEnvio = int.Parse(dr["IdPaqueteEnvio"].ToString()),
+                        Descripcion = dr["DescripcionPaquete"].ToString(),
+                        Cantidad = int.Parse(dr["Cantidad"].ToString()),
+                        IdEstado = int.Parse(dr["IdEstado"].ToString()),
+                        EstadoPaquete = dr["EstadoPaquete"].ToString(),
+                        IdTamanoPaquete = int.Parse(dr["IdTamanioPaquete"].ToString()),
+                        TamanoPaquete = dr["TamanoPaquete"].ToString(),
+                        Peso = decimal.Parse(dr["Peso"].ToString()),
+                        ValorEnvio = dr["ValorEnvio"].ToString()
+                    });
+                }
+                
+                }
+
+            return lista;
+            }
+            
+
     }
+
+
+
+        #endregion
 }
