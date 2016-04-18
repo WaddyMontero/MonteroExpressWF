@@ -189,13 +189,28 @@ namespace MonteroExpressWF.WebServices
         #endregion
 
         #region SegurosEnvios
-
+        [WebMethod]
         public object ObtenerSegurosEnvios()
         {
             return new { Result = "OK", Records = ManejadorSegurosEnvios.ObtenerSegurosEnvios(), TotalRecordCount = 0 };
         }
 
-#endregion
+        [WebMethod]
+        public object InsertaSeguroEnvio(SeguroEnvio SeguroEnvio)
+        {
+            ManejadorSegurosEnvios.InsertaSegurosEnvio(SeguroEnvio);
+            return new { Result = "OK", Record = SeguroEnvio };
+        }
+
+        [WebMethod]
+        public object EliminaSeguroEnvio(SeguroEnvio SeguroEnvio)
+        {
+            ManejadorSegurosEnvios.EliminaSegurosEnvios(SeguroEnvio);
+            return new { Result = "OK", Record = SeguroEnvio };
+        }
+
+
+        #endregion
 
         #region PaquetesEnvios
         [WebMethod]
