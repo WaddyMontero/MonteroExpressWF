@@ -12,7 +12,7 @@ namespace MonteroExpressWF.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            rbtnListEnvioSeguro.DataSource = ManejadorSegurosEnvios.ObtenerSegurosEnvios();
+            rbtnListEnvioSeguro.DataSource = ManejadorSegurosEnvios.ObtenerSegurosEnvios(1);
             rbtnListEnvioSeguro.DataValueField = "IdSeguroEnvio";
             rbtnListEnvioSeguro.DataTextField = "Descripcion";
             rbtnListEnvioSeguro.DataBind();
