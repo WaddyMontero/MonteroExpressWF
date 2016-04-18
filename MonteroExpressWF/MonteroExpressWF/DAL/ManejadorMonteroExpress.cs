@@ -344,6 +344,21 @@ namespace MonteroExpressWF.DAL
             }
             return lista;
         }
+
+        public static void EliminaSeguroEnvio(SeguroEnvio SeguroEnvio)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdSeguroEnvio", SeguroEnvio.IdSeguroEnvio, DbType.Int16);
+            con.EjecucionNoRetorno("[dbo].[prc_Elimina_SegurosEnvios]", param);
+        }
+
+        public static void InsertaSeguroEnvio(SeguroEnvio SeguroEnvio)
+        {
+            Conexion con = new Conexion("SqlCon");
+            SeguroEnvio.Descripcion = SeguroEnvio.Descripcion.Substring(12, SeguroEnvio.Descripcion.Length - 12).Replace("+", " ");
+            Parametro param = new Parametro("@NuevoSeguro", SeguroEnvio.Descripcion, DbType.String);
+            con.EjecucionNoRetorno("[dbo].[prc_Inserta_SegurosEnvios]", param);
+        }
         #endregion
 
         #region TamaniosPaquetes
