@@ -29,6 +29,7 @@
     <script src="../Scripts/RegistrarEnvio.js"></script>
     <script src="../Scripts/Mant_Entidades.js"></script>
     <script src="../Scripts/Mant_Envios.js"></script>
+    <script src="../Scripts/Mant_TiposSeguros.js"></script>
     <script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
     <script src="../Scripts/jquery.validate/utilities/require_from_group.js"></script>
     <webopt:bundlereference runat="server" path="~/Content/css" />
@@ -52,9 +53,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="~/Administracion/RegistrarEnvio.aspx">Nuevo Envio</a></li>
+                        <li><a runat="server" href="~/Administracion/Mant_Entidades.aspx">Clientes</a></li>
+                        <li><a runat="server" href="~/Administracion/Mant_Envios.aspx">Envíos</a></li>
                     </ul>
                 </div>
             </div>
