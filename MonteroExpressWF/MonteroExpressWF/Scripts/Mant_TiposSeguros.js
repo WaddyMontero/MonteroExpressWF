@@ -34,55 +34,9 @@
         },
         actions: {
             listAction: "../WebServices/MonteroExpressWS.asmx/ObtenerSegurosEnvios",
-            updateAction: "../WebServices/MonteroExpressWS.asmx/ActualizarNombreEntidad",
-            createAction: function (postData) {
-
-                var SeguroEnvio = new Object();
-                
-                SeguroEnvio.IdSeguroEnvio = 0;
-                SeguroEnvio.Descripcion = postData;
-                SeguroEnvio.Activo = true;
-                SeguroEnvio.FechaIngreso = "04/17/2016";
-
-                return $.Deferred(function ($dfd) {
-                    $.ajax({
-                        url: '../WebServices/MonteroExpressWS.asmx/InsertaSeguroEnvio',
-                        type: 'POST',
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify({"SeguroEnvio":SeguroEnvio}),
-                        dataType: 'json',
-                        success: function (data) {
-                            $dfd.resolve(data);
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            alert(JSON.stringify(jqXHR));
-                            $dfd.reject();
-                        }
-                    });
-                });
-            },
-            deleteAction: function (postData)
-            {
-                $.ajax({
-                    url: '../WebServices/MonteroExpressWS.asmx/EliminaSeguroEnvio',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: postData,
-                    success: function (data) {
-                        alert(data);
-                    }
-                    , error: function (jqXHR) {
-                        alert(JSON.stringify(jqXHR));
-                    }
-                });
-            }
-            }
-        ,
-        rowUpdated: function (event, data) {
-            if (data.record) {
-                $('#tblMantEntidades').jtable('reload');
-            }
-        },
+            createAction:"../WebServices/MonteroExpressWS.asmx/InsertaSeguroEnvio",
+            updateAction: "../WebServices/MonteroExpressWS.asmx/ActualizaSeguroEnvio"
+        },       
         fields: {
             IdSeguroEnvio: {
                 key: true,
@@ -94,20 +48,53 @@
                 title: 'Tipo de Seguro',
                 width: '10%',
                 create: true,
-                edit: true,
+                edit: false,
                 list: true
             },
             FechaIngreso: {
-                title: 'FechaIngreso',
+                title: 'Fecha Ingreso',
                 create: false,
+                width:'2.5%',
                 type: "date",
                 dateFormat: "dd/MM/yyyy",
                 edit: false,
                 list: true
+            },
+            Activo: {
+                title: 'Activo',
+                list: true,
+                width: '2.5%',
+                type: "checkbox",
+                edit:true,
+                values: {false:'No',true:'Si'},
+                create:false
             }
-        }
-        }
-    );
+        },
+        rowAdded: function (event, data) {
+            if (data.record)
+            {
+                $('#tblMantTipoSeguros').jtable('reload');
+            }
+        },
+        recordUpdated: function (event, data) {
+            if (data.record)
+            {
+                $('#tblMantTipoSeguros').jtable('reload');
+            }
+        },
+        recordAdded: function (event, data) {
+            if (data.record)
+            {
+                $('#tblMantTipoSeguros').jtable('reload');
+            }
+        },
+        rowUpdated: function (event, data) {
+            if (data.record)
+            {
+                $('#tblMantTipoSeguros').jtable('reload');
+            }
+        },
+    });
 
 $('#tblMantTipoSeguros').jtable('load');
 });
