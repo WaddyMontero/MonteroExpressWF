@@ -13,5 +13,15 @@ namespace MonteroExpressWF.BLL
         {
             return ManejadorMonteroExpress.ObtenerSegurosEnvios();
         }
+
+        public static void InsertaSegurosEnvio(SeguroEnvio SeguroEnvio)
+        {
+            ManejadorMonteroExpress.InsertaSeguroEnvio(SeguroEnvio);
+        }
+
+        public static void EliminaSegurosEnvios(SeguroEnvio SeguroEnvio)
+        {
+            ManejadorMonteroExpress.EliminaSeguroEnvio(SeguroEnvio);
+        }
     }
 }
