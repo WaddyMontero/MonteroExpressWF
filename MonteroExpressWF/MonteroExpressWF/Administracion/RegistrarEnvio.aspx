@@ -1,14 +1,20 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administracion/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarEnvio.aspx.cs" Inherits="MonteroExpressWF.Administracion.RegistrarEnvio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administracion/Site1.Master" AutoEventWireup="true" CodeBehind="RegistrarEnvio.aspx.cs" Inherits="MonteroExpressWF.Administracion.RegistrarEnvio" %>
 
 <%@ Register Src="~/UserControl/DatosGenerales.ascx" TagName="DatosGenerales" TagPrefix="DG" %>
 <%@ Register Src="~/UserControl/DetallesEnvio.ascx" TagName="DetallesEnvio" TagPrefix="DE" %>
 
-<asp:Content runat="server" ContentPlaceHolderID="HeadContent">
+<asp:Content runat="server" ContentPlaceHolderID="head">
     
 </asp:Content>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Registrar Envio</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
     <form id="formRegistroEnvio" runat="server">
         <div class="row">
             <div class="col-lg-12">
