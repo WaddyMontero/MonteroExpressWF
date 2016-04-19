@@ -192,25 +192,74 @@ namespace MonteroExpressWF.WebServices
         [WebMethod]
         public object ObtenerSegurosEnvios()
         {
-            return new { Result = "OK", Records = ManejadorSegurosEnvios.ObtenerSegurosEnvios(), TotalRecordCount = 0 };
+            return new { Result = "OK", Records = ManejadorSegurosEnvios.ObtenerSegurosEnvios(0), TotalRecordCount = 0 };
         }
 
         [WebMethod]
-        public object InsertaSeguroEnvio(SeguroEnvio SeguroEnvio)
+        public object InsertaSeguroEnvio(SeguroEnvio record)
         {
-            ManejadorSegurosEnvios.InsertaSegurosEnvio(SeguroEnvio);
-            return new { Result = "OK", Record = SeguroEnvio };
+            ManejadorSegurosEnvios.InsertaSeguroEnvio(record);
+            return new { Result = "OK", Record = record };
         }
 
         [WebMethod]
-        public object EliminaSeguroEnvio(SeguroEnvio SeguroEnvio)
+        public object ActualizaSeguroEnvio(SeguroEnvio record)
         {
-            ManejadorSegurosEnvios.EliminaSegurosEnvios(SeguroEnvio);
-            return new { Result = "OK", Record = SeguroEnvio };
+            ManejadorSegurosEnvios.ActualizaSeguroEnvio(record);
+            return new { Result = "OK", Record= record};
         }
 
 
         #endregion
+
+        #region TiposContenidos
+        [WebMethod]
+        public object ObtenerTiposContenidos()
+        {
+            return new { Result = "OK", Records = ManejadorTiposContenidos.ObtenerTiposContenidos(0), TotalRecordCount = 0 };
+        }
+
+        [WebMethod]
+        public object InsertaTipoContenido(TipoContenido record)
+        {
+            ManejadorTiposContenidos.InsertaTipoContenido(record);
+            return new { Result = "OK", Record = record };
+        }
+
+        [WebMethod]
+        public object ActualizaTipoContenido(TipoContenido record)
+        {
+            ManejadorTiposContenidos.ActualizaTipoContenido(record);
+            return new { Result = "OK", Record = record };
+        }
+
+
+        #endregion
+
+        #region Oficinas
+        [WebMethod]
+        public object ObtenerOficinas()
+        {
+            return new { Result = "OK", Records = ManejadorOficinas.ObtenerOficinas(0), TotalRecordCount = 0 };
+        }
+
+        [WebMethod]
+        public object InsertaOficinas(Oficina record)
+        {
+            ManejadorOficinas.InsertaOficinas(record);
+            return new { Result = "OK", Record = record };
+        }
+
+        [WebMethod]
+        public object ActualizaOficinas(Oficina record)
+        {
+            ManejadorOficinas.ActualizaOficinas(record);
+            return new { Result = "OK", Record = record };
+        }
+
+
+        #endregion
+
 
         #region PaquetesEnvios
         [WebMethod]
