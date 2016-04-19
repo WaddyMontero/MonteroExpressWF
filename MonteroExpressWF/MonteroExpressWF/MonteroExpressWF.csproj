@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Administracion\Dashboard.aspx" />
     <Content Include="Administracion\ImprimirEnvio.aspx" />
     <Content Include="Administracion\Mant_Oficinas.aspx" />
     <Content Include="Administracion\Mant_TiposContenidos.aspx" />
@@ -106,31 +107,112 @@
     <Content Include="Administracion\Mant_Entidades.aspx" />
     <Content Include="Administracion\RegistrarEnvio.aspx" />
     <Content Include="Contact.aspx" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\img\addressbook.png" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\jquery-1.11.4\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-bg_highlight-soft_100_f6f6f6_1x100.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-bg_highlight-soft_25_4e90c9_1x100.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-bg_highlight-soft_50_d9edf7_1x100.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-icons_0073ea_256x240.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-icons_4e90c9_256x240.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-icons_666666_256x240.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-icons_ff0100_256x240.png" />
+    <Content Include="Content\jquery-1.11.4\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-1.11.4\jquery-ui.min.css" />
+    <Content Include="Content\jquery-1.11.4\jquery-ui.structure.min.css" />
+    <Content Include="Content\jquery-1.11.4\jquery-ui.theme.min.css" />
+    <Content Include="Content\jtable-themes\basic\close.png" />
+    <Content Include="Content\jtable-themes\basic\column-asc.png" />
+    <Content Include="Content\jtable-themes\basic\column-desc.png" />
+    <Content Include="Content\jtable-themes\basic\column-sortable.png" />
+    <Content Include="Content\jtable-themes\basic\delete.png" />
+    <Content Include="Content\jtable-themes\basic\edit.png" />
+    <Content Include="Content\jtable-themes\basic\jtable_basic.css" />
+    <Content Include="Content\jtable-themes\basic\jtable_basic.min.css" />
+    <Content Include="Content\jtable-themes\jqueryui\add.png" />
+    <Content Include="Content\jtable-themes\jqueryui\bg-thead.png" />
+    <Content Include="Content\jtable-themes\jqueryui\close.png" />
+    <Content Include="Content\jtable-themes\jqueryui\column-asc.png" />
+    <Content Include="Content\jtable-themes\jqueryui\column-desc.png" />
+    <Content Include="Content\jtable-themes\jqueryui\column-sortable.png" />
+    <Content Include="Content\jtable-themes\jqueryui\delete.png" />
+    <Content Include="Content\jtable-themes\jqueryui\edit.png" />
+    <Content Include="Content\jtable-themes\jqueryui\jtable_jqueryui.css" />
+    <Content Include="Content\jtable-themes\jqueryui\jtable_jqueryui.min.css" />
+    <Content Include="Content\jtable-themes\jqueryui\loading.gif" />
+    <Content Include="Content\jtable-themes\lightcolor\add.png" />
+    <Content Include="Content\jtable-themes\lightcolor\bg-thead.png" />
+    <Content Include="Content\jtable-themes\lightcolor\blue\jtable.css" />
+    <Content Include="Content\jtable-themes\lightcolor\blue\jtable.min.css" />
+    <Content Include="Content\jtable-themes\lightcolor\blue\loading.gif" />
+    <Content Include="Content\jtable-themes\lightcolor\close.png" />
+    <Content Include="Content\jtable-themes\lightcolor\column-asc.png" />
+    <Content Include="Content\jtable-themes\lightcolor\column-desc.png" />
+    <Content Include="Content\jtable-themes\lightcolor\column-sortable.png" />
+    <Content Include="Content\jtable-themes\lightcolor\delete.png" />
+    <Content Include="Content\jtable-themes\lightcolor\edit.png" />
+    <Content Include="Content\jtable-themes\lightcolor\gray\jtable.css" />
+    <Content Include="Content\jtable-themes\lightcolor\gray\jtable.min.css" />
+    <Content Include="Content\jtable-themes\lightcolor\gray\loading.gif" />
+    <Content Include="Content\jtable-themes\lightcolor\green\jtable.css" />
+    <Content Include="Content\jtable-themes\lightcolor\green\jtable.min.css" />
+    <Content Include="Content\jtable-themes\lightcolor\green\loading.gif" />
+    <Content Include="Content\jtable-themes\lightcolor\orange\jtable.css" />
+    <Content Include="Content\jtable-themes\lightcolor\orange\jtable.min.css" />
+    <Content Include="Content\jtable-themes\lightcolor\orange\loading.gif" />
+    <Content Include="Content\jtable-themes\lightcolor\red\jtable.css" />
+    <Content Include="Content\jtable-themes\lightcolor\red\jtable.min.css" />
+    <Content Include="Content\jtable-themes\lightcolor\red\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\add.png" />
+    <Content Include="Content\jtable-themes\metro\blue\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\blue\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\blue\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\brown\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\brown\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\brown\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\close.png" />
+    <Content Include="Content\jtable-themes\metro\column-asc.png" />
+    <Content Include="Content\jtable-themes\metro\column-desc.png" />
+    <Content Include="Content\jtable-themes\metro\column-sortable.png" />
+    <Content Include="Content\jtable-themes\metro\crimson\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\crimson\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\crimson\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\darkgray\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\darkgray\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\darkgray\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\darkorange\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\darkorange\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\darkorange\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\delete.png" />
+    <Content Include="Content\jtable-themes\metro\edit.png" />
+    <Content Include="Content\jtable-themes\metro\green\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\green\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\green\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\jtable_metro_base.css" />
+    <Content Include="Content\jtable-themes\metro\jtable_metro_base.min.css" />
+    <Content Include="Content\jtable-themes\metro\lightgray\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\lightgray\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\lightgray\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\pink\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\pink\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\pink\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\purple\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\purple\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\purple\loading.gif" />
+    <Content Include="Content\jtable-themes\metro\red\jtable.css" />
+    <Content Include="Content\jtable-themes\metro\red\jtable.min.css" />
+    <Content Include="Content\jtable-themes\metro\red\loading.gif" />
+    <Content Include="Content\page-theme\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\page-theme\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\page-theme\metisMenu.min.css" />
+    <Content Include="Content\page-theme\sb-admin-2.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
-    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\CallBacks.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-bg_highlight-soft_100_f6f6f6_1x100.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-bg_highlight-soft_25_4e90c9_1x100.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-bg_highlight-soft_50_d9edf7_1x100.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_0073ea_256x240.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_454545_256x240.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_4e90c9_256x240.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_666666_256x240.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_ff0100_256x240.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.min.css" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.structure.min.css" />
-    <Content Include="Scripts\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
+    <Content Include="Scripts\jquery-ui-1.11.4\external\jquery\jquery.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="Scripts\jquery.validate\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate\messages_es.js" />
@@ -182,11 +264,8 @@
     <Content Include="Scripts\jquery.validate\utilities\vinUS.js" />
     <Content Include="Scripts\jquery.validate\utilities\zipcodeUS.js" />
     <Content Include="Scripts\jquery.validate\utilities\ziprange.js" />
-    <Content Include="Scripts\jtable.2.4.0\extensions\jquery.jtable.aspnetpagemethods.js" />
     <Content Include="Scripts\jtable.2.4.0\extensions\jquery.jtable.aspnetpagemethods.min.js" />
-    <Content Include="Scripts\jtable.2.4.0\external\json2.js" />
     <Content Include="Scripts\jtable.2.4.0\external\json2.min.js" />
-    <Content Include="Scripts\jtable.2.4.0\jquery.jtable.js" />
     <Content Include="Scripts\jtable.2.4.0\jquery.jtable.min.js" />
     <Content Include="Scripts\jtable.2.4.0\localization\jquery.jtable.bd.js" />
     <Content Include="Scripts\jtable.2.4.0\localization\jquery.jtable.ca.js" />
@@ -298,10 +377,11 @@
     <Content Include="Scripts\Mant_TiposSeguros.js" />
     <Content Include="Scripts\Mant_Envios.js" />
     <Content Include="Scripts\Mant_Entidades.js" />
+    <Content Include="Scripts\page-theme\metisMenu.min.js" />
+    <Content Include="Scripts\page-theme\sb-admin-2.js" />
     <Content Include="Scripts\RegistrarEnvio.js" />
     <Content Include="Scripts\Utilities.js" />
     <Content Include="WebServices\MonteroExpressWS.asmx" />
-    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
@@ -329,7 +409,6 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -345,11 +424,31 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Administracion\Site1.Master" />
+    <Content Include="Content\page-theme\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\page-theme\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\page-theme\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\page-theme\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\jtable-themes\basic\jtable_basic.less" />
+    <Content Include="Content\jtable-themes\jqueryui\jtable_jqueryui.less" />
+    <Content Include="Content\jtable-themes\jtable_theme_base.less" />
+    <Content Include="Content\jtable-themes\lightcolor\blue\jtable.less" />
+    <Content Include="Content\jtable-themes\lightcolor\gray\jtable.less" />
+    <Content Include="Content\jtable-themes\lightcolor\green\jtable.less" />
+    <Content Include="Content\jtable-themes\lightcolor\jtable_lightcolor_base.less" />
+    <Content Include="Content\jtable-themes\lightcolor\orange\jtable.less" />
+    <Content Include="Content\jtable-themes\lightcolor\red\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\blue\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\brown\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\crimson\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\darkgray\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\darkorange\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\green\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\jtable_metro_base.less" />
+    <Content Include="Content\jtable-themes\metro\lightgray\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\pink\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\purple\jtable.less" />
+    <Content Include="Content\jtable-themes\metro\red\jtable.less" />
     <None Include="Project_Readme.html" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\jtable.2.4.0\themes\basic\jtable_basic.less" />
@@ -380,6 +479,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administracion\ImprimirEnvio.aspx.cs">
       <DependentUpon>ImprimirEnvio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -438,6 +544,7 @@
     </Compile>
     <Compile Include="Administracion\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Administracion\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
