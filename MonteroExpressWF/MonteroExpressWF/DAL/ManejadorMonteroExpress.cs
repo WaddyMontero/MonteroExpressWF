@@ -154,7 +154,7 @@ namespace MonteroExpressWF.DAL
             parametros.Add(new Parametro("@Telefono1", entidadDireccion.Telefono1, DbType.String));
             parametros.Add(new Parametro("@Telefono2", entidadDireccion.Telefono2, DbType.String));
             parametros.Add(new Parametro("@PorDefecto", entidadDireccion.PorDefecto, DbType.Boolean));
-            con.EjecucionNoRetorno("[dbo].[prc_Insertar_EntidadDireccion]",parametros.ToArray());
+            con.EjecucionNoRetorno("[dbo].[prc_Inserta_EntidadDireccion]",parametros.ToArray());
         }
 
         public static void EliminarEntidadDireccion(int IdEntidadDireccion)
@@ -456,12 +456,13 @@ namespace MonteroExpressWF.DAL
 
         #region Puertos
 
-        public static List<Puerto> ObtienePuertos() 
+        public static List<Puerto> ObtienePuertos(int Activo) 
         {
             Conexion con = new Conexion("SqlCon");
-            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Puertos]",true);
+            Parametro param = new Parametro("@Activo", Activo, DbType.Int16);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Puertos]","",param);
             List<Puerto> lista = null;
-            if (dt != null && dt.Rows.Count >0)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 lista = new List<Puerto>();
                 foreach (DataRow row in dt.Rows)
@@ -479,6 +480,22 @@ namespace MonteroExpressWF.DAL
             }
             return lista;
         }
+
+        public static void ActualizaPuerto(Puerto Puerto)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdPuerto", Puerto.IdPuerto, DbType.Int16);
+            con.EjecucionNoRetorno("[dbo].[prc_Actualiza_Puertos]", param);
+        }
+
+        public static void InsertaPuerto(Puerto Puerto)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Puerto.Nombre = Puerto.Nombre.Replace("+", " ");
+            Parametro param = new Parametro("@NuevoPuerto", Puerto.Nombre, DbType.String);
+            con.EjecucionNoRetorno("[dbo].[prc_Inserta_Puertos]", param);
+        }
+
 
         #endregion
 
@@ -512,7 +529,7 @@ namespace MonteroExpressWF.DAL
                     parametros.Add(new Parametro("@Telefono2", Envio.Remitente.EntidadDirecciones[0].Telefono2, DbType.String));
                     parametros.Add(new Parametro("@PorDefecto", Envio.Remitente.EntidadDirecciones[0].PorDefecto, DbType.Boolean));                    
                     parametros.Add(new Parametro("@IdEntidadDireccion", 0, DbType.Int32,ParameterDirection.Output));
-                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_EntidadDireccion]", tran, parametros.ToArray());
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Inserta_EntidadDireccion]", tran, parametros.ToArray());
                     Envio.Remitente.EntidadDirecciones[0].IdEntidadDireccion = int.Parse(command.Parameters["@IdEntidadDireccion"].Value.ToString());
                 }
                 if (Envio.Destinatario.IdEntidad == 0)
@@ -536,7 +553,7 @@ namespace MonteroExpressWF.DAL
                     parametros.Add(new Parametro("@Telefono2", Envio.Destinatario.EntidadDirecciones[0].Telefono2, DbType.String));
                     parametros.Add(new Parametro("@PorDefecto", Envio.Destinatario.EntidadDirecciones[0].PorDefecto, DbType.Boolean));
                     parametros.Add(new Parametro("@IdEntidadDireccion", 0, DbType.Int32, ParameterDirection.Output));
-                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_EntidadDireccion]", tran, parametros.ToArray());
+                    command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Inserta_EntidadDireccion]", tran, parametros.ToArray());
                     Envio.Destinatario.EntidadDirecciones[0].IdEntidadDireccion = int.Parse(command.Parameters["@IdEntidadDireccion"].Value.ToString());
                 }
 
