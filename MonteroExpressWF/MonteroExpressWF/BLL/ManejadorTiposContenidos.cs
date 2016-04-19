@@ -9,9 +9,19 @@ namespace MonteroExpressWF.BLL
 {
     public class ManejadorTiposContenidos
     {
-        public static List<TipoContenido> ObtenerTiposContenidos() 
+        public static List<TipoContenido> ObtenerTiposContenidos(int Activo) 
         {
-            return ManejadorMonteroExpress.ObtenerTiposContenidos();
+            return ManejadorMonteroExpress.ObtenerTiposContenidos(Activo);
+        }
+
+        public static void InsertaTipoContenido(TipoContenido TipoContenido)
+        {
+            ManejadorMonteroExpress.InsertaTipoContenido(TipoContenido);
+        }
+
+        public static void ActualizaTipoContenido(TipoContenido TipoContenido)
+        {
+            ManejadorMonteroExpress.ActualizaTipoContenido(TipoContenido);
         }
     }
 }
