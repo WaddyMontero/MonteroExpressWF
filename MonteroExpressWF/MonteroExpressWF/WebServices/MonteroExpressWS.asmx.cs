@@ -260,6 +260,29 @@ namespace MonteroExpressWF.WebServices
 
         #endregion
 
+        #region Puertos
+        [WebMethod]
+        public object ObtenerPuertos()
+        {
+            return new { Result = "OK", Records = ManejadorPuertos.ObtienePuertos(0), TotalRecordCount = 0 };
+        }
+
+        [WebMethod]
+        public object InsertaPuertos(Puerto record)
+        {
+            ManejadorPuertos.InsertaPuertos(record);
+            return new { Result = "OK", Record = record };
+        }
+
+        [WebMethod]
+        public object ActualizaPuertos(Puerto record)
+        {
+            ManejadorPuertos.ActualizaPuertos(record);
+            return new { Result = "OK", Record = record };
+        }
+
+
+        #endregion
 
         #region PaquetesEnvios
         [WebMethod]
