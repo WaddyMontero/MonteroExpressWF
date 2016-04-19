@@ -13,22 +13,31 @@ namespace MonteroExpressWF.Administracion {
     public partial class ImprimirEnvio {
         
         /// <summary>
-        /// lblRemitente control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRemitente;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lblNumIdentificacionRem control.
+        /// lblNombreRem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumIdentificacionRem;
+        protected global::System.Web.UI.WebControls.Label lblNombreRem;
+        
+        /// <summary>
+        /// lblNumDocumentoRem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumDocumentoRem;
         
         /// <summary>
         /// lblDireccionRem control.
@@ -58,6 +67,24 @@ namespace MonteroExpressWF.Administracion {
         protected global::System.Web.UI.WebControls.Label lblActividadRem;
         
         /// <summary>
+        /// lblSuscribe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSuscribe;
+        
+        /// <summary>
+        /// lblDni control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDni;
+        
+        /// <summary>
         /// lblNombreDest control.
         /// </summary>
         /// <remarks>
@@ -67,13 +94,13 @@ namespace MonteroExpressWF.Administracion {
         protected global::System.Web.UI.WebControls.Label lblNombreDest;
         
         /// <summary>
-        /// lblNumIdentificacionDest control.
+        /// lblNumDocumentoDest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumIdentificacionDest;
+        protected global::System.Web.UI.WebControls.Label lblNumDocumentoDest;
         
         /// <summary>
         /// lblDireccionDest control.
@@ -94,12 +121,30 @@ namespace MonteroExpressWF.Administracion {
         protected global::System.Web.UI.WebControls.Label lblTelefonoDest;
         
         /// <summary>
-        /// tblPaquetesBody control.
+        /// lblContenidoEnvio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tblPaquetesBody;
+        protected global::System.Web.UI.WebControls.Label lblContenidoEnvio;
+        
+        /// <summary>
+        /// tblBodyPaquetes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tblBodyPaquetes;
+        
+        /// <summary>
+        /// lblPesoTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPesoTotal;
     }
 }
