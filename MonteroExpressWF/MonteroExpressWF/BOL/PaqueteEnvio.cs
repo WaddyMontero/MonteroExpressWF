@@ -13,7 +13,7 @@ namespace MonteroExpressWF.BOL
         public int IdTamanioPaquete { get; set; }
         public string Descripcion { get; set; }
         //public Nullable<decimal> PrecioUnitario { get; set; }
-        public Nullable<decimal> Peso { get; set; }
+        public decimal Peso { get; set; }
         public int IdEstado { get; set; }
 
         //Campos Utilizados Para El JTable
