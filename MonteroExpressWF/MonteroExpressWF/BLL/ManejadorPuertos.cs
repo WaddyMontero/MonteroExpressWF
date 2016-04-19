@@ -9,16 +9,19 @@ namespace MonteroExpressWF.BLL
 {
     public class ManejadorPuertos
     {
-        public static List<Puerto> ObtienePuertos(bool SoloActivos) 
+        public static List<Puerto> ObtienePuertos(int Activo) 
         {
-            if (SoloActivos)
-            {
-                return ManejadorMonteroExpress.ObtienePuertos().Where(p => p.Activo = SoloActivos).ToList();
-            }
-            else
-            {
-                return ManejadorMonteroExpress.ObtienePuertos();
-            }
+            return ManejadorMonteroExpress.ObtienePuertos(Activo);
+        }
+
+        public static void InsertaPuertos(Puerto Puerto)
+        {
+            ManejadorMonteroExpress.InsertaPuerto(Puerto);
+        }
+
+        public static void ActualizaPuertos(Puerto Puerto)
+        {
+            ManejadorMonteroExpress.ActualizaPuerto(Puerto);
         }
     }
 }
