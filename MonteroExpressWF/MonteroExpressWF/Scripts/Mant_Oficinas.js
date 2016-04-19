@@ -2,7 +2,7 @@
     //Se inicializa la tabla de los paquetes
     //alert("Esto es una Tabla");
     $('#tblMantOficinas').jtable({
-        title: 'Lista Tipos Seguros',
+        title: 'Listado Oficinas',
         paging: false, 
         sorting: false,
         defaultSorting: 'Name ASC',
@@ -14,7 +14,7 @@
             serverCommunicationError: 'Error de comunicación con el servidor.',
             loadingMessage: 'Cargando registros...',
             noDataAvailable: 'No hay datos para mostrar!',
-            addNewRecord: 'Agregar nuevo registro',
+            addNewRecord: 'Agregar nueva oficina',
             editRecord: 'Editar registro',
             areYouSure: '¿Estas seguro?',
             deleteConfirmation: '¿Esta seguro que desea eliminar este registro?',

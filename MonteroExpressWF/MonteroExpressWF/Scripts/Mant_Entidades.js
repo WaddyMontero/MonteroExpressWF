@@ -2,7 +2,7 @@
     //Se inicializa la tabla de los paquetes
     //alert("Esto es una Tabla");
     $('#tblMantEntidades').jtable({
-        title: 'Lista Entidades',
+        title: 'Listado Clientes',
         paging: false, 
         sorting: false,
         defaultSorting: 'Name ASC',
@@ -14,10 +14,10 @@
             serverCommunicationError: 'Error de comunicación con el servidor.',
             loadingMessage: 'Cargando registros...',
             noDataAvailable: 'No hay datos para mostrar!',
-            addNewRecord: 'Agregar nuevo registro',
+            addNewRecord: 'Agregar nuevo cliente',
             editRecord: 'Editar registro',
-            areYouSure: '¿Estas seguro?',
-            deleteConfirmation: '¿Esta seguro que desea eliminar este registro?',
+            areYouSure: '¿Estás seguro?',
+            deleteConfirmation: '¿Está seguro que desea eliminar este registro?',
             save: 'Guardar',
             saving: 'Guardando',
             cancel: 'Cancel',
@@ -185,7 +185,7 @@
                                         serverCommunicationError: 'Error de comunicación con el servidor.',
                                         loadingMessage: 'Cargando registros...',
                                         noDataAvailable: 'No hay datos para mostrar!',
-                                        addNewRecord: 'Agregar nuevo registro',
+                                        addNewRecord: 'Agregar nueva dirección',
                                         editRecord: 'Editar registro',
                                         areYouSure: '¿Estas seguro?',
                                         deleteConfirmation: '¿Esta seguro que desea eliminar este registro?',

@@ -14,7 +14,7 @@
             serverCommunicationError: 'Error de comunicación con el servidor.',
             loadingMessage: 'Cargando registros...',
             noDataAvailable: 'No hay datos para mostrar!',
-            addNewRecord: 'Agregar nuevo registro',
+            addNewRecord: 'Agregar nuevo envíos',
             editRecord: 'Editar registro',
             areYouSure: '¿Estas seguro?',
             deleteConfirmation: '¿Esta seguro que desea eliminar este registro?',

@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
     //Se inicializa la tabla de los paquetes
     //alert("Esto es una Tabla");
-    $('#tblMantTipoContenidos').jtable({
-        title: 'Listado Tipos Contenidos',
+    $('#tblMantPuertos').jtable({
+        title: 'Listado Puertos',
         paging: false, 
         sorting: false,
         defaultSorting: 'Name ASC',
@@ -14,7 +14,7 @@
             serverCommunicationError: 'Error de comunicación con el servidor.',
             loadingMessage: 'Cargando registros...',
             noDataAvailable: 'No hay datos para mostrar!',
-            addNewRecord: 'Agregar nuevo tipo de contenido',
+            addNewRecord: 'Agregar nuevo puerto',
             editRecord: 'Editar registro',
             areYouSure: '¿Estas seguro?',
             deleteConfirmation: '¿Esta seguro que desea eliminar este registro?',
@@ -33,19 +33,19 @@
             deleteProggress: 'Eliminando {0} de {1} registros, procesando...'
         },
         actions: {
-            listAction: "../WebServices/MonteroExpressWS.asmx/ObtenerTiposContenidos",
-            createAction:"../WebServices/MonteroExpressWS.asmx/InsertaTipoContenido",
-            updateAction: "../WebServices/MonteroExpressWS.asmx/ActualizaTipoContenido"
+            listAction: "../WebServices/MonteroExpressWS.asmx/ObtenerPuertos",
+            createAction: "../WebServices/MonteroExpressWS.asmx/InsertaPuertos",
+            updateAction: "../WebServices/MonteroExpressWS.asmx/ActualizaPuertos"
         },       
         fields: {
-            IdTipoContenido: {
+            IdPuerto: {
                 key: true,
                 create: false,
                 edit: false,
                 list: false
             },
-            Descripcion: {
-                title: 'Tipo de Contenido',
+            Nombre: {
+                title: 'Puerto',
                 width: '10%',
                 create: true,
                 edit: false,
@@ -73,30 +73,30 @@
         rowAdded: function (event, data) {
             if (data.record)
             {
-                $('#tblMantTipoContenidos').jtable('reload');
+                $('#tblMantPuertos').jtable('reload');
             }
         },
         recordUpdated: function (event, data) {
             if (data.record)
             {
-                $('#tblMantTipoContenidos').jtable('reload');
+                $('#tblMantPuertos').jtable('reload');
             }
         },
         recordAdded: function (event, data) {
             if (data.record)
             {
-                $('#tblMantTipoContenidos').jtable('reload');
+                $('#tblMantPuertos').jtable('reload');
             }
         },
         rowUpdated: function (event, data) {
             if (data.record)
             {
-                $('#tblMantTipoContenidos').jtable('reload');
+                $('#tblMantPuertos').jtable('reload');
             }
         },
     });
 
-    $('#tblMantTipoContenidos').jtable('load');
+    $('#tblMantPuertos').jtable('load');
 });
 
 
