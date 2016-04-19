@@ -298,10 +298,11 @@ namespace MonteroExpressWF.DAL
         #endregion
 
         #region TiposContenidos
-        public static List<TipoContenido> ObtenerTiposContenidos() 
+        public static List<TipoContenido> ObtenerTiposContenidos(int Activo) 
         {
             Conexion con = new Conexion("SqlCon");
-            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_TiposContenidos]",true);
+            Parametro param = new Parametro("@Activo", Activo, DbType.Int16);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_TiposContenidos]","", param);
             List<TipoContenido> lista = null;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -319,14 +320,30 @@ namespace MonteroExpressWF.DAL
             return lista;
         }
 
+        public static void ActualizaTipoContenido(TipoContenido TipoContenido)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdTipoContenido", TipoContenido.IdTipoContenido, DbType.Int16);
+            con.EjecucionNoRetorno("[dbo].[prc_Actualiza_TiposContenidos]", param);
+        }
+
+        public static void InsertaTipoContenido(TipoContenido TipoContenido)
+        {
+            Conexion con = new Conexion("SqlCon");
+            TipoContenido.Descripcion = TipoContenido.Descripcion.Replace("+", " ");
+            Parametro param = new Parametro("@NuevoTipoContenido", TipoContenido.Descripcion, DbType.String);
+            con.EjecucionNoRetorno("[dbo].[prc_Inserta_TiposContenidos]", param);
+        }
+
         #endregion
 
         #region SegurosEnvios
 
-        public static List<SeguroEnvio> ObtenerSegurosEnvios() 
+        public static List<SeguroEnvio> ObtenerSegurosEnvios(int Activo) 
         {
             Conexion con = new Conexion("SqlCon");
-            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_SegurosEnvios]", true);
+            Parametro param = new Parametro("@Activo", Activo, DbType.Int16);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_SegurosEnvios]", "",param);
             List<SeguroEnvio> lista = null;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -345,17 +362,17 @@ namespace MonteroExpressWF.DAL
             return lista;
         }
 
-        public static void EliminaSeguroEnvio(SeguroEnvio SeguroEnvio)
+        public static void ActualizaSeguroEnvio(SeguroEnvio SeguroEnvio)
         {
             Conexion con = new Conexion("SqlCon");
             Parametro param = new Parametro("@IdSeguroEnvio", SeguroEnvio.IdSeguroEnvio, DbType.Int16);
-            con.EjecucionNoRetorno("[dbo].[prc_Elimina_SegurosEnvios]", param);
+            con.EjecucionNoRetorno("[dbo].[prc_Actualiza_SegurosEnvios]", param);
         }
 
         public static void InsertaSeguroEnvio(SeguroEnvio SeguroEnvio)
         {
             Conexion con = new Conexion("SqlCon");
-            SeguroEnvio.Descripcion = SeguroEnvio.Descripcion.Substring(12, SeguroEnvio.Descripcion.Length - 12).Replace("+", " ");
+            SeguroEnvio.Descripcion = SeguroEnvio.Descripcion.Replace("+", " ");
             Parametro param = new Parametro("@NuevoSeguro", SeguroEnvio.Descripcion, DbType.String);
             con.EjecucionNoRetorno("[dbo].[prc_Inserta_SegurosEnvios]", param);
         }
@@ -780,11 +797,11 @@ namespace MonteroExpressWF.DAL
 
         #region Oficinas
 
-        public static List<Oficina> ObtenerOficinas() 
+        public static List<Oficina> ObtenerOficinas(int Activo) 
         {
             Conexion con = new Conexion("SqlCon");
-  
-            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Oficinas]",true);
+            Parametro param = new Parametro("@Activo", Activo, DbType.Int16);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Oficinas]","", param);
             List<Oficina> lista = null;
 
             if (dt != null && dt.Rows.Count > 0)
@@ -807,6 +824,23 @@ namespace MonteroExpressWF.DAL
             }
             return lista;
         }
+
+        public static void ActualizaOficina(Oficina Oficina)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdOficina", Oficina.IdOficina, DbType.Int16);
+            con.EjecucionNoRetorno("[dbo].[prc_Actualiza_Oficinas]", param);
+        }
+
+        public static void InsertaOficina(Oficina Oficina)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Oficina.Nombre = Oficina.Nombre.Replace("+", " ");
+            Parametro param = new Parametro("@NombreOficina", Oficina.Nombre, DbType.String);
+            con.EjecucionNoRetorno("[dbo].[prc_Inserta_Oficinas]", param);
+        }
+
+
         #endregion
 
         #region PaquetesEnvios
