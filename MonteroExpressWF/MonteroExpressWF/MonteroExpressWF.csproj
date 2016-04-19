@@ -97,8 +97,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Administracion\Mant_TiposSeguros.aspx" />
     <Content Include="Administracion\ImprimirEnvio.aspx" />
+    <Content Include="Administracion\Mant_TiposSeguros.aspx" />
     <Content Include="Administracion\Mant_Envios.aspx" />
     <Content Include="Administracion\Mant_Entidades.aspx" />
     <Content Include="Administracion\RegistrarEnvio.aspx" />
