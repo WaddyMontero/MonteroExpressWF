@@ -26,7 +26,7 @@ namespace MonteroExpressWF.Administracion
                 chkListTiposContenidos.DataTextField = "Descripcion";
                 chkListTiposContenidos.DataValueField = "IdTipoContenido";
                 chkListTiposContenidos.DataBind();
-                ddlOficina.DataSource = ManejadorOficinas.ObtenerOficinasActivas(1);
+                ddlOficina.DataSource = ManejadorOficinas.ObtenerOficinas(1);
                 ddlOficina.DataTextField = "Nombre";
                 ddlOficina.DataValueField = "IdOficina";                
                 ddlOficina.DataBind();
