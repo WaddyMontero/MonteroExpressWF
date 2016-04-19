@@ -9,19 +9,19 @@ namespace MonteroExpressWF.BLL
 {
     public class ManejadorSegurosEnvios
     {
-        public static List<SeguroEnvio> ObtenerSegurosEnvios() 
+        public static List<SeguroEnvio> ObtenerSegurosEnvios(int Activo) 
         {
-            return ManejadorMonteroExpress.ObtenerSegurosEnvios();
+            return ManejadorMonteroExpress.ObtenerSegurosEnvios(Activo);
         }
 
-        public static void InsertaSegurosEnvio(SeguroEnvio SeguroEnvio)
+        public static void InsertaSeguroEnvio(SeguroEnvio SeguroEnvio)
         {
             ManejadorMonteroExpress.InsertaSeguroEnvio(SeguroEnvio);
         }
 
-        public static void EliminaSegurosEnvios(SeguroEnvio SeguroEnvio)
+        public static void ActualizaSeguroEnvio(SeguroEnvio SeguroEnvio)
         {
-            ManejadorMonteroExpress.EliminaSeguroEnvio(SeguroEnvio);
+            ManejadorMonteroExpress.ActualizaSeguroEnvio(SeguroEnvio);
         }
     }
 }
