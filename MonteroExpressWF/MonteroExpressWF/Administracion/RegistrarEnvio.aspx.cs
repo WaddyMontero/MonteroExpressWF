@@ -22,11 +22,11 @@ namespace MonteroExpressWF.Administracion
                 ddlTamanioPaquete.DataTextField = "Descripcion";
                 ddlTamanioPaquete.DataValueField = "IdTamanioPaquete";
                 ddlTamanioPaquete.DataBind();
-                chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos();
+                chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos(1);
                 chkListTiposContenidos.DataTextField = "Descripcion";
                 chkListTiposContenidos.DataValueField = "IdTipoContenido";
                 chkListTiposContenidos.DataBind();
-                ddlOficina.DataSource = ManejadorOficinas.ObtenerOficinasActivas();
+                ddlOficina.DataSource = ManejadorOficinas.ObtenerOficinasActivas(1);
                 ddlOficina.DataTextField = "Nombre";
                 ddlOficina.DataValueField = "IdOficina";                
                 ddlOficina.DataBind();
@@ -36,7 +36,7 @@ namespace MonteroExpressWF.Administracion
                 ddlEstadoEnvio.DataBind();
             }
 
-            chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos();
+            chkListTiposContenidos.DataSource = ManejadorTiposContenidos.ObtenerTiposContenidos(1);
             chkListTiposContenidos.DataTextField = "Descripcion";
             chkListTiposContenidos.DataValueField = "IdTipoContenido";
             chkListTiposContenidos.DataBind();
