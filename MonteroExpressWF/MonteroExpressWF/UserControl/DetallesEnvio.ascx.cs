@@ -16,11 +16,11 @@ namespace MonteroExpressWF.UserControl
             rbtnListEnvioSeguro.DataValueField = "IdSeguroEnvio";
             rbtnListEnvioSeguro.DataTextField = "Descripcion";
             rbtnListEnvioSeguro.DataBind();
-            ddlOrigen.DataSource = ManejadorPuertos.ObtienePuertos(true);
+            ddlOrigen.DataSource = ManejadorPuertos.ObtienePuertos(1);
             ddlOrigen.DataTextField = "Nombre";
             ddlOrigen.DataValueField = "IdPuerto";
             ddlOrigen.DataBind();
-            ddlDestino.DataSource = ManejadorPuertos.ObtienePuertos(true);
+            ddlDestino.DataSource = ManejadorPuertos.ObtienePuertos(1);
             ddlDestino.DataTextField = "Nombre";
             ddlDestino.DataValueField = "IdPuerto";
             ddlDestino.DataBind();
