@@ -609,7 +609,7 @@ namespace MonteroExpressWF.DAL
                 envio.IdPuertoDestino = int.Parse(nodoEnvio.Attributes["IdPuertoDestino"].Value.ToString());
                 envio.nombrePuertoOrigen = nodoEnvio.Attributes["PuertoOrigen"].Value.ToString();
                 envio.nombrePuertoDestino = nodoEnvio.Attributes["PuertoDestino"].Value.ToString();
-                envio.NumeroEnvio = nodoEnvio.Attributes["NumeroEnvio"].Value.ToString();
+                envio.NumeroEnvio = (nodoEnvio.Attributes["NumeroEnvio"] != null)?nodoEnvio.Attributes["NumeroEnvio"].Value.ToString():"";
 
                 //Remitente
                 XmlNode nodoEntidad = nodoEnvio.SelectSingleNode("Remitente");
@@ -635,7 +635,7 @@ namespace MonteroExpressWF.DAL
                             IdEntidadDireccion = int.Parse(nodoEntidad.Attributes["IdEntidadDireccion"].Value.ToString()),
                             Direccion = nodoEntidad.Attributes["Direccion"].Value.ToString(),
                             Telefono1 = nodoEntidad.Attributes["Telefono1"].Value.ToString(),
-                            Telefono2 = nodoEntidad.Attributes["Telefono2"].Value.ToString(),
+                            Telefono2 = (nodoEntidad.Attributes["Telefono2"] != null)?nodoEntidad.Attributes["Telefono2"].Value.ToString():"",
                             Ciudad = new Ciudad
                             {
                                 IdCiudad = int.Parse(nodoEntidad.Attributes["IdCiudad"].Value.ToString()),
@@ -679,7 +679,7 @@ namespace MonteroExpressWF.DAL
                             IdEntidadDireccion = int.Parse(nodoEntidad.Attributes["IdEntidadDireccion"].Value.ToString()),
                             Direccion = nodoEntidad.Attributes["Direccion"].Value.ToString(),
                             Telefono1 = nodoEntidad.Attributes["Telefono1"].Value.ToString(),
-                            Telefono2 = nodoEntidad.Attributes["Telefono2"].Value.ToString(),
+                            Telefono2 = (nodoEntidad.Attributes["Telefono2"] != null) ? nodoEntidad.Attributes["Telefono2"].Value.ToString() : "",
                             Ciudad = new Ciudad
                             {
                                 IdCiudad = int.Parse(nodoEntidad.Attributes["IdCiudad"].Value.ToString()),
@@ -706,13 +706,13 @@ namespace MonteroExpressWF.DAL
                     foreach (XmlNode hijo in nodoTiposContenidos.ChildNodes)
                     {
                         envio.TiposContenidos.Add(new TipoContenido {
-                            IdTipoContenido = int.Parse(hijo.Attributes["IdTIpoContenidoPaqueteEnvio"].Value.ToString()),
+                            IdTipoContenido = int.Parse(hijo.Attributes["IdTipoContenido"].Value.ToString()),
                             Descripcion = hijo.Attributes["DescripcionTipoContenido"].Value.ToString(),
                         });
                     }
                 }
                 //Paquetes del envio
-                XmlNode nodoPaquetes = nodoEnvio.SelectSingleNode("Paquetes");
+                XmlNode nodoPaquetes = nodoEnvio.SelectSingleNode("PaquetesEnvio");
                 if (nodoPaquetes != null && nodoPaquetes.HasChildNodes)
                 {
                     envio.PaquetesEnvios = new List<PaqueteEnvio>();
