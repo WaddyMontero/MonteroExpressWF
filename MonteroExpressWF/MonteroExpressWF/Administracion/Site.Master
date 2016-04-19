@@ -29,7 +29,9 @@
     <script src="../Scripts/RegistrarEnvio.js"></script>
     <script src="../Scripts/Mant_Entidades.js"></script>
     <script src="../Scripts/Mant_Envios.js"></script>
+    <script src="../Scripts/Mant_TiposContenidos.js"></script>
     <script src="../Scripts/Mant_TiposSeguros.js"></script>
+    <script src="../Scripts/Mant_Oficinas.js"></script>
     <script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
     <script src="../Scripts/jquery.validate/utilities/require_from_group.js"></script>
     <webopt:bundlereference runat="server" path="~/Content/css" />
