@@ -891,11 +891,32 @@ namespace MonteroExpressWF.DAL
 
             return lista;
             }
-            
+        #endregion
 
-    }
+        #region Usuarios
 
-
+        public static Usuario AutenticarUsuario(string Usuario, string Contrasena)
+        {
+            Conexion con = new Conexion("SqlCon");
+            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();            
+            byte[] contr = encoding.GetBytes(Contrasena);
+            List<Parametro> param = new List<Parametro>();
+            param.Add(new Parametro("@Usuario",Usuario,DbType.String));
+            param.Add(new Parametro("@Contrasena", contr, DbType.Binary));
+            DataTable dt = con.GetDataTable("[dbo].[prc_AutenticarUsuario]","", param.ToArray());
+            Usuario usuario = null;
+            if (dt != null && dt.Rows.Count> 0)
+            {
+                usuario = new Usuario();
+                usuario.IdUsuario = int.Parse(dt.Rows[0]["IdUsuario"].ToString());
+                usuario.NombreUsuario = dt.Rows[0]["NombreUsuario"].ToString();
+                usuario.CambiarContrasena = Convert.ToBoolean(dt.Rows[0]["CambiarContrasena"].ToString());
+                usuario.Habilitado = Convert.ToBoolean(dt.Rows[0]["Habilitado"].ToString());
+                usuario.Rol = new Rol { IdRol = int.Parse(dt.Rows[0]["IdRol"].ToString()) };
+            }
+            return usuario;
+        }
 
         #endregion
+}
 }
