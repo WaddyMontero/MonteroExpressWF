@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MonteroExpressWF.BOL;
 
 namespace MonteroExpressWF.Administracion
 {
@@ -11,7 +12,10 @@ namespace MonteroExpressWF.Administracion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Usuario.UsuarioActual == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
     }
 }

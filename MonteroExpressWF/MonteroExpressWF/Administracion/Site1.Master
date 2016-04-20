@@ -39,6 +39,7 @@
 </head>
 <body>
     <div id="wrapper">       
+        <form runat="server">
         <!-- Navigation -->
         <div class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -104,7 +105,7 @@
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
-                <li class="dropdown">
+                <%--<li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i><i class="fa fa-caret-down"></i>
                     </a>
@@ -181,9 +182,9 @@
                         </li>
                     </ul>
                     <!-- /.dropdown-tasks -->
-                </li>
+                </li>--%>
                 <!-- /.dropdown -->
-                <li class="dropdown">
+                <%--<li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i><i class="fa fa-caret-down"></i>
                     </a>
@@ -246,19 +247,19 @@
                         </li>
                     </ul>
                     <!-- /.dropdown-alerts -->
-                </li>
+                </li>--%>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
-                        </li>
+                      <%--  <li><a href="#"><i class="fa fa-user fa-fw"></i>Usuario</a>
+                        </li>--%>
+                       <%-- <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
+                        </li>--%>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        <li><asp:LinkButton runat="server" OnClick="btnCerrarSesion_Click" ID="btnCerrarSesion" OnClientClick="return CerrarSesion()"><i class="fa fa-sign-out fa-fw"></i>Logout</asp:LinkButton>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -304,11 +305,25 @@
             </div>
             <!-- /.navbar-static-side -->
         </div>
+        </form>
         <div id="page-wrapper">            
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
         </div>
     </div>
+
+    <script>
+
+        function CerrarSesion()
+        {
+            var btns = new Array();
+            btns[0] = $('<button type="button" class="btn btn-default">Aceptar</button>').click(function () {
+                window.location('Logout.aspx');
+            });            
+            MostrarDialogo("Cerrar Sesión", "¿Confirma que desea cerrar sesión?", true, btns);
+            return false;
+        }
+    </script>
 </body>
 
 </html>

@@ -7,14 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace MonteroExpressWF.Administracion
 {
-    public partial class Site1 : System.Web.UI.MasterPage
+    public partial class Logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             Session.Abandon();
             Session.Clear();

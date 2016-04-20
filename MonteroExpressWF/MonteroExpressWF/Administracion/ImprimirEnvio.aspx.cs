@@ -13,6 +13,10 @@ namespace MonteroExpressWF.Administracion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Usuario.UsuarioActual == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             if (!IsPostBack)
             {
                 if (Request.QueryString["IdEnvio"] != null)
