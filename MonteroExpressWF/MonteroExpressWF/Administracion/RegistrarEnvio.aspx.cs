@@ -13,10 +13,10 @@ namespace MonteroExpressWF.Administracion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Usuario.UsuarioActual == null)
-            {
-                Response.Redirect("Login.aspx");
-            }
+            //if (Usuario.UsuarioActual == null)
+            //{
+            //    Response.Redirect("Login.aspx");
+            //}
             if (!IsPostBack)
             {
                 ddlEstado.DataSource = ManejadorEstados.ObtieneEstadosPaquetesActivos();
