@@ -34,12 +34,13 @@
     <script src="../Scripts/RegistrarEnvio.js"></script>
     <script src="../Scripts/Mant_Entidades.js"></script>
     <script src="../Scripts/Mant_Envios.js"></script>
+    <script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <div id="wrapper">       
-        <form runat="server">
+      <%--<form runat="server">--%>
         <!-- Navigation -->
         <div class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -52,7 +53,7 @@
                 <a class="navbar-brand" href="Dashboard.aspx">Montero Express</a>
             </div>
             <!-- /.navbar-header -->
-
+            
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -249,6 +250,7 @@
                     <!-- /.dropdown-alerts -->
                 </li>--%>
                 <!-- /.dropdown -->
+            
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
@@ -259,13 +261,16 @@
                        <%-- <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
                         </li>--%>
                         <li class="divider"></li>
-                        <li><asp:LinkButton runat="server" OnClick="btnCerrarSesion_Click" ID="btnCerrarSesion" OnClientClick="return CerrarSesion()"><i class="fa fa-sign-out fa-fw"></i>Logout</asp:LinkButton>
-                        </li>
+                        
+                       <%-- <li><asp:LinkButton runat="server" OnClick="btnCerrarSesion_Click" ID="btnCerrarSesion" OnClientClick="return CerrarSesion()"><i class="fa fa-sign-out fa-fw"></i>Logout</asp:LinkButton>--%>
+                            
+                        <%--</li>--%>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
+            
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
@@ -273,7 +278,7 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" placeholder="Search..."/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">
                                         <i class="fa fa-search"></i>
@@ -305,7 +310,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </div>
-        </form>
+      <%--  </form>--%>
         <div id="page-wrapper">            
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
