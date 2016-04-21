@@ -5,9 +5,9 @@ function BuscarEntidadCallBack(idContenedor, data)
     if (data.d != undefined) {
         $('#' + idContenedor + 'IdEntidad').val(data.d.IdEntidad);
         $('#' + idContenedor + 'txtNombre').val(data.d.Nombre);
+        restartDropDown(idContenedor + 'ddlDireccion', '', 'Agregar nueva dirección');
         if (data.d.EntidadDirecciones) {
             var direcciones = data.d.EntidadDirecciones;
-            restartDropDown(idContenedor + 'ddlDireccion', '', 'Agregar nueva dirección');
             for (var i = 0; i < direcciones.length; i++)
             {
                 $('#' + idContenedor + 'ddlDireccion').append($('<option '+((direcciones[i].PorDefecto == true)?"selected=selected":"")+' value="' + direcciones[i].IdEntidadDireccion + '">' + direcciones[i].Direccion + "," + direcciones[i].Ciudad.Nombre + '</option>'));
