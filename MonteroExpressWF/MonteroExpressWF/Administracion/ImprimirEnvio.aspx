@@ -4,12 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-     <link href="../Scripts/jquery-ui-1.11.4.custom/jquery-ui.structure.min.css" rel="stylesheet" />
-    <link href="../Scripts/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css" rel="stylesheet" />
-    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />    
-    <script src="../Scripts/jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
-    <script src="../Scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+
+    <link href="../Content/jquery-1.11.4/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../Content/jquery-1.11.4/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="../Content/jquery-1.11.4/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-ui-1.11.4/external/jquery/jquery.js"></script>    
+    <script src="../Scripts/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    
    
     <script src="../Scripts/bootstrap.min.js"></script>
     <title></title>
