@@ -184,6 +184,18 @@ namespace MonteroExpressWF.WebServices
             return new { Result = "OK", Records = ManejadorEnvios.ListarEnvios(), TotalRecordCount = 0 };
         }
 
+        [WebMethod(EnableSession = true)]
+        public object InsertarEnvio(Envio Envio)
+        {
+            try
+            {
+                return ManejadorEnvios.RegistrarEnvio(Envio);
+            }
+            catch (Exception ex)
+            {
+                return new { Result = "ERROR", Message = ex.Message };
+            }
+        }
 
 
         #endregion
@@ -294,20 +306,5 @@ namespace MonteroExpressWF.WebServices
 
         #endregion
 
-        #region Envio
-
-        [WebMethod(EnableSession=true)]
-        public object InsertarEnvio(Envio Envio) 
-        {
-            try
-            {
-                return ManejadorEnvios.RegistrarEnvio(Envio);                
-            }
-            catch (Exception ex)
-            {
-                return new { Result = "ERROR", Message = ex.Message };
-            }
-        }
-        #endregion
     }
 }

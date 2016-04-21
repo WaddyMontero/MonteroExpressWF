@@ -108,9 +108,9 @@
                 <div class="form-group">
                     <label for="txtDocumento"># Documento:</label>
                     <div class="input-group">
-                        <asp:TextBox runat="server" CssClass="form-control" name="txtDocumento" ID="txtDocumento"></asp:TextBox>
+                        <asp:TextBox runat="server" CssClass="form-control" style="z-index:1" name="txtDocumento" ID="txtDocumento"></asp:TextBox>
                         <span class="input-group-btn">
-                            <input type="button" runat="server" class="btn btn-info" id="btnBuscar" value="Buscar" onclick="javascript: Buscar(this);" />
+                            <input type="button" runat="server" class="btn btn-info" style="z-index:1" id="btnBuscar" value="Buscar" onclick="javascript: Buscar(this);" />
                         </span>
                     </div>
                 </div>

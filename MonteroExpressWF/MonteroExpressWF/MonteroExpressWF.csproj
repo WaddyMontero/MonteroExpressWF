@@ -99,6 +99,8 @@
     <Content Include="About.aspx" />
     <Content Include="Administracion\Dashboard.aspx" />
     <Content Include="Administracion\ImprimirEnvio.aspx" />
+    <Content Include="Administracion\Login.aspx" />
+    <Content Include="Administracion\Logout.aspx" />
     <Content Include="Administracion\Mant_Oficinas.aspx" />
     <Content Include="Administracion\Mant_TiposContenidos.aspx" />
     <Content Include="Administracion\Mant_Puertos.aspx" />
@@ -211,6 +213,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
     <Content Include="Scripts\CallBacks.js" />
+    <Content Include="Scripts\graphs\morris.min.js" />
+    <Content Include="Scripts\graphs\raphael-min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4\external\jquery\jquery.js" />
     <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.mask.min.js" />
@@ -493,6 +497,20 @@
     <Compile Include="Administracion\ImprimirEnvio.aspx.designer.cs">
       <DependentUpon>ImprimirEnvio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Administracion\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administracion\Mant_Oficinas.aspx.cs">
       <DependentUpon>Mant_Oficinas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -572,6 +590,7 @@
     </Compile>
     <Compile Include="BLL\ManejadorPaquetesEnvios.cs" />
     <Compile Include="BLL\ManejadorTiposContenidos.cs" />
+    <Compile Include="BLL\ManejadorUsuarios.cs" />
     <Compile Include="BOL\Ciudad.cs" />
     <Compile Include="BOL\Entidad.cs" />
     <Compile Include="BOL\EntidadDireccion.cs" />

@@ -1,3 +1,4 @@
-$.validator.addMethod( "lettersonly", function( value, element ) {
-	return this.optional( element ) || /^[a-z]+$/i.test( value );
-}, "Letters only please" );
+$.validator.addMethod("lettersonly", function (value, element) {
+    var texto = value.replace(' ','');
+    return this.optional(element) || /^[a-zA-Z\s]+$/.test(texto);
+}, "Solo se permiten letras" );
