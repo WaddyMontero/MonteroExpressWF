@@ -259,7 +259,7 @@ namespace MonteroExpressWF.DAL
                     entidad.FechaIngreso = Convert.ToDateTime(nodoEntidad.Attributes["FechaIngreso"].Value.ToString());
                     entidad.Activo = Convert.ToBoolean(int.Parse(nodoEntidad.Attributes["Activo"].Value.ToString()));
                     XmlNode nodoDirecciones = nodoEntidad.SelectSingleNode("EntidadDirecciones");
-                    if (nodoDirecciones.HasChildNodes)
+                    if (nodoDirecciones != null && nodoDirecciones.HasChildNodes)
                     {
                         entidad.EntidadDirecciones = new List<EntidadDireccion>();
                         foreach (XmlNode direccion in nodoDirecciones.ChildNodes)
@@ -573,7 +573,7 @@ namespace MonteroExpressWF.DAL
                 parametros.Add(new Parametro("@IdEstado", Envio.IdEstado, DbType.Int32));
                 parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int32,ParameterDirection.Output));
                 //parametros.Add(new Parametro("@IdUsuario", Usuario.UsuarioActual.IdUsuario, DbType.Int32));
-                parametros.Add(new Parametro("@IdUsuario", 2, DbType.Int32));
+                parametros.Add(new Parametro("@IdUsuario", Usuario.UsuarioActual.IdUsuario, DbType.Int32));
                 command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Insertar_Envio]", tran, parametros.ToArray());
                 Envio.IdEnvio = int.Parse(command.Parameters["@IdEnvio"].Value.ToString());
 
