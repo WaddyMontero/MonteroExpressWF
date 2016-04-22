@@ -34,6 +34,10 @@
     <script src="../Scripts/RegistrarEnvio.js"></script>
     <script src="../Scripts/Mant_Entidades.js"></script>
     <script src="../Scripts/Mant_Envios.js"></script>
+    <script src="../Scripts/Mant_Oficinas.js"></script>
+    <script src="../Scripts/Mant_Puertos.js"></script>
+    <script src="../Scripts/Mant_TiposContenidos.js"></script>
+    <script src="../Scripts/Mant_TiposSeguros.js"></script>
     <script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
     <script src="../Scripts/graphs/morris.min.js"></script>
     <script src="../Scripts/graphs/raphael-min.js"></script>
