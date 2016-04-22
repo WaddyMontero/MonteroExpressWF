@@ -57,7 +57,7 @@
                                     </label>
                                 </div>--%>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <asp:LinkButton runat="server" OnClick="btnLogin_Click" OnClientClick="javascript: return ValidarLogin()" ID="btnLogin" CssClass="btn btn-lg btn-success btn-block">Login</asp:LinkButton>
+                                <asp:LinkButton runat="server" OnClick="btnLogin_Click" OnClientClick="javascript: return ValidarLogin()" ID="btnLogin" CssClass="btn btn-lg btn-primary btn-block">Login</asp:LinkButton>
                             </fieldset>
                         </form>
                     </div>
