@@ -11,7 +11,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Montero Express Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../Content/bootstrap/bootstrap.min.css" rel="stylesheet" />    
@@ -28,9 +28,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body style="background-color:white">
 
     <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="../Content/img/logo.png" alt="Logo" class="center-block"/>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
