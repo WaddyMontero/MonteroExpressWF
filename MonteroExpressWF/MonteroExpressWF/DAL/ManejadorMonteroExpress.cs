@@ -918,5 +918,59 @@ namespace MonteroExpressWF.DAL
         }
 
         #endregion
-}
+
+        #region Graficas
+
+        public static List<KeyValuePair<int, string>> TotalEnviosPorMes() 
+        {
+            Conexion con = new Conexion("SqlCon");
+            DataTable dt = con.GetDataTable("prc_ObtieneVentasPorMes",true);
+            List<KeyValuePair<int, string>> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<KeyValuePair<int, string>>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new KeyValuePair<int, string>(int.Parse(row["IdMes"].ToString()), row["Envios"].ToString()));
+                }
+            }
+            return lista;
+        
+        }
+
+        public static List<KeyValuePair<string, string>> Top5Envios()
+        {
+            Conexion con = new Conexion("SqlCon");
+            DataTable dt = con.GetDataTable("select * from View_Top5Envios", false);
+            List<KeyValuePair<string, string>> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<KeyValuePair<string, string>>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new KeyValuePair<string, string>(row["Remitente"].ToString(), row["CantidadEnvios"].ToString()));
+                }
+            }
+            return lista;
+
+        }
+        public static List<KeyValuePair<string, string>> Top5Recepciones()
+        {
+            Conexion con = new Conexion("SqlCon");
+            DataTable dt = con.GetDataTable("select * from View_Top5Recepciones", false);
+            List<KeyValuePair<string, string>> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<KeyValuePair<string, string>>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new KeyValuePair<string, string>(row["Destinatario"].ToString(), row["CantidadRecepciones"].ToString()));
+                }
+            }
+            return lista;
+
+        }
+
+        #endregion
+    }
 }
