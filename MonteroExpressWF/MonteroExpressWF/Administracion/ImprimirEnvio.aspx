@@ -25,6 +25,14 @@
 <body>
     <form id="form1" runat="server">
     <div class="container body-content">
+        <div class="row">
+            <div class="col-xs-6">
+                <img src="../Content/img/logo.png" style="float:left" alt="logo"/>
+            </div>
+            <div class="col-xs-6">
+                <img src="../Content/img/logoAddress.png" style="float:right" alt="logoAddress"/>
+            </div>
+        </div>
         <h4 class="text-center">AUTORIZACIÓN DE DESPACHO POR GRUPAJE</h4>
         <div class="row">
             <div class="col-xs-12">
