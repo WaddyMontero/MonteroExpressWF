@@ -35,6 +35,8 @@
     <script src="../Scripts/Mant_Entidades.js"></script>
     <script src="../Scripts/Mant_Envios.js"></script>
     <script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
+    <script src="../Scripts/graphs/morris.min.js"></script>
+    <script src="../Scripts/graphs/raphael-min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
