@@ -3,10 +3,11 @@
     //alert("Esto es una Tabla");
     $('#tblMantEnvios').jtable({
         title: 'Listado Envios',
-        paging: false, 
+        paging: true, 
         sorting: false,
         defaultSorting: 'Name ASC',
         jqueryuiTheme: true,
+        pageSize:10,
         multiselect: true,
         selecting: true,
         selectingCheckboxes: true,
@@ -215,7 +216,7 @@
             }   
     });
 
-    $('#tblMantEnvios').jtable('load');
+    $('#tblMantEnvios').jtable('load', { Nombre: '', Fecha:'', Albaran: ''});
 
     
 
