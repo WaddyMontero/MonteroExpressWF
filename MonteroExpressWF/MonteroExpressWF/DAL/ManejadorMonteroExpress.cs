@@ -776,10 +776,29 @@ namespace MonteroExpressWF.DAL
             return envio;
 
         }
-        public static List<Envio> ListarEnvios()
+
+        public static int TotalEnvios(string Nombre, string Fecha, string Albaran)
         {
             Conexion con = new Conexion("SqlCon");
-            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Envios]");
+            List<Parametro> parametros = new List<Parametro>();
+            parametros.Add(new Parametro("@Nombre", Nombre, DbType.String));
+            parametros.Add(new Parametro("@Fecha", Fecha, DbType.String));
+            parametros.Add(new Parametro("@Albaran", Albaran, DbType.String));
+            DataTable dt = con.GetDataTable("[dbo].[prc_ObtieneTotalEnvios]","", parametros.ToArray());
+            int Total = int.Parse(dt.Rows[0]["TotalEnvios"].ToString());
+
+            return Total;
+        }
+        public static List<Envio> ListarEnvios(int PageIndex,int PageSize,string Nombre,string Fecha,string Albaran)
+        {
+            Conexion con = new Conexion("SqlCon");
+            List<Parametro> parametros = new List<Parametro>();
+            parametros.Add(new Parametro("@PageIndex",PageIndex,DbType.Int32));
+            parametros.Add(new Parametro("@PageSize", PageSize, DbType.Int32));
+            parametros.Add(new Parametro("@Nombre", Nombre, DbType.String));
+            parametros.Add(new Parametro("@Fecha", Fecha, DbType.String));
+            parametros.Add(new Parametro("@Albaran", Albaran, DbType.String));
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Envios]","",parametros.ToArray());
             List<Envio> lista = null;
             if (dt != null && dt.Rows.Count > 0)
             {
