@@ -576,6 +576,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\ManejadorGraficas.cs" />
     <Compile Include="BLL\ManejadorEntidadDirecciones.cs" />
     <Compile Include="BLL\ManejadorEntidades.cs" />
     <Compile Include="BLL\ManejadorEnvios.cs" />
