@@ -112,6 +112,9 @@
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\img\addressbook.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logoAddress.png" />
+    <Content Include="Content\img\logoCompleto.png" />
     <Content Include="Content\jquery-1.11.4\images\ui-bg_glass_65_ffffff_1x400.png" />
     <Content Include="Content\jquery-1.11.4\images\ui-bg_highlight-soft_100_f6f6f6_1x100.png" />
     <Content Include="Content\jquery-1.11.4\images\ui-bg_highlight-soft_25_4e90c9_1x100.png" />

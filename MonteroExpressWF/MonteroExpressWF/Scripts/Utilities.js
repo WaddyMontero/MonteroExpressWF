@@ -28,7 +28,7 @@ function MostrarDialogo(titulo, mensaje,showBtnCerrar,botones) {
         '</div>' +
         '</div>');
 
-    modal.appendTo($('form'));
+    modal.appendTo($('body'));
     $('#myCustomModal').find('.modal-header').append(btnX);
     if (botones != undefined && botones.length > 0) {
         for (var i = 0; i < botones.length; i++)
