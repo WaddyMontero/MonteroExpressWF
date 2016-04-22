@@ -61,8 +61,10 @@ function AjaxCall(url, data,idContenedor ,callBackFunction)
             //Llamada a la funcion para el callback
             if (callBackFunction == undefined) {
                 MostrarDialogo("Mensaje informativo","La acción se realizó exitosamente.");
-            } else {
+            } else if(idContenedor != ""){
                 callBackFunction(idContenedor, data);
+            } else {
+                callBackFunction(data);
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
             MostrarDialogo("Error", textStatus);
