@@ -304,6 +304,18 @@
                                 <li>
                                     <a href="Mant_Envios.aspx">Envios</a>
                                 </li>
+                                <li>
+                                    <a href="Mant_Oficinas.aspx">Oficinas</a>
+                                </li>
+                                <li>
+                                    <a href="Mant_Puertos.aspx">Puertos</a>
+                                </li>
+                                <li>
+                                    <a href="Mant_TiposContenidos.aspx">Tipos de Contenidos</a>
+                                </li>
+                                <li>
+                                    <a href="Mant_TiposSeguros.aspx">Seguros</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
