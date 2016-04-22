@@ -37,8 +37,17 @@
     <script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
     <script src="../Scripts/graphs/morris.min.js"></script>
     <script src="../Scripts/graphs/raphael-min.js"></script>
+    <script type="text/javascript">
+        //function prueba()
+        //{
+        //    alert('hare postback');
+        //    __doPostBack('','');
+        //}
+
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    
 </head>
 <body>
     <div id="wrapper">       
@@ -61,7 +70,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i><i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-messages">
+                    <%--<ul class="dropdown-menu dropdown-messages">
                         <li>
                             <a href="#">
                                 <div>
@@ -104,7 +113,7 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
-                    </ul>
+                    </ul>--%>
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
@@ -265,7 +274,11 @@
                         <li class="divider"></li>
                         
                        <%-- <li><asp:LinkButton runat="server" OnClick="btnCerrarSesion_Click" ID="btnCerrarSesion" OnClientClick="return CerrarSesion()"><i class="fa fa-sign-out fa-fw"></i>Logout</asp:LinkButton>--%>
-                            
+                             <li>
+                                <%-- <asp:LinkButton runat="server" OnClick="btnCerrarSesion_Click" ID="btnCerrarSesion" OnClientClick="return CerrarSesion()"><i class="fa fa-sign-out fa-fw"></i>Logout
+                                 </asp:LinkButton>--%>
+                                 <a class="btn btn-link" onclick="CerrarSesion()" >Cerrar sesión</a>
+                             </li>
                         <%--</li>--%>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -340,7 +353,7 @@
                 window.location('Logout.aspx');
             });            
             MostrarDialogo("Cerrar Sesión", "¿Confirma que desea cerrar sesión?", true, btns);
-            return false;
+            //return false;
         }
     </script>
 </body>
