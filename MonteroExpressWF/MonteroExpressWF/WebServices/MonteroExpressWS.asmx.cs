@@ -179,9 +179,9 @@ namespace MonteroExpressWF.WebServices
         #region Envios
 
         [WebMethod]
-        public object ListarEnvios()
+        public object ListarEnvios(int jtStartIndex,int jtPageSize,string Nombre,string Fecha,string Albaran)
         {
-            return new { Result = "OK", Records = ManejadorEnvios.ListarEnvios(), TotalRecordCount = 0 };
+            return new { Result = "OK", Records = ManejadorEnvios.ListarEnvios(jtStartIndex, jtPageSize, Nombre, Fecha, Albaran), TotalRecordCount = ManejadorEnvios.TotalEnvios(Nombre, Fecha, Albaran) };
         }
 
         [WebMethod(EnableSession = true)]
