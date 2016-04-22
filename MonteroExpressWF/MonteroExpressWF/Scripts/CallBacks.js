@@ -46,100 +46,53 @@ function EnvioGuardadoCallBack(IdContenedor, data)
 }
 
 
+//Obtiene los 5 Remitentes que mas envios han hecho
+function Top5EnviosCallback(data)
+{
+    var datos = new Array();
+    for (var i = 0; i < data.d.length; i++) {
+        datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
+    }
 
-//$('<div></div>').jtable({
-//    title: 'Direcciones Entidad',
-//    paging: true, //Enable paging
-//    sorting: false, //Enable sorting
-//    defaultSorting: 'Name ASC',
-//    actions: {
-//        listAction: '../WebServices/StudentList',
-//        deleteAction: '/Demo/DeleteStudent',
-//        updateAction: '/Demo/UpdateStudent',
-//        createAction: '/Demo/CreateStudent'
-//    },
-//    fields: {
-//        StudentId: {
-//            key: true,
-//            create: false,
-//            edit: false,
-//            list: false
-//        },
-//        Name: {
-//            title: 'Name',
-//            width: '15%'
-//        },
-//        EmailAddress: {
-//            title: 'Email address',
-//            list: false
-//        },
-//        Password: {
-//            title: 'User Password',
-//            type: 'password',
-//            list: false
-//        },
-//        Gender: {
-//            title: 'Gender',
-//            width: '12%',
-//            options: { 'M': 'Male', 'F': 'Female' }
-//        },
-//        CityId: {
-//            title: 'Living city',
-//            width: '15%',
-//            options: '/Demo/GetCityOptions'
-//        },
-//        BirthDate: {
-//            title: 'Birth date',
-//            width: '18%',
-//            type: 'date',
-//            displayFormat: 'yy-mm-dd'
-//        },
-//        Education: {
-//            title: 'Education',
-//            list: false,
-//            type: 'radiobutton',
-//            options: { '1': 'Primary school', '2': 'High school', '3': 'University' }
-//        },
-//        About: {
-//            title: 'About this person',
-//            type: 'textarea',
-//            list: false
-//        },
-//        IsActive: {
-//            title: 'Status',
-//            width: '10%',
-//            type: 'checkbox',
-//            values: { 'false': 'Passive', 'true': 'Active' },
-//            defaultValue: 'true'
-//        },
-//        RecordDate: {
-//            title: 'Record date',
-//            width: '18%',
-//            type: 'date',
-//            displayFormat: 'yy-mm-dd',
-//            create: false,
-//            edit: false
-//        }
-//    },
-//    //Initialize validation logic when a form is created
-//    formCreated: function (event, data) {
-//        data.form.find('input[name="Name"]').addClass('validate[required]');
-//        data.form.find('input[name="EmailAddress"]').addClass('validate[required,custom[email]]');
-//        data.form.find('input[name="Password"]').addClass('validate[required]');
-//        data.form.find('input[name="BirthDate"]').addClass('validate[required,custom[date]]');
-//        data.form.find('input[name="Education"]').addClass('validate[required]');
-//        data.form.validationEngine();
-//    },
-//    //Validate form when it is being submitted
-//    formSubmitting: function (event, data) {
-//        return data.form.validationEngine('validate');
-//    },
-//    //Dispose validation logic when form is closed
-//    formClosed: function (event, data) {
-//        data.form.validationEngine('hide');
-//        data.form.validationEngine('detach');
-//    }
-//});
+    Morris.Donut({
+        element: 'donut-comitente',
+        data: datos
+    });
+}
 
-////Load student list from server
-//$('#StudentTableContainer').jtable('load');
+function Top5RecepcionesCallback(data) {
+    var datos = new Array();
+    for (var i = 0; i < data.d.length; i++) {
+        datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
+    }
+
+    Morris.Donut({
+        element: 'donut-destinatario',
+        data: datos
+    });
+
+}
+//Total de envios del año actual segmentado POR MESES
+function TotalEnviosPorMesCallback(data) {
+
+    Morris.Bar({
+        element: 'barra',
+        data: [
+          { y: 'Enero', a: data.d[0].Value},
+          { y: 'Febrero', a: data.d[1].Value },
+          { y: 'Marzo', a: data.d[2].Value },
+          { y: 'Abril', a: data.d[3].Value },
+          { y: 'Mayo', a: data.d[4].Value },
+          { y: 'Junio', a: data.d[5].Value },
+          { y: 'Julio', a: data.d[6].Value },
+          { y: 'Agosto', a: data.d[7].Value },
+          { y: 'Septiembre', a: data.d[8].Value },
+          { y: 'Octubre', a: data.d[9].Value },
+          { y: 'Noviembre', a: data.d[10].Value },
+          { y: 'Diciembre', a: data.d[11].Value }
+        ],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Total']
+    });
+}
