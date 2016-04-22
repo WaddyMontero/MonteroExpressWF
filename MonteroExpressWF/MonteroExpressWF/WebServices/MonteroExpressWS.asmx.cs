@@ -306,5 +306,28 @@ namespace MonteroExpressWF.WebServices
 
         #endregion
 
+        #region Graficas
+
+        [WebMethod]
+        public List<KeyValuePair<int,string>> TotalEnviosPorMes()
+        {
+            return ManejadorGraficas.TotalEnviosPorMes();
+
+        }
+
+        [WebMethod]
+        public List<KeyValuePair<string, string>> Top5Envios()
+        {
+            return ManejadorGraficas.Top5Envios();
+        }
+
+        [WebMethod]
+        public List<KeyValuePair<string, string>> Top5Recepciones()
+        {
+            return ManejadorGraficas.Top5Recepciones();
+        }
+
+
+        #endregion
     }
 }
