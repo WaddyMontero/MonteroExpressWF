@@ -96,7 +96,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Administracion\Dashboard.aspx" />
     <Content Include="Administracion\ImprimirEnvio.aspx" />
     <Content Include="Administracion\Login.aspx" />
@@ -108,7 +107,6 @@
     <Content Include="Administracion\Mant_Envios.aspx" />
     <Content Include="Administracion\Mant_Entidades.aspx" />
     <Content Include="Administracion\RegistrarEnvio.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\img\addressbook.png" />
@@ -571,13 +569,6 @@
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\ManejadorGraficas.cs" />
     <Compile Include="BLL\ManejadorEntidadDirecciones.cs" />
@@ -612,13 +603,6 @@
     <Compile Include="BOL\TipoDocumento.cs" />
     <Compile Include="BOL\TipoPaquete.cs" />
     <Compile Include="BOL\Usuario.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="DAL\ManejadorMonteroExpress.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
