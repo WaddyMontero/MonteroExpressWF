@@ -5,6 +5,29 @@ $(document).ready(function () {
     $('#txtFecha').datepicker({
         dateFormat:'dd/mm/yy'
     });
+
+    $("#formAgregarPaquete").validate({
+        errorClass: 'control-label text-danger',
+        rules: {
+            txtCantidad: {
+                required: true,
+                digits:true
+            },
+            txtDescripcion: {
+                required:true,
+            },
+            txtPeso: {
+                digits:true
+            },
+            ddlTamanioPaquete: {
+                required:true
+            },
+            ddlEstado: {
+                required:true
+            }
+        }
+    });
+
     $("#formRegistroEnvio").validate({
         errorClass: 'control-label text-danger',        
         rules: {
@@ -101,6 +124,7 @@ $(document).ready(function () {
     $('#txtCantidad').mask('999999');
     $('#txtPrecioUnitario').mask('9999999.99');
     $('#txtPeso').mask('999999.99');
+
     //Dialogo para insertar un nuevo paquete al envio
     $("#divAgregarPaquete").dialog({
         resizable: true,
@@ -109,24 +133,27 @@ $(document).ready(function () {
         autoOpen: false,
         buttons: {
             "Agregar": function () {
-                idPaquete += 1;
-                $('#tblPaquetes').jtable('addRecord', {
-                    record: {
-                        IdPaqueteEnvio: idPaquete,
-                        Cantidad: $('#txtCantidad').val(),
-                        IdTamanioPaquete: parseInt($('#MainContent_ddlTamanioPaquete').val()),
-                        Descripcion: $('#txtDescripcion').val(),
-                        IdEstado: parseInt($('#MainContent_ddlEstado').val()),
-                        Peso: parseFloat($('#txtPeso').val())
-                    },
-                    clientOnly: true
-                });
-                if ($('#lblValidacionPaquetes:visible')) {
-                    $('#lblValidacionPaquetes').addClass('hidden');
+                var validator = $("#formAgregarPaquete").validate();
+                var validado = $("#formAgregarPaquete").valid();
+                if (validado) {
+                    idPaquete += 1;
+                    $('#tblPaquetes').jtable('addRecord', {
+                        record: {
+                            IdPaqueteEnvio: idPaquete,
+                            Cantidad: $('#txtCantidad').val(),
+                            IdTamanioPaquete: parseInt($('#MainContent_ddlTamanioPaquete').val()),
+                            Descripcion: $('#txtDescripcion').val(),
+                            IdEstado: parseInt($('#MainContent_ddlEstado').val()),
+                            Peso: parseFloat($('#txtPeso').val())
+                        },
+                        clientOnly: true
+                    });
+                    if ($('#lblValidacionPaquetes:visible')) {
+                        $('#lblValidacionPaquetes').addClass('hidden');
+                    }
+
+                    $(this).dialog("close");
                 }
-                
-                $(this).dialog("close");
-               // GuardarEnvio();
             },
             "Cancelar": function () {
                 $(this).dialog("close");
