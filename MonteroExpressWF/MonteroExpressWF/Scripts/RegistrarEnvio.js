@@ -55,11 +55,13 @@ $(document).ready(function () {
             },
             ctl00$MainContent$usrControlRemitente$txtDocumento: {
                 required: true,
-                numDocCompleto:true
+                numDocCompleto: true,
+                DifNumDocumentoRemDes:true
             },
             ctl00$MainContent$usrControlDestinatario$txtDocumento: {
                 required: true,
-                numDocCompleto: true
+                numDocCompleto: true,
+                DifNumDocumentoRemDes: true
             },
             txtNombre: {
                 required:true
@@ -120,6 +122,21 @@ $(document).ready(function () {
         return this.optional(element) || valueLength >= $('#'+idStartWith+'Mascara').val().length;
 
     }, "Complete el # de documento.");
+
+    $.validator.addMethod("DifNumDocumentoRemDes", function (value, element) {
+        //ctl00$MainContent$usrControlRemitente$txtDocumento
+        var idStartWith = element.id.split('_')[0] + '_' + element.id.split('_')[1] + '_';
+        var compareControlId = '';
+        if (element.id.split('_')[1] = 'usrControlRemitente') {
+            compareControlId = element.id.split('_')[0] + '_usrControlDestinatario_txtDocumento';
+        }else {
+            compareControlId = element.id.split('_')[0] + '_usrControlRemitente_txtDocumento';
+        }       
+        var originalText = $('#' + element.id).val();
+        var compareText = $('#'+compareControlId).val();
+        return (originalText != compareText);
+
+    }, "El # de documento del comitente y destinatario deben ser diferentes.");
     
     $('#txtCantidad').mask('999999');
     $('#txtPrecioUnitario').mask('9999999.99');
