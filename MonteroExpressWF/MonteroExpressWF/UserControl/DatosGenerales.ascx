@@ -190,7 +190,11 @@
                     <div class="col-lg-6 col-xs-12">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="chkPorDefecto" id="chkPorDefecto">Dirección por defecto</label>
+                                <%--<input type="checkbox" name="chkPorDefecto" id="chkPorDefecto">--%>
+                                <asp:CheckBox runat="server" ID="chkPorDefecto"/>
+                                Dirección por defecto
+
+                            </label>
                         </div>
                     </div>
                 </div>
