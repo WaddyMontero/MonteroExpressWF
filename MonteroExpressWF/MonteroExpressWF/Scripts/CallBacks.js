@@ -8,11 +8,20 @@ function BuscarEntidadCallBack(idContenedor, data)
         restartDropDown(idContenedor + 'ddlDireccion', '', 'Agregar nueva dirección');
         if (data.d.EntidadDirecciones) {
             var direcciones = data.d.EntidadDirecciones;
+            var direccionPorDefecto = false;
             for (var i = 0; i < direcciones.length; i++)
             {
+                if (direcciones[i].PorDefecto == true) {
+                    direccionPorDefecto = true;
+                }
                 $('#' + idContenedor + 'ddlDireccion').append($('<option '+((direcciones[i].PorDefecto == true)?"selected=selected":"")+' value="' + direcciones[i].IdEntidadDireccion + '">' + direcciones[i].Direccion + "," + direcciones[i].Ciudad.Nombre + '</option>'));
             }
-            $('#' + idContenedor + 'divDireccion').addClass('hidden');
+            if (direccionPorDefecto == false) {
+                $('#' + idContenedor + 'divDireccion').removeClass('hidden');
+            } else {
+                $('#' + idContenedor + 'divDireccion').addClass('hidden');
+            }
+            
         } else {
             $('#' + idContenedor + 'divDireccion').removeClass('hidden');
         }
@@ -26,11 +35,13 @@ function BuscarEntidadCallBack(idContenedor, data)
     $('#' + idContenedor + 'divControles').removeClass('hidden');
 }
 
-function EnvioGuardadoCallBack(IdContenedor, data)
+function EnvioGuardadoCallBack(data)
 {
     if (data.d.Result == "OK") {
         var btn = $('<button type="button" class="btn btn-default">Imprimir</button>').click(function () {
-            window.location('ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
+            //window.location('ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
+            window.open('http://localhost:2950/Administracion/ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
+            window.location('Dashboard.aspx');
         });
         MostrarDialogo(data.d.Title, data.d.Message, false, new Array(
             btn,
