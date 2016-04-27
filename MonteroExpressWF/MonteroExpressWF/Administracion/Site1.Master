@@ -38,6 +38,7 @@
     <script src="../Scripts/Mant_Puertos.js"></script>
     <script src="../Scripts/Mant_TiposContenidos.js"></script>
     <script src="../Scripts/Mant_TiposSeguros.js"></script>
+    <script src="../Scripts/Mant_TiposDocumentos.js"></script>
     <script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
     <script src="../Scripts/graphs/morris.min.js"></script>
     <script src="../Scripts/graphs/raphael-min.js"></script>
@@ -335,6 +336,9 @@
                                 </li>
                                 <li>
                                     <a href="Mant_TiposSeguros.aspx">Seguros</a>
+                                </li>
+                                <li>
+                                    <a href="Mant_TiposDocumentos.aspx">Tipos de Documentos</a>
                                 </li>
                             </ul>
                         </li>
