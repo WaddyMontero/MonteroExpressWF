@@ -96,7 +96,7 @@
                                 <input type="button" class="form-control btn btn-primary" onclick="GuardarEnvio()" value="Guardar" />
                             </div>
                             <div class="col-xs-3">
-                                <input type="button" class="form-control btn btn-danger" value="Cancelar" />
+                                <input type="button" class="form-control btn btn-danger" value="Cancelar" onclick="CancelarRegistro()" />
                             </div>
                             <div class="col-xs-3"></div>
                         </div>
