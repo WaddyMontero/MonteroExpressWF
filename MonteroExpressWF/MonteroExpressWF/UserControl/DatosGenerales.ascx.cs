@@ -14,7 +14,7 @@ namespace MonteroExpressWF.UserControl
         {
             if (!IsPostBack)
             {
-                ddlTipoDocumento.DataSource = ManejadorTipoDocumento.ObtenerTiposDocumentos();
+                ddlTipoDocumento.DataSource = ManejadorTipoDocumento.ObtenerTiposDocumentos(1);
                 ddlTipoDocumento.DataTextField = "Descripcion";
                 ddlTipoDocumento.DataValueField = "IdTipoDocumento";
                 ddlTipoDocumento.DataBind();
