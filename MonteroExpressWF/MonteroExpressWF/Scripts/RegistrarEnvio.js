@@ -127,7 +127,7 @@ $(document).ready(function () {
         //ctl00$MainContent$usrControlRemitente$txtDocumento
         var idStartWith = element.id.split('_')[0] + '_' + element.id.split('_')[1] + '_';
         var compareControlId = '';
-        if (element.id.split('_')[1] = 'usrControlRemitente') {
+        if (element.id.split('_')[1] == 'usrControlRemitente') {
             compareControlId = element.id.split('_')[0] + '_usrControlDestinatario_txtDocumento';
         }else {
             compareControlId = element.id.split('_')[0] + '_usrControlRemitente_txtDocumento';
@@ -322,6 +322,16 @@ $(document).ready(function () {
     //$('#tblPaquetes').jtable('load');
 
 });
+
+function CancelarRegistro()
+{
+    var botones = new Array();
+    botones[0] = $('<input type="button" class="btn btn-primary" value="Aceptar"/>').click(function(){
+        window.location('Dashboard.aspx');
+    });
+    MostrarDialogo('Cancelar registro','¿Confirma que desea cancelar el registro del envio?',true,botones);
+
+}
 
 function FormValido()
 {
