@@ -189,7 +189,15 @@ namespace MonteroExpressWF.WebServices
         {
             try
             {
-                return ManejadorEnvios.RegistrarEnvio(Envio);
+                if (Envio.Remitente.NumDocumento != Envio.Destinatario.NumDocumento)
+                {
+                    return ManejadorEnvios.RegistrarEnvio(Envio);
+                }
+                else
+                {
+                    return new { Result = "ERROR", Message = "El número de documento del Remitente y el Destinatario deben ser diferentes." };
+                }
+                
             }
             catch (Exception ex)
             {
