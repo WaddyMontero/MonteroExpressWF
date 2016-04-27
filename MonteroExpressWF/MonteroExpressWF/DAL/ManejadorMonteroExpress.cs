@@ -38,7 +38,7 @@ namespace MonteroExpressWF.DAL
         }
         public static TipoDocumento ObtenerTipoDocumentoById(int IdTipoDocumento)
         {
-            return ObtenerTiposDocumentos().Single(td => td.IdTipoDocumento == IdTipoDocumento);
+            return ObtenerTiposDocumentos(1).Single(td => td.IdTipoDocumento == IdTipoDocumento);
         }
         #endregion
 
@@ -990,6 +990,50 @@ namespace MonteroExpressWF.DAL
 
         }
 
+        #endregion
+
+        #region TiposDocumentos
+
+        public static List<TipoDocumento> ObtenerTiposDocumentos(int Activo)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@Activo", Activo, DbType.Int16);
+            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_TiposDocumentos]", "", param);
+            List<TipoDocumento> lista = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lista = new List<TipoDocumento>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    lista.Add(new TipoDocumento
+                    {
+                        IdTipoDocumento = int.Parse(row["IdTipoDocumento"].ToString()),
+                        Descripcion = row["Descripcion"].ToString(),
+                        Mascara = row["Mascara"].ToString(),
+                        Activo = Convert.ToBoolean(row["Activo"].ToString()),
+                        FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString())
+                    });
+                }
+            }
+            return lista;
+        }
+
+        public static void ActualizaTipoDocumento(TipoDocumento TipoDocumento)
+        {
+            Conexion con = new Conexion("SqlCon");
+            Parametro param = new Parametro("@IdTipoDocumento", TipoDocumento.IdTipoDocumento, DbType.Int16);
+            con.EjecucionNoRetorno("[dbo].[prc_Actualiza_TiposDocumentos]", param);
+        }
+
+        public static void InsertaTipoDocumento(TipoDocumento TipoDocumento)
+        {
+            Conexion con = new Conexion("SqlCon");
+            TipoDocumento.Descripcion = TipoDocumento.Descripcion.Replace("+", " ");
+            List<Parametro> parametros = new List<Parametro>();
+            parametros.Add(new Parametro("@NuevoTipoDocumento", TipoDocumento.Descripcion, DbType.String));
+            parametros.Add(new Parametro("@Mascara", TipoDocumento.Mascara, DbType.String));
+            con.EjecucionNoRetorno("[dbo].[prc_Inserta_TipoDocumento]", parametros.ToArray());
+        }
         #endregion
     }
 }
