@@ -29,7 +29,27 @@ namespace MonteroExpressWF.WebServices
         [WebMethod]
         public List<TipoDocumento> ObtenerTiposDocumentos() 
         {
-            return ManejadorTipoDocumento.ObtenerTiposDocumentos();
+            return ManejadorTipoDocumento.ObtenerTiposDocumentos(1);
+        }
+
+        [WebMethod]
+        public object ObtenerTiposDocumentosJT()
+        {
+            return new { Result = "OK", Records = ManejadorTipoDocumento.ObtenerTiposDocumentos(0), TotalRecordCount = 0 };
+        }
+
+        [WebMethod]
+        public object InsertaTipoDocumento(TipoDocumento record)
+        {
+            ManejadorTipoDocumento.InsertaTipoDocumento(record);
+            return new { Result = "OK", Record = record };
+        }
+
+        [WebMethod]
+        public object ActualizaTipoDocumento(TipoDocumento record)
+        {
+            ManejadorTipoDocumento.ActualizaTipoDocumento(record);
+            return new { Result = "OK", Record = record };
         }
 
 
