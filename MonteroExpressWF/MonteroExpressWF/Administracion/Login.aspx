@@ -81,10 +81,9 @@
 
         function ValidarLogin()
             {
-                //var validator = $("#formLogin").validate();
-                //var validado = validator.form();
-            //return validado;
-            return true;
+                var validator = $("#formLogin").validate();
+                var validado = validator.form();
+                return validado;
             }
 
         $("#formLogin").validate({
