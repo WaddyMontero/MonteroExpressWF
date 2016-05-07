@@ -61,8 +61,12 @@ function EnvioGuardadoCallBack(data)
 function Top5EnviosCallback(data)
 {
     var datos = new Array();
-    for (var i = 0; i < data.d.length; i++) {
-        datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
+    if (data == undefined) {
+        datos[i] = { label: 'No data', value: '100' };
+    } else {
+        for (var i = 0; i < data.d.length; i++) {
+            datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
+        }
     }
 
     Morris.Donut({
@@ -73,10 +77,13 @@ function Top5EnviosCallback(data)
 
 function Top5RecepcionesCallback(data) {
     var datos = new Array();
-    for (var i = 0; i < data.d.length; i++) {
-        datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
+    if (data == undefined) {
+        datos[i] = { label: 'No data', value: '100' };
+    } else {
+        for (var i = 0; i < data.d.length; i++) {
+            datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
+        }
     }
-
     Morris.Donut({
         element: 'donut-destinatario',
         data: datos
@@ -86,24 +93,48 @@ function Top5RecepcionesCallback(data) {
 //Total de envios del año actual segmentado POR MESES
 function TotalEnviosPorMesCallback(data) {
 
-    Morris.Bar({
-        element: 'barra',
-        data: [
-          { y: 'Enero', a: data.d[0].Value},
-          { y: 'Febrero', a: data.d[1].Value },
-          { y: 'Marzo', a: data.d[2].Value },
-          { y: 'Abril', a: data.d[3].Value },
-          { y: 'Mayo', a: data.d[4].Value },
-          { y: 'Junio', a: data.d[5].Value },
-          { y: 'Julio', a: data.d[6].Value },
-          { y: 'Agosto', a: data.d[7].Value },
-          { y: 'Septiembre', a: data.d[8].Value },
-          { y: 'Octubre', a: data.d[9].Value },
-          { y: 'Noviembre', a: data.d[10].Value },
-          { y: 'Diciembre', a: data.d[11].Value }
-        ],
-        xkey: 'y',
-        ykeys: ['a'],
-        labels: ['Total']
-    });
+    if (data == undefined) {
+        Morris.Bar({
+            element: 'barra',
+            data: [
+              { y: 'Enero', a: 0 },
+              { y: 'Febrero', a: 0 },
+              { y: 'Marzo', a: 0 },
+              { y: 'Abril', a: 0 },
+              { y: 'Mayo', a: 0 },
+              { y: 'Junio', a: 0 },
+              { y: 'Julio', a: 0 },
+              { y: 'Agosto', a: 0 },
+              { y: 'Septiembre', a: 0 },
+              { y: 'Octubre', a: 0 },
+              { y: 'Noviembre', a: 0 },
+              { y: 'Diciembre', a: 0 }
+            ],
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['Total']
+        });
+    } else {
+
+        Morris.Bar({
+            element: 'barra',
+            data: [
+              { y: 'Enero', a: data.d[0].Value },
+              { y: 'Febrero', a: data.d[1].Value },
+              { y: 'Marzo', a: data.d[2].Value },
+              { y: 'Abril', a: data.d[3].Value },
+              { y: 'Mayo', a: data.d[4].Value },
+              { y: 'Junio', a: data.d[5].Value },
+              { y: 'Julio', a: data.d[6].Value },
+              { y: 'Agosto', a: data.d[7].Value },
+              { y: 'Septiembre', a: data.d[8].Value },
+              { y: 'Octubre', a: data.d[9].Value },
+              { y: 'Noviembre', a: data.d[10].Value },
+              { y: 'Diciembre', a: data.d[11].Value }
+            ],
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['Total']
+        });
+    }
 }
