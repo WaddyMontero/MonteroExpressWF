@@ -17,29 +17,37 @@ namespace MonteroExpressWF.Administracion
         }
         protected void btnLogin_Click(object sender, EventArgs e) 
         {
-            if (txtUsuario.Text != "" && txtContrasena.Text != "")
+
+            try
             {
-                Usuario usuario = ManejadorUsuarios.AutenticarUsuario(txtUsuario.Text, txtContrasena.Text);
-                if (usuario != null)
+                if (txtUsuario.Text != "" && txtContrasena.Text != "")
                 {
-                    if (usuario.Habilitado)
+                    Usuario usuario = ManejadorUsuarios.AutenticarUsuario(txtUsuario.Text, txtContrasena.Text);
+                    if (usuario != null)
                     {
-                        Usuario.UsuarioActual = usuario;
-                        Response.Redirect("Dashboard.aspx");
+                        if (usuario.Habilitado)
+                        {
+                            Usuario.UsuarioActual = usuario;
+                            Response.Redirect("Dashboard.aspx");
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "ImprimirMensaje", "alert('Este usuario no esta habilitado. Favor contacte su administrador.')", true);
+                        }
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "ImprimirMensaje", "alert('Este usuario no esta habilitado. Favor contacte su administrador.')", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "ImprimirMensaje", "alert('Usuario y/o Contraseña incorrecta. Verifique y trate de nuevo.')", true);
                     }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "ImprimirMensaje", "alert('Usuario y/o Contraseña incorrecta. Verifique y trate de nuevo.')", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "ImprimirMensaje", "alert('Complete el nombre de usuario y/o contraseña.')", true);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(Page,typeof(Page), "ImprimirMensaje", "alert('Complete el nombre de usuario y/o contraseña.')",true);
+               ScriptManager.RegisterStartupScript(Page, typeof(Page), "ImprimirMensaje", "alert('Ha ocurrido un error al autenticar. Favor trate más tarde, si el problema persiste contacte su administrador.')", true);
             }
         }
     }
