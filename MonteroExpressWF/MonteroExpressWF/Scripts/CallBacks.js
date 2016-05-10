@@ -19,7 +19,7 @@ function BuscarEntidadCallBack(idContenedor, data)
             if (direccionPorDefecto == false) {
                 $('#' + idContenedor + 'divDireccion').removeClass('hidden');
             } else {
-                $('#' + idContenedor + 'divDireccion').addClass('hidden');
+            $('#' + idContenedor + 'divDireccion').addClass('hidden');
             }
             
         } else {
@@ -39,14 +39,12 @@ function EnvioGuardadoCallBack(data)
 {
     if (data.d.Result == "OK") {
         var btn = $('<button type="button" class="btn btn-default">Imprimir</button>').click(function () {
-            //window.location('ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
-            window.open('http://localhost:2950/Administracion/ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
-            window.location('Dashboard.aspx');
+            window.location('http://monteroexpress.azurewebsites.net/Administracion/ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
         });
         MostrarDialogo(data.d.Title, data.d.Message, false, new Array(
             btn,
             $('<button type="button" class="btn btn-default">Nuevo Envio</button>').click(function () {
-                window.location('RegistrarEnvio.aspx');
+                window.location('http://monteroexpress.azurewebsites.net/Administracion/RegistrarEnvio.aspx');
             })
             ));
     } else {
@@ -64,9 +62,9 @@ function Top5EnviosCallback(data)
     if (data == undefined) {
         datos[i] = { label: 'No data', value: '100' };
     } else {
-        for (var i = 0; i < data.d.length; i++) {
-            datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
-        }
+    for (var i = 0; i < data.d.length; i++) {
+        datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
+    }
     }
 
     Morris.Donut({
@@ -80,15 +78,14 @@ function Top5RecepcionesCallback(data) {
     if (data == undefined) {
         datos[i] = { label: 'No data', value: '100' };
     } else {
-        for (var i = 0; i < data.d.length; i++) {
-            datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
-        }
+    for (var i = 0; i < data.d.length; i++) {
+        datos[i] = { label: data.d[i].Key, value: data.d[i].Value };
+    }
     }
     Morris.Donut({
         element: 'donut-destinatario',
         data: datos
     });
-
 }
 //Total de envios del año actual segmentado POR MESES
 function TotalEnviosPorMesCallback(data) {
@@ -119,7 +116,7 @@ function TotalEnviosPorMesCallback(data) {
         Morris.Bar({
             element: 'barra',
             data: [
-              { y: 'Enero', a: data.d[0].Value },
+                  { y: 'Enero', a: data.d[0].Value },
               { y: 'Febrero', a: data.d[1].Value },
               { y: 'Marzo', a: data.d[2].Value },
               { y: 'Abril', a: data.d[3].Value },
