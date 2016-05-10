@@ -8,9 +8,9 @@
         defaultSorting: 'Name ASC',
         jqueryuiTheme: true,
         pageSize:10,
-        multiselect: true,
-        selecting: true,
-        selectingCheckboxes: true,
+        //multiselect: true,
+        //selecting: true,
+        //selectingCheckboxes: true,
         messages: {
             serverCommunicationError: 'Error de comunicación con el servidor.',
             loadingMessage: 'Cargando registros...',
@@ -64,7 +64,7 @@
                 width: '5%',
                 create: false,
                 edit: false,
-                list: true
+                list: false
             },
             IdOficina:{
                 list:false
