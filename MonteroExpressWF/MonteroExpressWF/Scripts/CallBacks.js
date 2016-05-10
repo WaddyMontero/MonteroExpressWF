@@ -19,7 +19,7 @@ function BuscarEntidadCallBack(idContenedor, data)
             if (direccionPorDefecto == false) {
                 $('#' + idContenedor + 'divDireccion').removeClass('hidden');
             } else {
-            $('#' + idContenedor + 'divDireccion').addClass('hidden');
+                $('#' + idContenedor + 'divDireccion').addClass('hidden');
             }
             
         } else {
@@ -114,9 +114,9 @@ function TotalEnviosPorMesCallback(data) {
         });
     } else {
 
-        Morris.Bar({
-            element: 'barra',
-            data: [
+    Morris.Bar({
+        element: 'barra',
+        data: [
                   { y: 'Enero', a: data.d[0].Value },
               { y: 'Febrero', a: data.d[1].Value },
               { y: 'Marzo', a: data.d[2].Value },
@@ -129,10 +129,10 @@ function TotalEnviosPorMesCallback(data) {
               { y: 'Octubre', a: data.d[9].Value },
               { y: 'Noviembre', a: data.d[10].Value },
               { y: 'Diciembre', a: data.d[11].Value }
-            ],
-            xkey: 'y',
-            ykeys: ['a'],
-            labels: ['Total']
-        });
-    }
+        ],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Total']
+    });
+}
 }
