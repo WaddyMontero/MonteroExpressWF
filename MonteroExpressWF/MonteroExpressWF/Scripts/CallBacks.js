@@ -40,12 +40,12 @@ function EnvioGuardadoCallBack(data)
     if (data.d.Result == "OK") {
         var btn = $('<button type="button" class="btn btn-default">Imprimir</button>').click(function () {
             window.open('http://monteroexpress.azurewebsites.net/Administracion/ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
-            window.location('Dashboard.aspx');
+            window.location.assing('http://monteroexpress.azurewebsites.net/Administracion/Dashboard.aspx');
         });
         MostrarDialogo(data.d.Title, data.d.Message, false, new Array(
             btn,
             $('<button type="button" class="btn btn-default">Nuevo Envio</button>').click(function () {
-                window.location('http://monteroexpress.azurewebsites.net/Administracion/RegistrarEnvio.aspx');                
+                window.location.assing('http://monteroexpress.azurewebsites.net/Administracion/RegistrarEnvio.aspx');
             })
             ));
     } else {
