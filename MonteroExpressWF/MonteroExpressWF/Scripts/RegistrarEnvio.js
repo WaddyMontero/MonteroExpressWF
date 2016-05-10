@@ -168,7 +168,9 @@ $(document).ready(function () {
                     if ($('#lblValidacionPaquetes:visible')) {
                         $('#lblValidacionPaquetes').addClass('hidden');
                     }
-
+                    $('#txtCantidad').val('');
+                    $('#txtDescripcion').val('');
+                    $('#txtPeso').val('');
                     $(this).dialog("close");
                 }
             },
