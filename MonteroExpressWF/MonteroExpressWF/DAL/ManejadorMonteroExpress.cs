@@ -534,6 +534,7 @@ namespace MonteroExpressWF.DAL
                 }
                 if (Envio.Destinatario.IdEntidad == 0)
                 {
+                    parametros.Clear();
                     parametros.Add(new Parametro("@IdEntidad", 0, DbType.Int32,ParameterDirection.Output));
                     parametros.Add(new Parametro("@Nombre", Envio.Destinatario.Nombre, DbType.String));
                     parametros.Add(new Parametro("@IdTipoDocumento", Envio.Destinatario.IdTipoDocumento, DbType.Int32));

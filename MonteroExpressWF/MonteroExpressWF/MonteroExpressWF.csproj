@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -480,6 +481,8 @@
     <Content Include="Scripts\jtable.2.4.0\themes\metro\red\jtable.less" />
     <None Include="Properties\PublishProfiles\Desarrollo.pubxml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\MonteroExpress - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\MonteroExpress - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\MonteroExpress - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
