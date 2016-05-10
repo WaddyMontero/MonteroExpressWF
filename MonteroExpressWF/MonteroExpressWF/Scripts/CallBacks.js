@@ -27,7 +27,7 @@ function BuscarEntidadCallBack(idContenedor, data)
         }
 
     } else {
-        MostrarAlerta("info","El número de documento consultado no existe.");
+        //MostrarAlerta("info","El número de documento consultado no existe.");
         $('#' + idContenedor + 'divControles').removeClass('hidden');
         $('#' + idContenedor + 'divDireccion').removeClass('hidden');        
         restartDropDown(idContenedor + 'ddlDireccion','','Agregar nueva dirección');
