@@ -110,6 +110,16 @@
                 list: false,
                 edit: false
             },
+            Imprimir: {
+                width:'1%',
+                display: function (data) {
+                    var $print = $('<img src="../Content/img/print.png" title="Mostrar Direcciones" />');
+                    $print.click(function () {
+                        window.open('http://monteroexpress.azurewebsites.net/Administracion/ImprimirEnvio.aspx?IdEnvio=' + data.record.IdEnvio);
+                    });
+                    return $print;
+                }
+            },
             Detalles: {
                     width: '1%',
                     display: function (data) {
