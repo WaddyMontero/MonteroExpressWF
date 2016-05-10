@@ -64,7 +64,7 @@
                 width: '5%',
                 create: false,
                 edit: false,
-                list: false
+                list: true
             },
             IdOficina:{
                 list:false
