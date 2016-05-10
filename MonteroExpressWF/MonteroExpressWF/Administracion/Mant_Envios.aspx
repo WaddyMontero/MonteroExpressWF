@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-xs-4">
             <div class="form-group">
-                <label for="txtFiltroNombre">Nombre:</label>
+                <label for="txtFiltroNombre">Remitente:</label>
                 <input id="txtFiltroNombre" type="text" class="form-control" />
             </div>
         </div>
