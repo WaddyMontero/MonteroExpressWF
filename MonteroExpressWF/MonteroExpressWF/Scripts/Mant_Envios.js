@@ -113,7 +113,7 @@
             Imprimir: {
                 width:'1%',
                 display: function (data) {
-                    var $print = $('<img src="../Content/img/print.png" title="Mostrar Direcciones" />');
+                    var $print = $('<img src="../Content/img/print.png" title="Imprimir" class="img" />');
                     $print.click(function () {
                         window.open('http://monteroexpress.azurewebsites.net/Administracion/ImprimirEnvio.aspx?IdEnvio=' + data.record.IdEnvio);
                     });
@@ -123,7 +123,7 @@
             Detalles: {
                     width: '1%',
                     display: function (data) {
-                        var $mostrar = $('<img src="../Content/img/information_hdpi.png" title="Mostrar Direcciones" />');
+                        var $mostrar = $('<img src="../Content/img/information_hdpi.png" title="Mostrar Direcciones" class="img" />');
                         $mostrar.click(function () {
                             
                             $("<div id='divDetalles' title='Detalles Envio "+data.record.NumeroEnvio+"'>"+
