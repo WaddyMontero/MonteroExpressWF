@@ -138,7 +138,7 @@ $(document).ready(function () {
     
     $('#txtCantidad').mask('?999999');
     $('#txtPrecioUnitario').mask('?9999999.99');
-    $('#txtPeso').mask('?999999.99');
+    $('#txtPeso').mask('?99999999');
 
     //Dialogo para insertar un nuevo paquete al envio
     $("#divAgregarPaquete").dialog({
