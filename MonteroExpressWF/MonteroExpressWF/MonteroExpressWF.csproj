@@ -226,7 +226,7 @@
     <Content Include="Scripts\graphs\raphael-min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4\external\jquery\jquery.js" />
     <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.min.js" />
-    <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.1.4.1.js" />
     <Content Include="Scripts\jquery.validate\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate\messages_es.js" />
     <Content Include="Scripts\jquery.validate\utilities\accept.js" />
