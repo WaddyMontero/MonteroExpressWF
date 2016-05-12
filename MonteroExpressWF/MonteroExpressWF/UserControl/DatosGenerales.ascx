@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DatosGenerales.ascx.cs" Inherits="MonteroExpressWF.UserControl.DatosGenerales" %>
-<script src="../Scripts/jquery.mask.min.js"></script>
+<%--<script src="../Scripts/jquery.mask.min.js"></script>--%>
+<script src="../Scripts/jquery.maskedinput-1.3.min.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
