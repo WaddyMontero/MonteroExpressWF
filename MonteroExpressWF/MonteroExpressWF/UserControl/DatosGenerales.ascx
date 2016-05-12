@@ -98,7 +98,7 @@
         <div class="row">
             <div class="col-lg-6 col-xs-12">
                 <div class="form-group">
-                    <label for="ddlTipoDocumento">DNI/NIF/Pasaporte:</label>
+                    <label for="ddlTipoDocumento">Tipo Identificación:</label>
                     <asp:DropDownList runat="server" CssClass="form-control" name="ddlTipoDocumento" ID="ddlTipoDocumento" AppendDataBoundItems="true">
                         <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                     </asp:DropDownList>
