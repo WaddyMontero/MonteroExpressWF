@@ -10,15 +10,14 @@ $(document).ready(function () {
         errorClass: 'control-label text-danger',
         rules: {
             txtCantidad: {
-                required: true,
-                digits:true
+                required: true//,
             },
             txtDescripcion: {
                 required:true,
             },
-            txtPeso: {
-                digits:true
-            },
+            //txtPeso: {
+            //    digits:true
+            //},
             ddlTamanioPaquete: {
                 required:true
             },
