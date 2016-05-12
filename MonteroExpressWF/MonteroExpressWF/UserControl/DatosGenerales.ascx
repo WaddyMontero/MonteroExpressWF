@@ -3,8 +3,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $('#<%= txtTelefono1.ClientID %>').mask('999-999-9999');
-        $('#<%= txtTelefono2.ClientID %>').mask('999-999-9999');
+        $('#<%= txtTelefono1.ClientID %>').mask('?999999999999');
+        $('#<%= txtTelefono2.ClientID %>').mask('?999999999999');
         $('#<%= ddlDireccion.ClientID %>').change(function () {
             var idStartWith = $(this).attr('id').split('_')[0] + '_' + $(this).attr('id').split('_')[1] + '_';
             if ($(this).val() == "") {

@@ -32,7 +32,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="txtRuta">Declarado</label>
+                        <label for="txtValor">Declarado</label>
                         <asp:TextBox ID="txtValor" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
