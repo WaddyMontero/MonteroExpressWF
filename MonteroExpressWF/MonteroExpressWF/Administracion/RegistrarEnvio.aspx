@@ -4,6 +4,7 @@
 <%@ Register Src="~/UserControl/DetallesEnvio.ascx" TagName="DetallesEnvio" TagPrefix="DE" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="head">
+    <script src="../Scripts/jquery.maskedinput.1.4.1.js"></script>
 </asp:Content>
 
 
