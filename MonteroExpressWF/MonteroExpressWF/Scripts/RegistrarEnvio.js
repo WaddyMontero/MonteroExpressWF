@@ -78,8 +78,8 @@ $(document).ready(function () {
             }, ctl00$MainContent$usrControlDetallesEnvio$txtRuta: {
                 lettersonly:true
             }, ctl00$MainContent$usrControlDetallesEnvio$txtValor: {
-                required:true,
-                number: true
+                required:true//,
+                //number: true
             }, ctl00$MainContent$usrControlDestinatario$txtNombre: {
                 required:true
             },
@@ -410,7 +410,7 @@ function GuardarEnvio() {
         Envio.IdPuertoDestino = parseInt($('#MainContent_usrControlDetallesEnvio_ddlDestino').val());
         Envio.RecogidoPor = $('#MainContent_usrControlDetallesEnvio_txtRecogido').val();
         Envio.Ruta = $('#MainContent_usrControlDetallesEnvio_txtRuta').val();
-        Envio.Valor = parseFloat($('#MainContent_usrControlDetallesEnvio_txtValor').val());
+        Envio.Valor = $('#MainContent_usrControlDetallesEnvio_txtValor').val();
         Envio.IdSeguro = parseInt($('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').find('input[type="radio"]:checked').val());
         Envio.AlbaranNum = $('#txtAlbaran').val();
         Envio.IdOficina = parseInt($('#MainContent_ddlOficina').val());
