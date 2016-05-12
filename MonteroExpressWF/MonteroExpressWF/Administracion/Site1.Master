@@ -28,7 +28,8 @@
     <script src="../Scripts/page-theme/metisMenu.min.js"></script>
     <script src="../Scripts/jquery.validate/jquery.validate.js"></script>
     <script src="../Scripts/jquery.validate/messages_es.js"></script>
-    <script src="../Scripts/jquery.mask.min.js"></script>
+    <%--<script src="../Scripts/jquery.mask.min.js"></script>--%>
+    <script src="../Scripts/jquery.maskedinput-1.3.min.js"></script>
     <script src="../Scripts/Utilities.js"></script>
     <script src="../Scripts/CallBacks.js"></script>
     <script src="../Scripts/RegistrarEnvio.js"></script>
