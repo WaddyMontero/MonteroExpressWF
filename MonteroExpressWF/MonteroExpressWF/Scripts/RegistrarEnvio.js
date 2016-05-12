@@ -137,9 +137,9 @@ $(document).ready(function () {
 
     }, "El # de documento del comitente y destinatario deben ser diferentes.");
     
-    $('#txtCantidad').mask('999999');
-    $('#txtPrecioUnitario').mask('9999999.99');
-    $('#txtPeso').mask('999999.99');
+    $('#txtCantidad').mask('?999999');
+    $('#txtPrecioUnitario').mask('?9999999.99');
+    $('#txtPeso').mask('?999999.99');
 
     //Dialogo para insertar un nuevo paquete al envio
     $("#divAgregarPaquete").dialog({
