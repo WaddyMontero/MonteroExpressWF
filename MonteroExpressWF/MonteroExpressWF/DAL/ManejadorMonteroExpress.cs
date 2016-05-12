@@ -570,7 +570,8 @@ namespace MonteroExpressWF.DAL
                 parametros.Add(new Parametro("@IdRemitenteDir", Envio.Remitente.EntidadDirecciones[0].IdEntidadDireccion, DbType.Int32));
                 parametros.Add(new Parametro("@IdDestinatarioDir", Envio.Destinatario.EntidadDirecciones[0].IdEntidadDireccion, DbType.Int32));
                 parametros.Add(new Parametro("@IdSeguroEnvio", Envio.IdSeguro, DbType.Int32));
-                parametros.Add(new Parametro("@Valor", Envio.Valor, DbType.Decimal));
+                //parametros.Add(new Parametro("@Valor", Envio.Valor, DbType.Decimal));
+                parametros.Add(new Parametro("@Valor", Envio.Valor, DbType.String));
                 parametros.Add(new Parametro("@IdEstado", Envio.IdEstado, DbType.Int32));
                 parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int32,ParameterDirection.Output));
                 //parametros.Add(new Parametro("@IdUsuario", Usuario.UsuarioActual.IdUsuario, DbType.Int32));
