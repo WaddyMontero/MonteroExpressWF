@@ -638,7 +638,8 @@ namespace MonteroExpressWF.DAL
                     IdSeguroEnvio = int.Parse(nodoEnvio.Attributes["IdSeguroEnvio"].Value.ToString()),
                     Descripcion = nodoEnvio.Attributes["DescripcionSeguro"].Value.ToString()
                 };
-                envio.Valor = Convert.ToDecimal(nodoEnvio.Attributes["Valor"].Value.ToString());
+                //envio.Valor = Convert.ToDecimal(nodoEnvio.Attributes["Valor"].Value.ToString());
+                envio.Valor = nodoEnvio.Attributes["Valor"].Value.ToString();
                 envio.FechaIngreso = Convert.ToDateTime(nodoEnvio.Attributes["FechaIngreso"].Value.ToString());
                 envio.IdPuertoOrigen = int.Parse(nodoEnvio.Attributes["IdPuertoOrigen"].Value.ToString());
                 envio.IdPuertoDestino = int.Parse(nodoEnvio.Attributes["IdPuertoDestino"].Value.ToString());
@@ -815,7 +816,7 @@ namespace MonteroExpressWF.DAL
                         Remitente = new Entidad { IdEntidad = int.Parse(dr["IdEntidadRemitente"].ToString()), Nombre = dr["Remitente"].ToString() },
                         Destinatario = new Entidad { IdEntidad = int.Parse(dr["IdEntidadDestinatario"].ToString()), Nombre = dr["Destinatario"].ToString() },
                         IdSeguro = int.Parse(dr["IdSeguroEnvio"].ToString()),
-                        Valor = decimal.Parse(dr["Valor"].ToString()),
+                        Valor = dr["Valor"].ToString(),
                         IdPuertoOrigen = int.Parse(dr["IdPuertoOrigen"].ToString()),
                         IdPuertoDestino = int.Parse(dr["IdPuertoDestino"].ToString()),
                         direccionRemitente = dr["DireccionRemitente"].ToString(),
