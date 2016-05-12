@@ -90,12 +90,12 @@ $(document).ready(function () {
                 required: '#MainContent_usrControlDestinatario_divDireccion:visible'
             },
             ctl00$MainContent$usrControlDestinatario$txtTelefono1: {
-                required: '#MainContent_usrControlDestinatario_divDireccion:visible',
-                minlength:12
+                required: '#MainContent_usrControlDestinatario_divDireccion:visible'//,
+                //minlength:12
             },
-            ctl00$MainContent$usrControlDestinatario$txtTelefono2: {
-                minlength: 12
-            },
+            //ctl00$MainContent$usrControlDestinatario$txtTelefono2: {
+            //    minlength: 12
+            //},
             ctl00$MainContent$usrControlRemitente$txtNombre: {
                 required: true
             },
@@ -106,12 +106,11 @@ $(document).ready(function () {
                 required: '#MainContent_usrControlRemitente_divDireccion:visible'
             },
             ctl00$MainContent$usrControlRemitente$txtTelefono1: {
-                required: '#MainContent_usrControlRemitente_divDireccion:visible',
-                minlength: 12
-            },
-            ctl00$MainContent$usrControlRemitente$txtTelefono2: {
-                minlength:12
-            }
+                required: '#MainContent_usrControlRemitente_divDireccion:visible'
+            }//,
+            //ctl00$MainContent$usrControlRemitente$txtTelefono2: {
+            //    minlength:12
+            //}
         }
     });
 
