@@ -17,7 +17,8 @@ namespace MonteroExpressWF.BOL
 
         public Entidad Remitente { get; set; }
         public Entidad Destinatario { get; set; }
-        public decimal Valor { get; set; }
+        //public decimal Valor { get; set; }
+        public string Valor { get; set; }
         public DateTime FechaIngreso { get; set; }
         public string NumeroEnvio { get; set; }
         public int IdOficina { get; set; }
