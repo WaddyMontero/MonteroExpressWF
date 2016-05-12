@@ -55,12 +55,12 @@ $(document).ready(function () {
             },
             ctl00$MainContent$usrControlRemitente$txtDocumento: {
                 required: true,
-                numDocCompleto: true,
+                //numDocCompleto: true,
                 DifNumDocumentoRemDes:true
             },
             ctl00$MainContent$usrControlDestinatario$txtDocumento: {
                 required: true,
-                numDocCompleto: true,
+                //numDocCompleto: true,
                 DifNumDocumentoRemDes: true
             },
             txtNombre: {
