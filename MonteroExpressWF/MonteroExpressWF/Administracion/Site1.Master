@@ -28,11 +28,9 @@
     <script src="../Scripts/page-theme/metisMenu.min.js"></script>
     <script src="../Scripts/jquery.validate/jquery.validate.js"></script>
     <script src="../Scripts/jquery.validate/messages_es.js"></script>
-    <%--<script src="../Scripts/jquery.mask.min.js"></script>--%>
     <script src="../Scripts/jquery.maskedinput.1.4.1.js"></script>
     <script src="../Scripts/Utilities.js"></script>
-    <script src="../Scripts/CallBacks.js"></script>
-    <script src="../Scripts/RegistrarEnvio.js"></script>
+    <script src="../Scripts/CallBacks.js"></script>   
     <script src="../Scripts/Mant_Entidades.js"></script>
     <script src="../Scripts/Mant_Envios.js"></script>
     <script src="../Scripts/Mant_Oficinas.js"></script>
@@ -43,14 +41,6 @@
     <script src="../Scripts/jquery.validate/utilities/lettersonly.js"></script>
     <script src="../Scripts/graphs/morris.min.js"></script>
     <script src="../Scripts/graphs/raphael-min.js"></script>
-    <script type="text/javascript">
-        //function prueba()
-        //{
-        //    alert('hare postback');
-        //    __doPostBack('','');
-        //}
-
-    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     
