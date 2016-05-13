@@ -82,7 +82,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="ddlEstadoEnvio">Estado</label>
-                                    <asp:DropDownList runat="server" name="ddlEstadoEnvio" ID="ddlEstadoEnvio" AppendDataBoundItems="true" required CssClass="form-control">
+                                    <asp:DropDownList runat="server" name="ddlEstadoEnvio" ID="ddlEstadoEnvio" AppendDataBoundItems="true" CssClass="form-control">
                                         <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
@@ -146,6 +146,22 @@
             </div>
         </form>
     </div>
+
+    <script type="text/javascript">
+
+
+        function CancelarRegistro()
+        {
+            var btns = new Array();
+            btns[0] = $('<button type="button" class="btn btn-default">Aceptar</button>').click(function () {
+                window.location('Dashboard.aspx');
+            });
+            MostrarDialogo("Cancelar registro de envio", "¿Confirma que desea cancelar el registro?", true, btns);
+
+        }
+
+
+    </script>
 
 </asp:Content>
 
