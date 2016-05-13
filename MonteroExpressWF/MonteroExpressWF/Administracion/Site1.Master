@@ -33,6 +33,7 @@
     <script src="../Scripts/CallBacks.js"></script>   
     <script src="../Scripts/Mant_Entidades.js"></script>
     <script src="../Scripts/Mant_Envios.js"></script>
+    <script src="../Scripts/RegistrarEnvio.js"></script>
     <script src="../Scripts/Mant_Oficinas.js"></script>
     <script src="../Scripts/Mant_Puertos.js"></script>
     <script src="../Scripts/Mant_TiposContenidos.js"></script>
