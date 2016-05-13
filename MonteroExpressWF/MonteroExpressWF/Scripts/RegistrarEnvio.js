@@ -1,7 +1,9 @@
 ﻿var idPaquete = 0;
 var paquetes = new Array();
 $(document).ready(function () {
-
+    $('#txtCantidad').mask('?999999');
+    $('#txtPrecioUnitario').mask('?9999999.99');
+    $('#txtPeso').mask('?99999999');
     $('#txtFecha').datepicker({
         dateFormat:'dd/mm/yy'
     });
@@ -10,14 +12,11 @@ $(document).ready(function () {
         errorClass: 'control-label text-danger',
         rules: {
             txtCantidad: {
-                required: true//,
+                required: true
             },
             txtDescripcion: {
-                required:true,
+                required:true
             },
-            //txtPeso: {
-            //    digits:true
-            //},
             ddlTamanioPaquete: {
                 required:true
             },
@@ -77,8 +76,7 @@ $(document).ready(function () {
             }, ctl00$MainContent$usrControlDetallesEnvio$txtRuta: {
                 lettersonly:true
             }, ctl00$MainContent$usrControlDetallesEnvio$txtValor: {
-                required:true//,
-                //number: true
+                required:true
             }, ctl00$MainContent$usrControlDestinatario$txtNombre: {
                 required:true
             },
@@ -89,12 +87,8 @@ $(document).ready(function () {
                 required: '#MainContent_usrControlDestinatario_divDireccion:visible'
             },
             ctl00$MainContent$usrControlDestinatario$txtTelefono1: {
-                required: '#MainContent_usrControlDestinatario_divDireccion:visible'//,
-                //minlength:12
+                required: '#MainContent_usrControlDestinatario_divDireccion:visible'
             },
-            //ctl00$MainContent$usrControlDestinatario$txtTelefono2: {
-            //    minlength: 12
-            //},
             ctl00$MainContent$usrControlRemitente$txtNombre: {
                 required: true
             },
@@ -106,10 +100,7 @@ $(document).ready(function () {
             },
             ctl00$MainContent$usrControlRemitente$txtTelefono1: {
                 required: '#MainContent_usrControlRemitente_divDireccion:visible'
-            }//,
-            //ctl00$MainContent$usrControlRemitente$txtTelefono2: {
-            //    minlength:12
-            //}
+            }
         }
     });
 
@@ -135,10 +126,6 @@ $(document).ready(function () {
         return (originalText != compareText);
 
     }, "El # de documento del comitente y destinatario deben ser diferentes.");
-    
-    $('#txtCantidad').mask('?999999');
-    $('#txtPrecioUnitario').mask('?9999999.99');
-    $('#txtPeso').mask('?99999999');
 
     //Dialogo para insertar un nuevo paquete al envio
     $("#divAgregarPaquete").dialog({
