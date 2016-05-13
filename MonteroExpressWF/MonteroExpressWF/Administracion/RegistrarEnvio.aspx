@@ -35,15 +35,30 @@
                                     <input type="text" name="txtFecha" class="form-control" id="txtFecha" />
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <%--<div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="ddlOficina">Oficina</label>
                                     <asp:DropDownList runat="server" name="ddlOficina" ID="ddlOficina" AppendDataBoundItems="true" CssClass="form-control">
                                         <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
+                            </div>--%>
+                            <div class="col-lg-3 col-xs-12">
+                                <div class="form-group">
+                                    <label for="ddlProvincia">Provincia:</label>
+                                    <asp:DropDownList runat="server" name="ddlProvincia" AppendDataBoundItems="true" CssClass="form-control" ID="ddlProvincia">
+                                        <asp:ListItem Value="" Text="Seleccione -->"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
                             </div>
-                            <div class="col-lg-3"></div>
+                            <div class="col-lg-3 col-xs-12">
+                                <div class="form-group">
+                                    <label for="ddlCiudad">Ciudad:</label>
+                                    <select name="ddlCiudad" class="form-control entidad-group" id="ddlCiudad">
+                                        <option value="">Seleccione --></option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">

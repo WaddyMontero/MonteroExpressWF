@@ -31,10 +31,14 @@ namespace MonteroExpressWF.Administracion
                 chkListTiposContenidos.DataTextField = "Descripcion";
                 chkListTiposContenidos.DataValueField = "IdTipoContenido";
                 chkListTiposContenidos.DataBind();
-                ddlOficina.DataSource = ManejadorOficinas.ObtenerOficinas(1);
-                ddlOficina.DataTextField = "Nombre";
-                ddlOficina.DataValueField = "IdOficina";                
-                ddlOficina.DataBind();
+                ddlProvincia.DataSource = ManejadorGeografico.ObtenerProvincias(205);
+                ddlProvincia.DataTextField = "Nombre";
+                ddlProvincia.DataValueField = "IdProvincia";
+                ddlProvincia.DataBind();
+                //ddlOficina.DataSource = ManejadorOficinas.ObtenerOficinas(1);
+                //ddlOficina.DataTextField = "Nombre";
+                //ddlOficina.DataValueField = "IdOficina";                
+                //ddlOficina.DataBind();
                 ddlEstadoEnvio.DataSource = ManejadorEstados.ObtieneEstadosEnviosActivos();
                 ddlEstadoEnvio.DataTextField = "Descripcion";
                 ddlEstadoEnvio.DataValueField = "IdEstado";
