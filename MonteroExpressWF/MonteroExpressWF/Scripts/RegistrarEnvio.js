@@ -4,6 +4,16 @@ $(document).ready(function () {
     $('#txtCantidad').mask('?999999');
     $('#txtPrecioUnitario').mask('?9999999.99');
     $('#txtPeso').mask('?99999999');
+
+    $('#MainContent_ddlProvincia').change(function () {
+        //var idStartWith = $(this).attr('id').split('_')[0] + '_' + $(this).attr('id').split('_')[1] + '_';        
+        restartDropDown('ddlCiudad', '', 'Seleccione -->');
+        if ($(this).val() != "") {            
+            AjaxCall("../WebServices/MonteroExpressWS.asmx/ObtenerCiudadesByProvincia", { "IdProvincia": parseInt($(this).val()) }, 'ddlCiudad', CargarDropDown);
+        }
+    });
+
+
     $('#txtFecha').datepicker({
         dateFormat:'dd/mm/yy'
     });
@@ -37,6 +47,9 @@ $(document).ready(function () {
             txtFecha:{
                 required:true,
                 minlength:10
+            },
+            ddlCiudad: {
+                required:true
             },
             ctl00$MainContent$ddlOficina:
             {
