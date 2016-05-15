@@ -515,6 +515,7 @@ namespace MonteroExpressWF.DAL
                     parametros.Add(new Parametro("@Nombre", Envio.Remitente.Nombre, DbType.String));
                     parametros.Add(new Parametro("@IdTipoDocumento", Envio.Remitente.IdTipoDocumento, DbType.Int32));
                     parametros.Add(new Parametro("@NumDocumento", Envio.Remitente.NumDocumento, DbType.String));
+                    parametros.Add(new Parametro("@Actividad", Envio.Remitente.Actividad, DbType.String));
                     command = con.EjecucionNoRetornoWithOutput("[dbo].[prc_Inserta_Entidad]", tran, parametros.ToArray());
                     Envio.Remitente.IdEntidad = int.Parse(command.Parameters["@IdEntidad"].Value.ToString());
                 }
@@ -562,7 +563,7 @@ namespace MonteroExpressWF.DAL
                 parametros.Clear();
                 parametros.Add(new Parametro("@Fecha", Convert.ToDateTime(Envio.FechaString), DbType.Date));
                 parametros.Add(new Parametro("@AlbaranNum", Envio.AlbaranNum, DbType.String));
-                parametros.Add(new Parametro("@IdOficina", Envio.IdOficina, DbType.Int32));
+                parametros.Add(new Parametro("@IdCiudad", Envio.IdCiudad, DbType.Int32));
                 parametros.Add(new Parametro("@IdPuertoOrigen", Envio.IdPuertoOrigen, DbType.Int32));
                 parametros.Add(new Parametro("@IdPuertoDestino", Envio.IdPuertoDestino, DbType.Int32));
                 parametros.Add(new Parametro("@RecogidoPor", Envio.RecogidoPor, DbType.String));
@@ -628,11 +629,14 @@ namespace MonteroExpressWF.DAL
                 XmlNode nodoEnvio = xmlDocument.FirstChild;
                 envio.IdEnvio = IdEnvio;
                 envio.Fecha = Convert.ToDateTime(nodoEnvio.Attributes["Fecha"].Value.ToString());
-                envio.IdOficina = int.Parse(nodoEnvio.Attributes["IdOficina"].Value.ToString());
-                envio.Oficina = new Oficina { 
-                    IdOficina = int.Parse(nodoEnvio.Attributes["IdOficina"].Value.ToString()),
-                    Nombre = nodoEnvio.Attributes["NombreOficina"].Value.ToString()
-                };
+                envio.IdCiudad = int.Parse(nodoEnvio.Attributes["IdCiudad"].Value.ToString());
+                envio.Ciudad = nodoEnvio.Attributes["Ciudad"].Value.ToString();
+                envio.IdProvincia = int.Parse(nodoEnvio.Attributes["IdProvincia"].Value.ToString());
+                envio.Provincia = nodoEnvio.Attributes["Provincia"].Value.ToString();
+                //envio.Oficina = new Oficina { 
+                //    IdOficina = int.Parse(nodoEnvio.Attributes["IdOficina"].Value.ToString()),
+                //    Nombre = nodoEnvio.Attributes["NombreOficina"].Value.ToString()
+                //};                
                 envio.AlbaranNum = nodoEnvio.Attributes["AlbaranNum"].Value.ToString();
                 envio.IdSeguro = int.Parse(nodoEnvio.Attributes["IdSeguroEnvio"].Value.ToString());
                 envio.SeguroEnvio = new SeguroEnvio { 
@@ -657,6 +661,7 @@ namespace MonteroExpressWF.DAL
                         IdEntidad = int.Parse(nodoEntidad.Attributes["IdEntidad"].Value.ToString()),
                         Nombre = nodoEntidad.Attributes["Nombre"].Value.ToString(),
                         IdTipoDocumento = int.Parse(nodoEntidad.Attributes["IdTipoDocumento"].Value.ToString()),
+                        Actividad = nodoEntidad.Attributes["Actividad"].Value.ToString(),
                         TiposDocumento = new TipoDocumento
                         {
                             IdTipoDocumento = int.Parse(nodoEntidad.Attributes["IdTipoDocumento"].Value.ToString()),
@@ -813,6 +818,10 @@ namespace MonteroExpressWF.DAL
                         IdEnvio = int.Parse(dr["IdEnvio"].ToString()),
                         NumeroEnvio = dr["NumeroEnvio"].ToString(),
                         Fecha = Convert.ToDateTime(dr["FechaEnvio"].ToString()),
+                        IdCiudad = int.Parse(dr["IdCiudad"].ToString()),
+                        Ciudad = dr["Ciudad"].ToString(),
+                        IdProvincia = int.Parse(dr["IdProvincia"].ToString()),
+                        Provincia = dr["Provincia"].ToString(),
                         AlbaranNum = dr["NumeroAlbaran"].ToString(),
                         Remitente = new Entidad { IdEntidad = int.Parse(dr["IdEntidadRemitente"].ToString()), Nombre = dr["Remitente"].ToString() },
                         Destinatario = new Entidad { IdEntidad = int.Parse(dr["IdEntidadDestinatario"].ToString()), Nombre = dr["Destinatario"].ToString() },
@@ -834,53 +843,53 @@ namespace MonteroExpressWF.DAL
         }
         #endregion
 
-        #region Oficinas
+        //#region Oficinas
 
-        public static List<Oficina> ObtenerOficinas(int Activo) 
-        {
-            Conexion con = new Conexion("SqlCon");
-            Parametro param = new Parametro("@Activo", Activo, DbType.Int16);
-            DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Oficinas]","", param);
-            List<Oficina> lista = null;
+        //public static List<Oficina> ObtenerOficinas(int Activo) 
+        //{
+        //    Conexion con = new Conexion("SqlCon");
+        //    Parametro param = new Parametro("@Activo", Activo, DbType.Int16);
+        //    DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Oficinas]","", param);
+        //    List<Oficina> lista = null;
 
-            if (dt != null && dt.Rows.Count > 0)
-            {
+        //    if (dt != null && dt.Rows.Count > 0)
+        //    {
 
-                lista = new List<Oficina>();
-                foreach (DataRow row in dt.Rows)
+        //        lista = new List<Oficina>();
+        //        foreach (DataRow row in dt.Rows)
 
-                {
-                    lista.Add(new Oficina
+        //        {
+        //            lista.Add(new Oficina
 
-                    {
-                        IdOficina = int.Parse(row["IdOficina"].ToString()),
-                        Nombre = row["Nombre"].ToString(),
-                        FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString()),
-                        Activo = Convert.ToBoolean(row["Activo"].ToString())
+        //            {
+        //                IdOficina = int.Parse(row["IdOficina"].ToString()),
+        //                Nombre = row["Nombre"].ToString(),
+        //                FechaIngreso = Convert.ToDateTime(row["FechaIngreso"].ToString()),
+        //                Activo = Convert.ToBoolean(row["Activo"].ToString())
 
-                    });
-                }
-            }
-            return lista;
-        }
+        //            });
+        //        }
+        //    }
+        //    return lista;
+        //}
 
-        public static void ActualizaOficina(Oficina Oficina)
-        {
-            Conexion con = new Conexion("SqlCon");
-            Parametro param = new Parametro("@IdOficina", Oficina.IdOficina, DbType.Int16);
-            con.EjecucionNoRetorno("[dbo].[prc_Actualiza_Oficinas]", param);
-        }
+        //public static void ActualizaOficina(Oficina Oficina)
+        //{
+        //    Conexion con = new Conexion("SqlCon");
+        //    Parametro param = new Parametro("@IdOficina", Oficina.IdOficina, DbType.Int16);
+        //    con.EjecucionNoRetorno("[dbo].[prc_Actualiza_Oficinas]", param);
+        //}
 
-        public static void InsertaOficina(Oficina Oficina)
-        {
-            Conexion con = new Conexion("SqlCon");
-            Oficina.Nombre = Oficina.Nombre.Replace("+", " ");
-            Parametro param = new Parametro("@NombreOficina", Oficina.Nombre, DbType.String);
-            con.EjecucionNoRetorno("[dbo].[prc_Inserta_Oficinas]", param);
-        }
+        //public static void InsertaOficina(Oficina Oficina)
+        //{
+        //    Conexion con = new Conexion("SqlCon");
+        //    Oficina.Nombre = Oficina.Nombre.Replace("+", " ");
+        //    Parametro param = new Parametro("@NombreOficina", Oficina.Nombre, DbType.String);
+        //    con.EjecucionNoRetorno("[dbo].[prc_Inserta_Oficinas]", param);
+        //}
 
 
-        #endregion
+        //#endregion
 
         #region PaquetesEnvios
 
