@@ -21,7 +21,14 @@ namespace MonteroExpressWF.BOL
         public string Valor { get; set; }
         public DateTime FechaIngreso { get; set; }
         public string NumeroEnvio { get; set; }
-        public int IdOficina { get; set; }
+        //public int IdOficina { get; set; }
+
+        public int IdCiudad { get; set; }
+        public int IdProvincia { get; set; }
+
+        public string Ciudad { get; set; }
+
+        public string Provincia { get; set; }
 
         public Oficina Oficina { get; set; }
         public int IdSeguro { get; set; }
