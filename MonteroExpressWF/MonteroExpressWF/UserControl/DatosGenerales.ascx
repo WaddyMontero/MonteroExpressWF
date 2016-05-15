@@ -143,6 +143,12 @@
                             <asp:TextBox runat="server" name="txtDireccion" CssClass="form-control entidad-group" ID="txtDireccion" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
+                    <div class="col-lg-6 col-xs-12" runat="server" id="divActividad">
+                        <div class="form-group">
+                            <label for="txtActividad">Actividad:</label>
+                            <asp:TextBox runat="server" name="txtActividad" CssClass="form-control entidad-group" ID="txtActividad"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-xs-12">
