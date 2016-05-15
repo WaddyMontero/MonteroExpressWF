@@ -34,8 +34,9 @@
             deleteProggress: 'Eliminando {0} de {1} registros, procesando...'
         },
         actions: {
-            listAction: '../WebServices/MonteroExpressWS.asmx/ListarEnvios',
-            //updateAction: '../WebServices/MonteroExpressWS.asmx/ActualizarNombreEntidad'},
+            listAction: '../WebServices/MonteroExpressWS.asmx/ListarEnvios'
+            //updateAction: '../WebServices/MonteroExpressWS.asmx/ActualizarNombreEntidad'
+        },
         fields: {
             IdEnvio: {
                 key: true,
@@ -130,20 +131,20 @@
                 }
             },
             Detalles: {
-                    width: '1%',
-                    display: function (data) {
-                        var $mostrar = $('<img src="../Content/img/information_hdpi.png" title="Mostrar Direcciones" class="img" />');
-                        $mostrar.click(function () {
+                width: '1%',
+                display: function (data) {
+                    var $mostrar = $('<img src="../Content/img/information_hdpi.png" title="Mostrar Direcciones" class="img" />');
+                    $mostrar.click(function () {
                             
-                            $("<div id='divDetalles' title='Detalles Envio "+data.record.NumeroEnvio+"'>"+
-                                "<div class='row'><div class='col-xs-6'>Dirección Remitente:</div><div class='col-xs-6'>" + data.record.direccionRemitente + "</div></div>" +
-                                "<div class='row'><div class='col-xs-6'>Dirección Destinatario:</div><div class='col-xs-6'>" + data.record.direccionDestinatario+ "</div></div>" +
-                                "<div class='row'><div class='col-xs-6'>Puerto Origen:</div><div class='col-xs-6'>" + data.record.nombrePuertoOrigen + "</div></div>" +
-                                "<div class='row'><div class='col-xs-6'>Puerto Destino:</div><div class='col-xs-6'>" + data.record.nombrePuertoDestino + "</div></div>" +
-                                "<div class='row'><div id='tblListaPaquetes'></div></div>"
-                                +"</div>").dialog({
-                                    modal: true,
-                                    width:'600px',
+                        $("<div id='divDetalles' title='Detalles Envio "+data.record.NumeroEnvio+"'>"+
+                            "<div class='row'><div class='col-xs-6'>Dirección Remitente:</div><div class='col-xs-6'>" + data.record.direccionRemitente + "</div></div>" +
+                            "<div class='row'><div class='col-xs-6'>Dirección Destinatario:</div><div class='col-xs-6'>" + data.record.direccionDestinatario+ "</div></div>" +
+                            "<div class='row'><div class='col-xs-6'>Puerto Origen:</div><div class='col-xs-6'>" + data.record.nombrePuertoOrigen + "</div></div>" +
+                            "<div class='row'><div class='col-xs-6'>Puerto Destino:</div><div class='col-xs-6'>" + data.record.nombrePuertoDestino + "</div></div>" +
+                            "<div class='row'><div id='tblListaPaquetes'></div></div>"
+                            +"</div>").dialog({
+                                modal: true,
+                                width:'600px',
                                 buttons: {
                                     Cerrar: function () {
                                         $(this).dialog('close');
@@ -226,13 +227,13 @@
                                     });
                                     $('#tblListaPaquetes').jtable('load', { "idEnvio": data.record.IdEnvio });
                                 }
-                                });
+                            });
                             
-                        });
-                        return $mostrar;
-                        }
-                    },
-            }   
+                    });
+                    return $mostrar;
+                }
+            }
+        }   
     });
 
     $('#tblMantEnvios').jtable('load', { Nombre: '', Fecha:'', Albaran: ''});
