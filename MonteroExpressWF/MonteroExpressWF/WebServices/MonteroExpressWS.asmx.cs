@@ -276,29 +276,29 @@ namespace MonteroExpressWF.WebServices
 
         #endregion
 
-        #region Oficinas
-        [WebMethod]
-        public object ObtenerOficinas()
-        {
-            return new { Result = "OK", Records = ManejadorOficinas.ObtenerOficinas(0), TotalRecordCount = 0 };
-        }
+        //#region Oficinas
+        //[WebMethod]
+        //public object ObtenerOficinas()
+        //{
+        //    return new { Result = "OK", Records = ManejadorOficinas.ObtenerOficinas(0), TotalRecordCount = 0 };
+        //}
 
-        [WebMethod]
-        public object InsertaOficinas(Oficina record)
-        {
-            ManejadorOficinas.InsertaOficinas(record);
-            return new { Result = "OK", Record = record };
-        }
+        //[WebMethod]
+        //public object InsertaOficinas(Oficina record)
+        //{
+        //    ManejadorOficinas.InsertaOficinas(record);
+        //    return new { Result = "OK", Record = record };
+        //}
 
-        [WebMethod]
-        public object ActualizaOficinas(Oficina record)
-        {
-            ManejadorOficinas.ActualizaOficinas(record);
-            return new { Result = "OK", Record = record };
-        }
+        //[WebMethod]
+        //public object ActualizaOficinas(Oficina record)
+        //{
+        //    ManejadorOficinas.ActualizaOficinas(record);
+        //    return new { Result = "OK", Record = record };
+        //}
 
 
-        #endregion
+        //#endregion
 
         #region Puertos
         [WebMethod]
