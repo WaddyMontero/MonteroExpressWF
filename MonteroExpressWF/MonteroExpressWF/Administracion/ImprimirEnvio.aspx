@@ -35,6 +35,9 @@
         </div>
         <h4 class="text-center">AUTORIZACIÓN DE DESPACHO POR GRUPAJE</h4>
         <div class="row">
+            <h4> Albaran #:</h4><strong><asp:Label runat="server" ID="lblAlbaran"></asp:Label></strong>
+        </div>
+        <div class="row">
             <div class="col-xs-12">
                 <table class="table table-responsive table-bordered">
                     <tr>

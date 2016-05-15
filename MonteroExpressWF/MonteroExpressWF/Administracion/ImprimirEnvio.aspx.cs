@@ -25,6 +25,7 @@ namespace MonteroExpressWF.Administracion
                     if (IdEnvio != "")
                     {
                         Envio envio = ManejadorEnvios.ObtenerEnvio(int.Parse(IdEnvio));
+                        lblAlbaran.Text = envio.AlbaranNum;
                         //Datos del Remitente
                         lblNombreRem.Text = envio.Remitente.Nombre;
                         lblNumDocumentoRem.Text = envio.Remitente.NumDocumento;
@@ -32,6 +33,7 @@ namespace MonteroExpressWF.Administracion
                             ", " + envio.Remitente.EntidadDirecciones[0].Ciudad.Nombre + ", " + 
                             envio.Remitente.EntidadDirecciones[0].Ciudad.Provincia.Nombre;
                         lblTelefonoRem.Text = envio.Remitente.EntidadDirecciones[0].Telefono1 + ((envio.Remitente.EntidadDirecciones[0].Telefono2 != "")?" | " + envio.Remitente.EntidadDirecciones[0].Telefono2:"");
+                        lblActividadRem.Text = envio.Remitente.Actividad;
                         lblSuscribe.Text = envio.Remitente.Nombre;
                         lblDni.Text = envio.Remitente.NumDocumento;
                         //Datos del Destinatario
