@@ -369,6 +369,7 @@ function GuardarEnvio() {
         Remitente.Nombre = $('#MainContent_usrControlRemitente_txtNombre').val();
         Remitente.IdTipoDocumento = parseInt($('#MainContent_usrControlRemitente_ddlTipoDocumento').val());
         Remitente.NumDocumento = $('#MainContent_usrControlRemitente_txtDocumento').val();
+        Remitente.Actividad = $('#MainContent_usrControlRemitente_txtActividad').val();
 
         var idDirRem = parseInt(($('#MainContent_usrControlRemitente_ddlDireccion').val() == "") ? "0" : $('#MainContent_usrControlRemitente_ddlDireccion').val());
         var EntidadDireccionesRemitente = new Array();
@@ -389,6 +390,7 @@ function GuardarEnvio() {
         Destinatario.Nombre = $('#MainContent_usrControlDestinatario_txtNombre').val();
         Destinatario.IdTipoDocumento = parseInt($('#MainContent_usrControlDestinatario_ddlTipoDocumento').val());
         Destinatario.NumDocumento = $('#MainContent_usrControlDestinatario_txtDocumento').val();
+        Destinatario.Actividad = '';
 
         var IdDirDest = parseInt(($('#MainContent_usrControlDestinatario_ddlDireccion').val() == "") ? "0" : $('#MainContent_usrControlDestinatario_ddlDireccion').val());
         EntidadDireccionesDestinatario = new Array();
@@ -411,7 +413,7 @@ function GuardarEnvio() {
         Envio.Valor = $('#MainContent_usrControlDetallesEnvio_txtValor').val();
         Envio.IdSeguro = parseInt($('#MainContent_usrControlDetallesEnvio_rbtnListEnvioSeguro').find('input[type="radio"]:checked').val());
         Envio.AlbaranNum = $('#txtAlbaran').val();
-        Envio.IdOficina = parseInt($('#MainContent_ddlOficina').val());
+        Envio.IdCiudad = parseInt($('#ddlCiudad').val());
         Envio.IdEstado = parseInt($('#MainContent_ddlEstadoEnvio').val());
         Envio.FechaString = $('#txtFecha').val();
         //Tipos de contenido del envio

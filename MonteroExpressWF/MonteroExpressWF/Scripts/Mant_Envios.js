@@ -34,7 +34,7 @@
             deleteProggress: 'Eliminando {0} de {1} registros, procesando...'
         },
         actions: {
-            listAction: '../WebServices/MonteroExpressWS.asmx/ListarEnvios'},
+            listAction: '../WebServices/MonteroExpressWS.asmx/ListarEnvios',
             //updateAction: '../WebServices/MonteroExpressWS.asmx/ActualizarNombreEntidad'},
         fields: {
             IdEnvio: {
@@ -66,7 +66,16 @@
                 edit: false,
                 list: true
             },
-            IdOficina:{
+            IdCiudad:{
+                list:false
+            },
+            Ciudad:{
+                list:false
+            },
+            IdProvincia:{
+                list:false
+            },
+            Provincia:{
                 list:false
             },
             IdDireccionRemitente:{

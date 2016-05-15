@@ -29,6 +29,7 @@ function BuscarEntidadCallBack(idContenedor, data)
     } else {
         //MostrarAlerta("info","El número de documento consultado no existe.");
         $('#' + idContenedor + 'divControles').removeClass('hidden');
+        $('#MainContent_usrControlDestinatario_divActividad').addClass('hidden');
         $('#' + idContenedor + 'divDireccion').removeClass('hidden');        
         restartDropDown(idContenedor + 'ddlDireccion','','Agregar nueva dirección');
     }
@@ -113,26 +114,25 @@ function TotalEnviosPorMesCallback(data) {
             labels: ['Total']
         });
     } else {
-
-    Morris.Bar({
-        element: 'barra',
-        data: [
-                  { y: 'Enero', a: data.d[0].Value },
-              { y: 'Febrero', a: data.d[1].Value },
-              { y: 'Marzo', a: data.d[2].Value },
-              { y: 'Abril', a: data.d[3].Value },
-              { y: 'Mayo', a: data.d[4].Value },
-              { y: 'Junio', a: data.d[5].Value },
-              { y: 'Julio', a: data.d[6].Value },
-              { y: 'Agosto', a: data.d[7].Value },
-              { y: 'Septiembre', a: data.d[8].Value },
-              { y: 'Octubre', a: data.d[9].Value },
-              { y: 'Noviembre', a: data.d[10].Value },
-              { y: 'Diciembre', a: data.d[11].Value }
-        ],
-        xkey: 'y',
-        ykeys: ['a'],
-        labels: ['Total']
-    });
-}
+        Morris.Bar({
+            element: 'barra',
+            data: [
+                      { y: 'Enero', a: data.d[0].Value },
+                  { y: 'Febrero', a: data.d[1].Value },
+                  { y: 'Marzo', a: data.d[2].Value },
+                  { y: 'Abril', a: data.d[3].Value },
+                  { y: 'Mayo', a: data.d[4].Value },
+                  { y: 'Junio', a: data.d[5].Value },
+                  { y: 'Julio', a: data.d[6].Value },
+                  { y: 'Agosto', a: data.d[7].Value },
+                  { y: 'Septiembre', a: data.d[8].Value },
+                  { y: 'Octubre', a: data.d[9].Value },
+                  { y: 'Noviembre', a: data.d[10].Value },
+                  { y: 'Diciembre', a: data.d[11].Value }
+            ],
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['Total']
+        });
+    }
 }
