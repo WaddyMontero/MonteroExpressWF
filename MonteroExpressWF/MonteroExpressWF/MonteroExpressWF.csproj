@@ -609,6 +609,7 @@
     <Compile Include="BOL\EntidadDireccion.cs" />
     <Compile Include="BOL\Envio.cs" />
     <Compile Include="BOL\Puerto.cs" />
+    <Compile Include="BOL\TamanioPaquete.cs" />
     <Compile Include="BOL\TipoEstado.cs" />
     <Compile Include="BOL\Estado.cs" />
     <Compile Include="BOL\Oficina.cs" />
@@ -619,7 +620,6 @@
     <Compile Include="BOL\SeguroEnvio.cs" />
     <Compile Include="BOL\TipoContenido.cs" />
     <Compile Include="BOL\TipoDocumento.cs" />
-    <Compile Include="BOL\TipoPaquete.cs" />
     <Compile Include="BOL\Usuario.cs" />
     <Compile Include="DAL\ManejadorMonteroExpress.cs" />
     <Compile Include="Default.aspx.cs">
