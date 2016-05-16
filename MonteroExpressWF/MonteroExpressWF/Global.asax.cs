@@ -11,7 +11,7 @@ using System.Web.SessionState;
 
 namespace MonteroExpressWF
 {
-    public class Global : HttpApplication
+    public class Global : System.Web.HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
         {
@@ -25,6 +25,29 @@ namespace MonteroExpressWF
             newCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
             newCulture.DateTimeFormat.DateSeparator = "/";
             Thread.CurrentThread.CurrentCulture = newCulture;
+        }
+        protected void Session_Start(object sender, EventArgs e)
+        {
+
+        }
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+
         }
     }
 }
