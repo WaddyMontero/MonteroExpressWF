@@ -46,7 +46,7 @@
             },
             Fecha: {
                 title: 'Fecha Envio',
-                width: '6%',
+                width: '3.1%',
                 create: false,
                 type: "date",
                 dateFormat:"dd/MM/yyyy",
@@ -62,22 +62,10 @@
             },
             NumeroEnvio: {
                 title: 'No. Envio',
-                width: '5%',
+                width: '4%',
                 create: false,
                 edit: false,
                 list: true
-            },
-            IdCiudad:{
-                list:false
-            },
-            Ciudad:{
-                list:false
-            },
-            IdProvincia:{
-                list:false
-            },
-            Provincia:{
-                list:false
             },
             IdDireccionRemitente:{
                 list:false,
@@ -109,6 +97,19 @@
                 width: '7.2%',
                 list: true,
                 edit: false
+            },
+            IdCiudad: {
+                list: false
+            },
+            Ciudad: {
+                title: 'Ciudad Recogida',
+                list: true
+            },
+            IdProvincia: {
+                list: false
+            },
+            Provincia: {
+                list: false
             },
             nombrePuertoOrigen:{
                 title:'Puerto Origen',
