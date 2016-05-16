@@ -106,14 +106,14 @@
                     </div>
                     <div class="panel-footer">
                         <div class="row">
-                            <div class="col-xs-3"></div>
-                            <div class="col-xs-3">
+                            <div class="col-xs-2 col-md-3"></div>
+                            <div class="col-xs-4 col-md-3">
                                 <input type="button" class="form-control btn btn-primary" onclick="GuardarEnvio()" value="Guardar" />
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-xs-4 col-md-3">
                                 <input type="button" class="form-control btn btn-danger" value="Cancelar" onclick="CancelarRegistro()" />
                             </div>
-                            <div class="col-xs-3"></div>
+                            <div class="col-xs-2 col-md-3"></div>
                         </div>
                     </div>
                 </div>

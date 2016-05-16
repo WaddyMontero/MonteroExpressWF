@@ -25,7 +25,7 @@ namespace MonteroExpressWF.Administracion
                     if (IdEnvio != "")
                     {
                         Envio envio = ManejadorEnvios.ObtenerEnvio(int.Parse(IdEnvio));
-                        lblAlbaran.Text = envio.AlbaranNum;
+                        lblAlbaran.Text = "Albaran #: "+envio.AlbaranNum;
                         //Datos del Remitente
                         lblNombreRem.Text = envio.Remitente.Nombre;
                         lblNumDocumentoRem.Text = envio.Remitente.NumDocumento;
