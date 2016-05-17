@@ -225,6 +225,12 @@ namespace MonteroExpressWF.WebServices
             }
         }
 
+        [WebMethod(EnableSession =true)]
+        public object ActualizaEstadosEnvios(Envio record)
+        {
+            ManejadorEnvios.ActualizaEstadosEnvios(record, Usuario.UsuarioActual.IdUsuario);
+            return new { Result = "OK", Record = record };
+        }
 
         #endregion
 
