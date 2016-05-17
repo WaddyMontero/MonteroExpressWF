@@ -34,8 +34,8 @@
             deleteProggress: 'Eliminando {0} de {1} registros, procesando...'
         },
         actions: {
-            listAction: '../WebServices/MonteroExpressWS.asmx/ListarEnvios'
-            //updateAction: '../WebServices/MonteroExpressWS.asmx/ActualizarNombreEntidad'
+            listAction: '../WebServices/MonteroExpressWS.asmx/ListarEnvios',
+            updateAction: '../WebServices/MonteroExpressWS.asmx/ActualizaEstadosEnvios'
         },
         fields: {
             IdEnvio: {
@@ -49,80 +49,93 @@
                 width: '3.1%',
                 create: false,
                 type: "date",
-                dateFormat:"dd/MM/yyyy",
+                dateFormat: "dd/MM/yyyy",
                 edit: false,
                 list: true
             },
-            AlbaranNum:{
+            AlbaranNum: {
                 title: 'Albarán',
                 width: '3%',
-                create:false,
-                edit:false,
-                list:true
+                create: false,
+                edit: false,
+                list: true
             },
             NumeroEnvio: {
                 title: 'No. Envio',
                 width: '4%',
                 create: false,
                 edit: false,
-                list: true
+                list: false
             },
-            IdDireccionRemitente:{
-                list:false,
-                edit:false
-            },
-            nombreRemitente:{
-                title:'Remitente',
-                list: true,
-                edit: false
-            },
-            direccionRemitente:{
-                title:'Dirección Origen',
+            IdDireccionRemitente: {
                 list: false,
                 edit: false
             },
-            nombreDestinatario:{
-                title:'Destinatario',
+            nombreRemitente: {
+                title: 'Remitente',
                 list: true,
                 edit: false
             },
-            direccionDestinatario:{
-                title:'Dirección Destino',
+            direccionRemitente: {
+                title: 'Dirección Origen',
+                list: false,
+                edit: false
+            },
+            nombreDestinatario: {
+                title: 'Destinatario',
+                list: true,
+                edit: false
+            },
+            direccionDestinatario: {
+                title: 'Dirección Destino',
                 list: false,
                 edit: false
 
             },
-            descripcionSeguro:{
+            descripcionSeguro: {
                 title: 'Seguro',
-                width: '7.2%',
+                width: '6.5%',
                 list: true,
                 edit: false
             },
             IdCiudad: {
-                list: false
+                list: false,
+                edit: false
             },
             Ciudad: {
                 title: 'Ciudad Recogida',
-                list: true
+                list: true,
+                edit: false
             },
             IdProvincia: {
-                list: false
+                list: false,
+                edit: false
             },
             Provincia: {
                 list: false
+                , edit: false
             },
-            nombrePuertoOrigen:{
-                title:'Puerto Origen',
+            nombrePuertoOrigen: {
+                title: 'Puerto Origen',
                 list: false,
                 edit: false
             },
-            nombrePuertoDestino:{
-                title:'Puerto Destino',
+            nombrePuertoDestino: {
+                title: 'Puerto Destino',
                 list: false,
                 edit: false
+            },
+            EstadoEnvio: {
+                title: 'Estado',
+                list: true,
+                width: '3%',
+                type: "checkbox",
+                edit: true,
+                values: { false: 'Creado', true: 'Recibido' },
+                create: false
             },
             Imprimir: {
-                width:'1%',
+                width: '1%',
                 display: function (data) {
                     var $print = $('<img src="../Content/img/print.png" title="Imprimir" class="img" />');
                     $print.click(function () {
@@ -136,16 +149,16 @@
                 display: function (data) {
                     var $mostrar = $('<img src="../Content/img/information_hdpi.png" title="Mostrar Direcciones" class="img" />');
                     $mostrar.click(function () {
-                            
-                        $("<div id='divDetalles' title='Detalles Envio "+data.record.NumeroEnvio+"'>"+
+
+                        $("<div id='divDetalles' title='Detalles Envio " + data.record.NumeroEnvio + "'>" +
                             "<div class='row'><div class='col-xs-6'>Dirección Remitente:</div><div class='col-xs-6'>" + data.record.direccionRemitente + "</div></div>" +
-                            "<div class='row'><div class='col-xs-6'>Dirección Destinatario:</div><div class='col-xs-6'>" + data.record.direccionDestinatario+ "</div></div>" +
+                            "<div class='row'><div class='col-xs-6'>Dirección Destinatario:</div><div class='col-xs-6'>" + data.record.direccionDestinatario + "</div></div>" +
                             "<div class='row'><div class='col-xs-6'>Puerto Origen:</div><div class='col-xs-6'>" + data.record.nombrePuertoOrigen + "</div></div>" +
                             "<div class='row'><div class='col-xs-6'>Puerto Destino:</div><div class='col-xs-6'>" + data.record.nombrePuertoDestino + "</div></div>" +
                             "<div class='row'><div id='tblListaPaquetes'></div></div>"
-                            +"</div>").dialog({
+                            + "</div>").dialog({
                                 modal: true,
-                                width:'600px',
+                                width: '600px',
                                 buttons: {
                                     Cerrar: function () {
                                         $(this).dialog('close');
@@ -153,13 +166,13 @@
                                 }, close: function (event, ui) {
                                     $(this).dialog('destroy').remove();
                                 }, open: function () {
-                                    
+
                                     $('#tblListaPaquetes').jtable({
                                         title: 'Listado Paquetes',
                                         paging: false,
                                         sorting: false,
                                         defaultSorting: 'Name ASC',
-                                        jqueryuiTheme: true,                                        
+                                        jqueryuiTheme: true,
                                         messages: {
                                             serverCommunicationError: 'Error de comunicación con el servidor.',
                                             loadingMessage: 'Cargando registros...',
@@ -229,12 +242,33 @@
                                     $('#tblListaPaquetes').jtable('load', { "idEnvio": data.record.IdEnvio });
                                 }
                             });
-                            
+
                     });
                     return $mostrar;
                 }
             }
-        }   
+        },
+            rowAdded: function (event, data) {
+                if (data.record) {
+                    $('#tblMantOficinas').jtable('reload');
+                }
+            },
+            recordUpdated: function (event, data) {
+                if (data.record) {
+                    $('#tblMantOficinas').jtable('reload');
+                }
+            },
+            recordAdded: function (event, data) {
+                if (data.record) {
+                    $('#tblMantOficinas').jtable('reload');
+                }
+            },
+            rowUpdated: function (event, data) {
+                if (data.record) {
+                    $('#tblMantOficinas').jtable('reload');
+                }
+            }
+           
     });
 
     $('#tblMantEnvios').jtable('load', { Nombre: '', Fecha:'', Albaran: ''});
