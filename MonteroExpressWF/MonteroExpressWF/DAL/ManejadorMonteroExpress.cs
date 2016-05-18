@@ -451,6 +451,14 @@ namespace MonteroExpressWF.DAL
             return lista;
         }
 
+        public static void ActualizaEstadosEnvios(Envio Envio, int IdUsuario)
+        {
+            Conexion con = new Conexion("SqlCon");
+            List<Parametro> Parametros = new List<Parametro>();
+            Parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int16));
+            Parametros.Add(new Parametro("@IdUsuario", IdUsuario, DbType.Int16));
+            con.EjecucionNoRetorno("[dbo].[prc_Actualiza_EstadoEnvio]", Parametros.ToArray());
+        }
 
         #endregion
 
@@ -573,7 +581,7 @@ namespace MonteroExpressWF.DAL
                 parametros.Add(new Parametro("@IdSeguroEnvio", Envio.IdSeguro, DbType.Int32));
                 //parametros.Add(new Parametro("@Valor", Envio.Valor, DbType.Decimal));
                 parametros.Add(new Parametro("@Valor", Envio.Valor, DbType.String));
-                parametros.Add(new Parametro("@IdEstado", Envio.IdEstado, DbType.Int32));
+                parametros.Add(new Parametro("@IdEstado", 1, DbType.Int32));
                 parametros.Add(new Parametro("@IdEnvio", Envio.IdEnvio, DbType.Int32,ParameterDirection.Output));
                 //parametros.Add(new Parametro("@IdUsuario", Usuario.UsuarioActual.IdUsuario, DbType.Int32));
                 parametros.Add(new Parametro("@IdUsuario", Usuario.UsuarioActual.IdUsuario, DbType.Int32));
@@ -835,7 +843,8 @@ namespace MonteroExpressWF.DAL
                         nombreDestinatario = dr["Destinatario"].ToString(),
                         nombrePuertoDestino = dr["PuertoDestino"].ToString(),
                         nombrePuertoOrigen = dr["PuertoOrigen"].ToString(),
-                        descripcionSeguro = dr["SeguroEnvio"].ToString()
+                        descripcionSeguro = dr["SeguroEnvio"].ToString(),
+                        estadoEnvio = int.Parse(dr["EstadoEnvio"].ToString())
                     });
                 }
             }
