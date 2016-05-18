@@ -153,12 +153,6 @@
                     <select runat="server" class="form-control" id="ddlTamanioPaquete" name="ddlTamanioPaquete"></select>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group">
-                    <label for="ddlEstado">Estado</label>
-                    <select runat="server" class="form-control" id="ddlEstado" name="ddlEstado"></select>
-                </div>
-            </div>
         </form>
     </div>
 

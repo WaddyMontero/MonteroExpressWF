@@ -19,10 +19,10 @@ namespace MonteroExpressWF.Administracion
             }
             if (!IsPostBack)
             {
-                ddlEstado.DataSource = ManejadorEstados.ObtieneEstadosPaquetesActivos();
-                ddlEstado.DataTextField = "Descripcion";
-                ddlEstado.DataValueField = "IdEstado";
-                ddlEstado.DataBind();
+                //ddlEstado.DataSource = ManejadorEstados.ObtieneEstadosPaquetesActivos();
+                //ddlEstado.DataTextField = "Descripcion";
+                //ddlEstado.DataValueField = "IdEstado";
+                //ddlEstado.DataBind();
                 ddlTamanioPaquete.DataSource = ManejadorTamaniosPaquetes.ObtieneTamaniosPaquetes();
                 ddlTamanioPaquete.DataTextField = "Descripcion";
                 ddlTamanioPaquete.DataValueField = "IdTamanioPaquete";
