@@ -125,13 +125,13 @@
                 list: false,
                 edit: false
             },
-            EstadoEnvio: {
-                title: 'Estado',
+            estadoEnvio: {
+                title: 'Recibido?',
                 list: true,
-                width: '3%',
+                width: '2.5%',
                 type: "checkbox",
                 edit: true,
-                values: { false: 'Creado', true: 'Recibido' },
+                values: { false: 'Si', true: 'No' },
                 create: false
             },
             Imprimir: {
