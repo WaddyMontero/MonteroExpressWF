@@ -669,7 +669,7 @@ namespace MonteroExpressWF.DAL
                         IdEntidad = int.Parse(nodoEntidad.Attributes["IdEntidad"].Value.ToString()),
                         Nombre = nodoEntidad.Attributes["Nombre"].Value.ToString(),
                         IdTipoDocumento = int.Parse(nodoEntidad.Attributes["IdTipoDocumento"].Value.ToString()),
-                        Actividad = nodoEntidad.Attributes["Actividad"].Value.ToString(),
+                        Actividad = (nodoEntidad.Attributes["Actividad"] != null)?nodoEntidad.Attributes["Actividad"].Value.ToString():"",
                         TiposDocumento = new TipoDocumento
                         {
                             IdTipoDocumento = int.Parse(nodoEntidad.Attributes["IdTipoDocumento"].Value.ToString()),
