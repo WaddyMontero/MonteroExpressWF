@@ -676,7 +676,7 @@ namespace MonteroExpressWF.DAL
                             Descripcion = nodoEntidad.Attributes["DescripcionTipoDocumento"].Value.ToString()
                         },
                         NumDocumento = nodoEntidad.Attributes["NumDocumento"].Value.ToString(),
-                        EntidadDirecciones = new List<EntidadDireccion>(),
+                        EntidadDirecciones = new List<EntidadDireccion>()
                         
                     };
                     envio.Remitente.EntidadDirecciones.Add(
