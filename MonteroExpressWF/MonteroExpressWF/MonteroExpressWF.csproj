@@ -392,8 +392,10 @@
     <Content Include="Scripts\Mant_Entidades.js" />
     <Content Include="Scripts\page-theme\metisMenu.min.js" />
     <Content Include="Scripts\page-theme\sb-admin-2.js" />
+    <Content Include="Scripts\RecepcionEnvios.js" />
     <Content Include="Scripts\RegistrarEnvio.js" />
     <Content Include="Scripts\Utilities.js" />
+    <Content Include="UserControl\RecepcionEnvios.ascx" />
     <Content Include="WebServices\MonteroExpressWS.asmx" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -660,6 +662,13 @@
     </Compile>
     <Compile Include="UserControl\DetallesEnvio.ascx.designer.cs">
       <DependentUpon>DetallesEnvio.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\RecepcionEnvios.ascx.cs">
+      <DependentUpon>RecepcionEnvios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\RecepcionEnvios.ascx.designer.cs">
+      <DependentUpon>RecepcionEnvios.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
