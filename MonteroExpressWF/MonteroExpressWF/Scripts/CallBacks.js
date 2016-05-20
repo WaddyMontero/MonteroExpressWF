@@ -56,6 +56,17 @@ function EnvioGuardadoCallBack(data)
     
 }
 
+function BuscarEnvioByAlbaranCallBack(data)
+{
+    if (data.d.Result == "OK") {
+        alert('Fue OK');
+    } else {
+        MostrarDialogo("Buscar envio a recibir", data.d.Message, true, null);
+    }
+
+
+}
+
 
 //Obtiene los 5 Remitentes que mas envios han hecho
 function Top5EnviosCallback(data)

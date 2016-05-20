@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="MonteroExpressWF.Administracion.Site1" %>
+<%@ Register Src="~/UserControl/RecepcionEnvios.ascx" TagName="Recep" TagPrefix="RE" %>
 
 <!DOCTYPE html>
 
@@ -312,6 +313,9 @@
                             <a href="Mant_Envios.aspx"><i class="fa fa-list fa-fw"></i>Lista de Envios</a>
                         </li>
                         <li>
+                            <a href="#" onclick="AbrirVentanaRecibirEnvio()"><i class="fa fa-list fa-fw"></i>Recepción Envio</a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i>Mantenimiento<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -347,6 +351,10 @@
         </div>
     </div>
 
+    <div id="divRecepcionEnvio">
+        <RE:Recep runat="server" ID="UCRecepcionEnvio"/>
+    </div>
+
     <script type="text/javascript">
 
         function CerrarSesion() {
@@ -356,6 +364,20 @@
             });
             MostrarDialogo("Cerrar Sesión", "¿Confirma que desea cerrar sesión?", true, btns);
             //return false;
+        }
+
+        function AbrirVentanaRecibirEnvio()
+        {
+            var botones = new Array();
+            botones[0] = $('<button type="button" class="btn btn-default">Recibir</button>').click(function () {
+                alert('Recibiendo envio');
+            });
+            botones[1] = $('<button type="button" class="btn btn-default">Recibir</button>').click(function () {
+                $('#divRecepcionEnvio').appendTo('body');
+                $('#myCustomModal').modal('hide');
+            });
+            MostrarDialogo('Recepción de Envios', "", true, botones);
+            $('#divRecepcionEnvio').appendTo($('#myCustomModal .modal-body'));
         }
     </script>
 </body>

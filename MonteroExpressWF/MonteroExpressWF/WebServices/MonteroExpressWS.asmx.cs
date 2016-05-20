@@ -224,6 +224,25 @@ namespace MonteroExpressWF.WebServices
                 return new { Result = "ERROR", Message = ex.Message };
             }
         }
+        [WebMethod]
+        public object ObtenerEnvioByAlbaran(string AlbaranNum)
+        {
+            try
+            {
+                Envio envio = ManejadorEnvios.ObtenerEnvioByAlbaran(AlbaranNum);
+                if(envio != null){
+                    return new { Result = "OK", Envio = envio };
+                }
+                else
+                {
+                    return new { Result = "ERROR", Message = "El número de envio digitado no existe o ya se ha recibido." };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new { Result = "ERROR", Message = ex.Message };
+            }
+        }
 
         [WebMethod(EnableSession =true)]
         public object ActualizaEstadosEnvios(Envio record)
