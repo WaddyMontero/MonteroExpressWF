@@ -31,5 +31,10 @@ namespace MonteroExpressWF.BLL
         {
             ManejadorMonteroExpress.ActualizaEstadosEnvios(Envio, IdUsuario);
         }
+
+        public static Envio ObtenerEnvioByAlbaran(string AlbaranNum)
+        {
+            return ManejadorMonteroExpress.ObtenerEnvioByAlbaran(AlbaranNum);
+        }
     }
 }
