@@ -9,9 +9,9 @@ namespace MonteroExpressWF.BLL
 {
     public class ManejadorEnvios
     {
-        public static List<Envio> ListarEnvios(int PageIndex, int PageSize, string Nombre, string Fecha, string Albaran)
+        public static List<Envio> ListarEnvios(int PageIndex, int PageSize, string Nombre, string Fecha, string Albaran, string Estado)
         {
-            return ManejadorMonteroExpress.ListarEnvios(PageIndex,PageSize,Nombre,Fecha,Albaran);
+            return ManejadorMonteroExpress.ListarEnvios(PageIndex,PageSize,Nombre,Fecha,Albaran, Estado);
         }
         public static Envio ObtenerEnvio(int IdEnvio)
         {

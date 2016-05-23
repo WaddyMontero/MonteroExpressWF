@@ -126,12 +126,10 @@
                 edit: false
             },
             estadoEnvio: {
-                title: 'Recibido?',
+                title: 'Estado',
                 list: true,
-                width: '2.5%',
-                type: "checkbox",
+                width: '2%',
                 edit: true,
-                values: { false: 'Si', true: 'No' },
                 create: false
             },
             Imprimir: {
@@ -271,7 +269,7 @@
            
     });
 
-    $('#tblMantEnvios').jtable('load', { Nombre: '', Fecha:'', Albaran: ''});
+    $('#tblMantEnvios').jtable('load', { Nombre: '', Fecha:'', Albaran: '', Estado: ''});
 
     
 

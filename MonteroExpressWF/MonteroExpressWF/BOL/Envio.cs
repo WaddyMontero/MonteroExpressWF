@@ -38,7 +38,7 @@ namespace MonteroExpressWF.BOL
         public string descripcionSeguro { get; set; }
         public string nombrePuertoDestino { get; set; }
         public string nombrePuertoOrigen{ get; set; }
-        public int estadoEnvio { get; set; }
+        public string estadoEnvio { get; set; }
         public string FechaString { get; set; }
         public Int32 IdEstado { get; set; }
     }

@@ -11,7 +11,7 @@
 
 
         function Buscar() {
-            $('#tblMantEnvios').jtable('load', { Nombre: $('#txtFiltroNombre').val(), Fecha: $('#txtFiltroFecha').val(), Albaran: $('#txtFiltroAlbaran').val() });
+            $('#tblMantEnvios').jtable('load', { Nombre: $('#txtFiltroNombre').val(), Fecha: $('#txtFiltroFecha').val(), Albaran: $('#txtFiltroAlbaran').val(), Estado: $('#txtFiltroEstado').val() });
         }
 
     </script>
@@ -57,7 +57,16 @@
                 <input id="txtFiltroAlbaran" type="text" class="form-control" />
             </div>
         </div>
+
+                <div class="col-xs-4">
+            <div class="form-group">
+                <label for="txtFiltroEstado">Estado:</label>
+                <input id="txtFiltroEstado" type="text" class="form-control" />
+            </div>
+        </div>
     </div>
+
+
     <div class="row">
         <div id="tblMantEnvios"></div>
 

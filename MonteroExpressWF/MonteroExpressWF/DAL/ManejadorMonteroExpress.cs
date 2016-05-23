@@ -1000,7 +1000,7 @@ namespace MonteroExpressWF.DAL
 
             return Total;
         }
-        public static List<Envio> ListarEnvios(int PageIndex,int PageSize,string Nombre,string Fecha,string Albaran)
+        public static List<Envio> ListarEnvios(int PageIndex,int PageSize,string Nombre,string Fecha,string Albaran, string Estado)
         {
             Conexion con = new Conexion("SqlCon");
             List<Parametro> parametros = new List<Parametro>();
@@ -1009,6 +1009,7 @@ namespace MonteroExpressWF.DAL
             parametros.Add(new Parametro("@Nombre", Nombre, DbType.String));
             parametros.Add(new Parametro("@Fecha", Fecha, DbType.String));
             parametros.Add(new Parametro("@Albaran", Albaran, DbType.String));
+            parametros.Add(new Parametro("@Estado", Estado, DbType.String));
             DataTable dt = con.GetDataTable("[dbo].[prc_Obtiene_Envios]","",parametros.ToArray());
             List<Envio> lista = null;
             if (dt != null && dt.Rows.Count > 0)
@@ -1039,7 +1040,7 @@ namespace MonteroExpressWF.DAL
                         nombrePuertoDestino = dr["PuertoDestino"].ToString(),
                         nombrePuertoOrigen = dr["PuertoOrigen"].ToString(),
                         descripcionSeguro = dr["SeguroEnvio"].ToString(),
-                        estadoEnvio = int.Parse(dr["EstadoEnvio"].ToString())
+                        estadoEnvio = dr["EstadoEnvio"].ToString()
                     });
                 }
             }
