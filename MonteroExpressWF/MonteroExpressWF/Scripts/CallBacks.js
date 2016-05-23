@@ -43,14 +43,14 @@ function EnvioGuardadoCallBack(data)
             window.open('http://monteroexpress.azurewebsites.net/Administracion/ImprimirEnvio.aspx?IdEnvio=' + data.d.IdEnvio);
             window.location.assign('http://monteroexpress.azurewebsites.net/Administracion/Dashboard.aspx');
         });
-        MostrarDialogo(data.d.Title, data.d.Message, false, new Array(
+        MostrarDialogo('envioGuardadoCallbackOkModal',data.d.Title, data.d.Message, false, new Array(
             btn,
             $('<button type="button" class="btn btn-default">Nuevo Envio</button>').click(function () {
                 window.location.assign('http://monteroexpress.azurewebsites.net/Administracion/RegistrarEnvio.aspx');
             })
             ));
     } else {
-        MostrarDialogo(data.d.Title, data.d.Message);
+        MostrarDialogo('envioGuardadoCallbackErrorModal', data.d.Title, data.d.Message);
     }
    
     
@@ -59,14 +59,58 @@ function EnvioGuardadoCallBack(data)
 function BuscarEnvioByAlbaranCallBack(data)
 {
     if (data.d.Result == "OK") {
-        alert('Fue OK');
+        //MostrarDialogo('buscarEnvioBYAlbaranCallbackOKModal', "Buscar envio a recibir", "Se encontró el envio", true, null, true, true);
+        $('#hdfIdEnvio').val(data.d.Envio.IdEnvio);
+        $('#lblRemitente').text(data.d.Envio.Remitente.Nombre);
+        $('#lblDirRemitente').text(data.d.Envio.Remitente.EntidadDirecciones[0].Direccion + ", " + data.d.Envio.Remitente.EntidadDirecciones[0].Ciudad.Nombre + ", " + data.d.Envio.Remitente.EntidadDirecciones[0].Ciudad.Provincia.Nombre);
+        $('#lblDestinatario').text(data.d.Envio.Destinatario.Nombre);
+        $('#lblDirDestinatario').text(data.d.Envio.Destinatario.EntidadDirecciones[0].Direccion + ", " + data.d.Envio.Destinatario.EntidadDirecciones[0].Ciudad.Nombre + ", " + data.d.Envio.Destinatario.EntidadDirecciones[0].Ciudad.Provincia.Nombre);
+        $('#lblPuertoOrigen').text(data.d.Envio.nombrePuertoOrigen);
+        $('#lblPuertoDestino').text(data.d.Envio.nombrePuertoDestino);
+        $('#lblFechaEnvio').text(data.d.Envio.Fecha);
+        //$('#lblDirRemitente').val();
+        for (var i = 0; i < data.d.Envio.PaquetesEnvios.length; i++) {
+            $('#tblListaPaquetes').jtable('addRecord', {
+                record: {
+                    IdPaqueteEnvio: data.d.Envio.PaquetesEnvios[i].IdPaqueteEnvio,
+                    Cantidad: data.d.Envio.PaquetesEnvios[i].Cantidad,
+                    TamanioPaquete: data.d.Envio.PaquetesEnvios[i].TamanioPaquete.Descripcion,
+                    Descripcion: data.d.Envio.PaquetesEnvios[i].Descripcion,
+                    EstadoPaquete: data.d.Envio.PaquetesEnvios[i].Estado.Descripcion,
+                    Peso: parseFloat(data.d.Envio.PaquetesEnvios[i].Peso)
+                },
+                clientOnly: true
+            });
+            $('#divDetalles').removeClass('hidden');
+        }
     } else {
-        MostrarDialogo("Buscar envio a recibir", data.d.Message, true, null);
+        MostrarDialogo('buscarEnvioBYAlbaranCallbackErrorModal', "Buscar envio a recibir", data.d.Message, true, null, true, true);
     }
-
-
 }
 
+function RecepcionEnvioCallback(data)
+{
+    if (data.d.Result == "OK") {
+        var botones = new Array();
+        botones[0] = $('<button type="button" class="btn btn-primary">Realizar otra recepción</button>').click(function () {
+            LimpiarRecibirEnvioModal();
+            $('#pnlRecepcion').removeClass('hidden');
+            $('#divRecepcionEnvio').appendTo($('#ventanaRecibirEnvioModal').find('.modal-body'));
+            $('#recepcionEnvioCallbackOkModal').modal('hide');
+        });
+        botones[1] = $('<button type="button" class="btn btn-danger">Finalizar</button>').click(function () {
+            $('#ventanaRecibirEnvioModal').modal('hide');
+            $('#recepcionEnvioCallbackOkModal').modal('hide');
+            LimpiarRecibirEnvioModal();
+        });
+        
+        MostrarDialogo("recepcionEnvioCallbackOkModal", "Recepción envio", data.d.Message,false,botones,false);
+
+    } else {
+        MostrarDialogo("recepcionEnvioCallbackOkModal", "Error en recepción de envio", data.d.Message, true);
+    }
+
+}
 
 //Obtiene los 5 Remitentes que mas envios han hecho
 function Top5EnviosCallback(data)

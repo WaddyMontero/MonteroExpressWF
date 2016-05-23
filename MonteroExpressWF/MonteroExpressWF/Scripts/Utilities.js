@@ -5,14 +5,18 @@
     $('<div class="alert alert-'+tipoAlerta+' alert-dismissable" style="z-index:9000;position:absolute;top:10%;left:40%"><button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true">&times;</button>'+mensaje+'</div>').appendTo($('form'));
 }
 
-function MostrarDialogo(titulo, mensaje,showBtnCerrar,botones) {
+function MostrarDialogo(id, titulo, mensaje, showBtnCerrar, botones, showTopCloseBtn, backdropClose) {
     showBtnCerrar = (showBtnCerrar == undefined) ? true : showBtnCerrar;
-
+    if (backdropClose == undefined || backdropClose == false ) {
+        backdropClose = false;
+    } else {
+        backdropClose = true;
+    }
     var btnX = $('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>').click(function () {
-        $('#myCustomModal').modal('hide');
+        $('#'+id).modal('hide');
     });
     var modal = $('<!-- Modal -->' +
-        '<div id="myCustomModal" class="modal fade" tabindex="-1" role="dialog">' +
+        '<div id="' + id + '" class="myCustomModal modal fade" tabindex="-1" role="dialog" data-backdrop="' + backdropClose + '">' +
         '<div class="modal-dialog">' +
         '<!-- Modal content-->' +
         '<div class="modal-content">' +
@@ -29,24 +33,27 @@ function MostrarDialogo(titulo, mensaje,showBtnCerrar,botones) {
         '</div>');
 
     modal.appendTo($('body'));
-    $('#myCustomModal').find('.modal-header').append(btnX);
+    if (showTopCloseBtn == undefined || showTopCloseBtn) {
+        $('#' + id).find('.modal-header').append(btnX);
+    }
+    
     if (botones != undefined && botones.length > 0) {
         for (var i = 0; i < botones.length; i++)
         {
-            $('#myCustomModal').find('.modal-footer').append(botones[i]);
+            $('#' + id).find('.modal-footer').append(botones[i]);
         }
     }
     if (showBtnCerrar) {
-        $('#myCustomModal').find('.modal-footer').append($('<button type="button" id="btnModalClose" class="btn btn-default" data-dismiss="modal">Cerrar</button>').click(function () {
-            $('#myCustomModal').modal('hide');
-            
-        }))
+        $('#' + id).find('.modal-footer').append($('<button type="button" id="btnModalClose" class="btn btn-default" data-dismiss="modal">Cerrar</button>').click(function () {
+            $('#' + id).modal('hide');
+
+        }));
     }
     
-    $('#myCustomModal').on('hidden.bs.modal', function (event) {
+    $('#' + id).on('hidden.bs.modal', function (event) {
         $(this).remove();
-    })
-    $('#myCustomModal').modal();
+    });
+    $('#' + id).modal();
 }
 
 function AjaxCall(url, data,idContenedor ,callBackFunction)
@@ -60,14 +67,14 @@ function AjaxCall(url, data,idContenedor ,callBackFunction)
         success: function (data) {
             //Llamada a la funcion para el callback
             if (callBackFunction == undefined) {
-                MostrarDialogo("Mensaje informativo","La acción se realizó exitosamente.");
+                MostrarDialogo('ajaxSuccessModal',"Mensaje informativo","La acción se realizó exitosamente.");
             } else if(idContenedor != ""){
                 callBackFunction(idContenedor, data);
             } else {
                 callBackFunction(data);
             }
         }, error: function (jqXHR, textStatus, errorThrown) {
-            MostrarDialogo("Error", textStatus);
+            MostrarDialogo('ajaxErrorModal', "Error", textStatus);
         }
     });
 }
@@ -83,5 +90,23 @@ function CargarDropDown(idDropDown, options) {
             $('#' + idDropDown).append($('<option value="' + options.d[i].Value + '">' + options.d[i].DisplayText + '</option>'));
         }
     }
+    
+}
+
+function LimpiarRecibirEnvioModal() {
+
+    $('#hdfIdEnvio').val('');
+    $('#txtAlbaran').val('');
+    $('#lblRemitente').text('');
+    $('#lblDirRemitente').text('');
+    $('#lblDestinatario').text('');
+    $('#lblDirDestinatario').text('');
+    $('#lblPuertoOrigen').text('');
+    $('#lblPuertoDestino').text('');
+    $('#lblFechaEnvio').text('');
+    $('#tblListaPaquetes tbody tr').empty();
+    $('#divDetalles').addClass('hidden');
+    $('#pnlRecepcion').addClass('hidden');
+    $('#divRecepcionEnvio').appendTo('body');
     
 }

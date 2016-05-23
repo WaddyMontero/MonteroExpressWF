@@ -165,7 +165,7 @@
             btns[0] = $('<button type="button" class="btn btn-default">Aceptar</button>').click(function () {
                 window.location('Dashboard.aspx');
             });
-            MostrarDialogo("Cancelar registro de envio", "¿Confirma que desea cancelar el registro?", true, btns);
+            MostrarDialogo('cancelarRegistroEnvioModal', "Cancelar registro de envio", "¿Confirma que desea cancelar el registro?", true, btns);
 
         }
 

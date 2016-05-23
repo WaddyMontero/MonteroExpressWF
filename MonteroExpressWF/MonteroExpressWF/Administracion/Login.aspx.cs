@@ -45,7 +45,7 @@ namespace MonteroExpressWF.Administracion
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "ImprimirMensaje", "alert('Complete el nombre de usuario y/o contraseña.')", true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                ScriptManager.RegisterStartupScript(Page, typeof(Page), "ImprimirMensaje", "alert('Ha ocurrido un error al autenticar. Favor trate más tarde, si el problema persiste contacte su administrador.')", true);
             }

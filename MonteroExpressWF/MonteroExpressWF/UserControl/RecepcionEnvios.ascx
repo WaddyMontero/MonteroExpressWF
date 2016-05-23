@@ -56,12 +56,12 @@
                 edit: false,
                 list: true
             },
-            TamanoPaquete: {
+            TamanioPaquete: {
                 title: 'Tamaño',
                 create: false,
                 edit: false,
                 list: true,
-                width: '2.5%'
+                width: '4.5%'
             },
             EstadoPaquete: {
                 title: 'Estado',
@@ -69,10 +69,11 @@
                 edit: false,
                 width: '2.5%'
             },
-            ValorEnvio: {
-                title: 'Valor',
-                list: false,
-                edit: false
+            Peso: {
+                title: 'Peso',
+                list: true,
+                edit: false,
+                width:'1.5%'
             }
         }
     });
@@ -82,102 +83,96 @@
 
     function BuscarEnvio()
     {
-        
-        alert('vamos a buscar el envio');
         if ($('#txtAlbaran').val() != '') {
-            alert('Con el albaran num ' + $('#txtAlbaran').val());
-            AjaxCall('..\WebServices\MonteroExpressWS.asmx\ObtenerEnvioByAlbaran', { "'AlbaranNum'": "'" + $('#txtAlbaran').val() + "'" }, "", BuscarEnvioByAlbaranCallBack)
+            AjaxCall('../WebServices/MonteroExpressWS.asmx/ObtenerEnvioByAlbaran', {'AlbaranNum': $('#txtAlbaran').val()}, "", BuscarEnvioByAlbaranCallBack);
         } else {
-            //MostrarDialogo('Buscar envio', "Debe digitar el número de albaran del envio que desea recibir.", true, null);
-            alert('Debe digitar el número de albaran del envio que desea recibir.');
+            MostrarDialogo('buscarEnvioRecepcionEnvioModal','Buscar envio', "Debe digitar el número de albaran del envio que desea recibir.", true, null);
         }
-
-
     }
 
 </script>
-<div class="panel panel-info">
-    <div class="panel-heading">Detalles de Envio</div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label for="txtAlbaran">Albaran #:</label>
-                    <input type="text" id="txtAlbaran" class="form-control"/>
+<div class="hidden" id="pnlRecepcion">
+    <div class="row">
+        <div class="col-xs-2">Albaran #:</div>
+        <div class="col-xs-6"> 
+            <input type="text" id="txtAlbaran" class="form-control"/>
+        </div>
+        <div class="col-xs-4">
+            <input type="button" id="btnBuscarEnvio" class="btn btn-info" onclick="BuscarEnvio()" value="Buscar">
+        </div>
+
+    </div>
+    <hr /><br />
+    <%--<div class="panel-heading">Detalles de Envio</div>
+    <div class="panel-body">        --%>
+        <div id='divDetalles' title="Detalles Envio" class="hidden">
+            <div class='row'>
+                <input type="hidden" id="hdfIdEnvio" />
+                <div class='col-xs-6'>
+                    <label class="bold">Remitente:</label>
+                </div>
+                <div class="col-xs-6">
+                    <label id="lblRemitente"></label>
                 </div>
             </div>
-            <div class="col-xs-6">
-                <input type="button" id="btnBuscarEnvio" class="btn btn-info" onclick="BuscarEnvio()" value="Buscar">
+            <div class='row'>
+                <div class='col-xs-6'>
+                    <label class="bold">Dirección Remitente:</label>
+                </div>
+                <div class="col-xs-6">
+                    <label id="lblDirRemitente"></label>
+                </div>
             </div>
+            <div class='row'>
+                <div class='col-xs-6'>
+                    <label class="bold">Destinatario:</label>
+                </div>
+                <div class="col-xs-6">
+                    <label id="lblDestinatario"></label>
 
-        </div>
-    <div id='divDetalles' title="Detalles Envio">
-        <div class='row'>
-            <div class='col-xs-6'>
-                <label class="bold">Remitente:</label>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <label id="lblRemitente"></label>
+            <div class='row'>
+                <div class='col-xs-6'>
+                     <label class="bold">Dirección Destinatario:</label>
+                </div>
+                <div class="col-xs-6">
+                    <label id="lblDirDestinatario"></label>
+
+                </div>
             </div>
-        </div>
-        <div class='row'>
-            <div class='col-xs-6'>
-                <label class="bold">Dirección Remitente:</label>
+            <div class='row'>
+                <div class='col-xs-6'>
+                    <label class="bold">Puerto Origen:</label>
+                </div>
+                <div class="col-xs-6">
+                    <label id="lblPuertoOrigen"></label>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <label id="lblDirRemitente"></label>
+            <div class='row'>
+                <div class='col-xs-6'>
+                    <label class="bold">Puerto Destino:</label>
+                </div>
+                <div class="col-xs-6">
+                    <label id="lblPuertoDestino"></label>
+                </div>
             </div>
-        </div>
-        <div class='row'>
-            <div class='col-xs-6'>
-                <label class="bold">Destinatario:</label>
+            <div class='row'>
+                <div class='col-xs-6'>
+                    <label class="bold">Fecha Envio:</label>
+                </div>
+                <div class="col-xs-6">
+                    <label id="lblFechaEnvio"></label>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <label id="lblDestinatario"></label>
+            <br />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="tblListaPaquetes"></div>
+                </div>
 
             </div>
         </div>
-        <div class='row'>
-            <div class='col-xs-6'>
-                 <label class="bold">Dirección Destinatario:</label>
-            </div>
-            <div class="col-xs-6">
-                <label id="lblDirDestinatario"></label>
 
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col-xs-6'>
-                <label class="bold">Puerto Origen:</label>
-            </div>
-            <div class="col-xs-6">
-                <label id="lblPuertoOrigen"></label>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col-xs-6'>
-                <label class="bold">Puerto Destino:</label>
-            </div>
-            <div class="col-xs-6">
-                <label id="lblPuertoDestino"></label>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col-xs-6'>
-                <label class="bold">Fecha Envio:</label>
-            </div>
-            <div class="col-xs-6">
-                <label id="lblFechaEnvio"></label>
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="tblListaPaquetes"></div>
-            </div>
-
-        </div>
-    </div>
-
-    </div>
+    <%--</div>--%>
 </div>

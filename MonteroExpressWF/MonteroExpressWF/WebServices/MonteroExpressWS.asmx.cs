@@ -231,11 +231,19 @@ namespace MonteroExpressWF.WebServices
             {
                 Envio envio = ManejadorEnvios.ObtenerEnvioByAlbaran(AlbaranNum);
                 if(envio != null){
-                    return new { Result = "OK", Envio = envio };
+                    if (envio.IdEstado != 1)
+                    {
+                        return new { Result = "ERROR", Message = "El número de albaran digitado no existe o ya se ha recibido." };
+                    }
+                    else
+                    {
+                        return new { Result = "OK", Envio = envio };
+                    }
+                    
                 }
                 else
                 {
-                    return new { Result = "ERROR", Message = "El número de envio digitado no existe o ya se ha recibido." };
+                    return new { Result = "ERROR", Message = "El número de albaran digitado no existe o ya se ha recibido." };
                 }
             }
             catch (Exception ex)
@@ -245,10 +253,17 @@ namespace MonteroExpressWF.WebServices
         }
 
         [WebMethod(EnableSession =true)]
-        public object ActualizaEstadosEnvios(Envio record)
+        public object ActualizaEstadosEnvios(Int32 IdEnvio,Int16 IdEstado)
         {
-            ManejadorEnvios.ActualizaEstadosEnvios(record, Usuario.UsuarioActual.IdUsuario);
-            return new { Result = "OK", Record = record };
+            try
+            {
+                ManejadorEnvios.ActualizaEstadosEnvios(IdEnvio,IdEstado, Usuario.UsuarioActual.IdUsuario);
+                return new { Result = "OK", Message = "La recepción se ha realizado exitosamente." };
+            }
+            catch (Exception ex)
+            {
+                return new { Result = "ERROR", Message = ex.Message };
+            }
         }
 
         #endregion

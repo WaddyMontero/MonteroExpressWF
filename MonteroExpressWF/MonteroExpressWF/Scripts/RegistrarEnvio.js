@@ -284,7 +284,7 @@ $(document).ready(function () {
                             paquetes.splice(index, 1);
                         });
                     } else {
-                        MostrarDialogo("Eliminar paquete","Seleccione el paquete que desea eliminar");
+                        MostrarDialogo('eliminarPaqueteModal',"Eliminar paquete","Seleccione el paquete que desea eliminar");
                     }
                                       
                 }
@@ -329,7 +329,7 @@ function CancelarRegistro()
     botones[0] = $('<input type="button" class="btn btn-primary" value="Aceptar"/>').click(function(){
         window.location('Dashboard.aspx');
     });
-    MostrarDialogo('Cancelar registro','¿Confirma que desea cancelar el registro del envio?',true,botones);
+    MostrarDialogo('cancelarRegistroEnvioModal','Cancelar registro','¿Confirma que desea cancelar el registro del envio?',true,botones);
 
 }
 

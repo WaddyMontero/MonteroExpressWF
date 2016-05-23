@@ -362,22 +362,27 @@
             btns[0] = $('<button type="button" class="btn btn-default">Aceptar</button>').click(function () {
                 window.location('Logout.aspx');
             });
-            MostrarDialogo("Cerrar Sesión", "¿Confirma que desea cerrar sesión?", true, btns);
+            MostrarDialogo('cerrarSesionModal',"Cerrar Sesión", "¿Confirma que desea cerrar sesión?", true, btns);
             //return false;
         }
 
         function AbrirVentanaRecibirEnvio()
         {
             var botones = new Array();
-            botones[0] = $('<button type="button" class="btn btn-default">Recibir</button>').click(function () {
-                alert('Recibiendo envio');
+            botones[0] = $('<button type="button" class="btn btn-primary">Recibir</button>').click(function () {
+                if ($('#hdfIdEnvio').val() == "") {
+                    MostrarDialogo("btnRecibirEnvio2Modal","Recibir envio","Antes de hacer la recepción busque el número de albaran que va a recibir.");
+                } else {
+                    AjaxCall('../WebServices/MonteroExpressWS.asmx/ActualizaEstadosEnvios', { 'IdEnvio': $('#hdfIdEnvio').val(), 'IdEstado': 4 }, "", RecepcionEnvioCallback);
+                }
             });
-            botones[1] = $('<button type="button" class="btn btn-default">Recibir</button>').click(function () {
-                $('#divRecepcionEnvio').appendTo('body');
-                $('#myCustomModal').modal('hide');
+            botones[1] = $('<button type="button" class="btn btn-danger">Cerrar</button>').click(function () {                               
+                LimpiarRecibirEnvioModal();
+                $('#ventanaRecibirEnvioModal').modal('hide');
             });
-            MostrarDialogo('Recepción de Envios', "", true, botones);
-            $('#divRecepcionEnvio').appendTo($('#myCustomModal .modal-body'));
+            MostrarDialogo('ventanaRecibirEnvioModal','Recepción de Envios', "", false, botones, false);
+            $('#pnlRecepcion').removeClass('hidden');
+            $('#divRecepcionEnvio').appendTo($('#ventanaRecibirEnvioModal').find('.modal-body'));
         }
     </script>
 </body>

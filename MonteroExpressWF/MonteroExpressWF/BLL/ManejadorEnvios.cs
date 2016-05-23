@@ -27,9 +27,9 @@ namespace MonteroExpressWF.BLL
             return ManejadorMonteroExpress.TotalEnvios(Nombre, Fecha, Albaran);
         }
 
-        public static void ActualizaEstadosEnvios(Envio Envio, int IdUsuario)
+        public static void ActualizaEstadosEnvios(Int32 IdEnvio,Int16 IdEstado, int IdUsuario)
         {
-            ManejadorMonteroExpress.ActualizaEstadosEnvios(Envio, IdUsuario);
+            ManejadorMonteroExpress.ActualizaEstadosEnvios(IdEnvio,IdEstado, IdUsuario);
         }
 
         public static Envio ObtenerEnvioByAlbaran(string AlbaranNum)
